@@ -10,4 +10,5 @@
 
     $cn->closeDB();
     header('Location:resultdelete_student.php');
+    echo "test";
 ?>
