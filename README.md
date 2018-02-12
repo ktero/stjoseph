@@ -1,2 +1,2 @@
 # stjoseph
-A school profiling and financial system
+A financial system for St. Joseph High School - Talakag
