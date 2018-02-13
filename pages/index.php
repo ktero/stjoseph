@@ -1,12 +1,13 @@
 <?php
     session_start();
+    $name = $_SESSION['fname'];
 ?>
 
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <?php require_once('../include/head.php') ?>
+        <?php require_once('../include/head.php'); ?>
     </head>
 
     <header style="padding: 0; margin: 0;">
@@ -22,31 +23,9 @@
                     <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
                 </div>
                 <!-- /.navbar-header -->
-
-                <ul class="nav navbar-top-links navbar-right">
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        
-                        <?php
-                            // Display session variable fname
-                            if (isset($_SESSION['id'])) 
-                                echo $_SESSION['fname'];
-                        ?>
-                            
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    <!-- /.dropdown -->
-                </ul>
+                <?php require_once('../include/account-section.php'); ?>
                 <!-- /.navbar-top-links -->
                 <?php require_once('../include/side-bar-options.php'); ?>
-
                 <!-- /.navbar-static-side -->
             </nav>
         </div>
