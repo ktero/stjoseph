@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php 
-        require_once('../include/head.php') 
-    ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>

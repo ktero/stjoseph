@@ -1,5 +1,14 @@
 <?php
     session_start();
+    function setSessionVariables($row) {
+        $_SESSION['id'] = $row['user_id'];
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['lname'] = $row['lname'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['pnumber'] = $row['pnumber'];
+        $_SESSION['age'] = $row['age'];
+        echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
+    }
 ?>
 
 
@@ -7,7 +16,7 @@
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -103,28 +112,12 @@
                     
                     if($user == $row['username']) {
                         if($pass == $row['password']) {
-                            //echo "<p>normal ".$pass." passed through</p>";
-                            
                             // Login user
-                            $_SESSION['id'] = $row['user_id'];
-                            $_SESSION['fname'] = $row['fname'];
-                            $_SESSION['lname'] = $row['lname'];
-                            $_SESSION['email'] = $row['email'];
-                            $_SESSION['pnumber'] = $row['pnumber'];
-                            $_SESSION['age'] = $row['age'];
-                            echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
+                            setSessionVariables($row);
                         } 
                         else if($hashCheck == true) {
-                            // echo "<p>hash ".$pass." passed through</p>";
-                            
                             // Login user
-                            $_SESSION['id'] = $row['user_id'];
-                            $_SESSION['fname'] = $row['fname'];
-                            $_SESSION['lname'] = $row['lname'];
-                            $_SESSION['email'] = $row['email'];
-                            $_SESSION['pnumber'] = $row['pnumber'];
-                            $_SESSION['age'] = $row['age'];
-                            echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
+                            setSessionVariables($row);
                         }
                     }   
                 }
