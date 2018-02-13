@@ -13,9 +13,6 @@
                             <li>
                                 <a href="editstudent.php">Edit Records</a>
                             </li>
-                            <li>
-                                <a href="deleteStudent.php">Delete Records</a>
-                            </li>
                         </ul>
 
 
@@ -29,9 +26,6 @@
                                 </li>
                                 <li>
                                     <a href="editassessment2.php">Edit Records</a>
-                                </li>
-                                <li>
-                                    <a href="#">Delete Records</a>
                                 </li>
                             </ul>
                         </li>
