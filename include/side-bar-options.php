@@ -11,7 +11,7 @@
                                 <a href="addstudent.php">Add Records</a>
                             </li>
                             <li>
-                                <a href="editstudent.php">Edit Records</a>
+                                <a href="resultedit_student.php">Edit Records</a>
                             </li>
                         </ul>
 
@@ -39,7 +39,7 @@
                     <a href="#">Student Records<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="home.php">All Students</a>
+                            <a href="home.php">View Students</a>
 
                             <!-- Tero edit: 2/9/18 -->
 

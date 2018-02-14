@@ -9,5 +9,5 @@
     mysqli_query($conn, $query);
 
     $cn->closeDB();
-    header('Location:editstudent.php');
+    header('Location:resultedit_student.php');
 ?>

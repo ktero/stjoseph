@@ -73,7 +73,7 @@
             <!-- Confirmation Message -->
             <div id="page-wrapper" align="Center" style="padding:100px">
                 <h1> Successfully Updated </h1>
-                <a href='editstudent.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update New Student</a>
+                <a href='resultedit_student.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update New Student</a>
             </div>
             <!-- Footer -->
             <hr>

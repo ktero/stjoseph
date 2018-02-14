@@ -1,122 +1,46 @@
- 
-<!DOCTYPE html>
-<html lang="en">
+<?php
+    session_start();
+    $name = $_SESSION['fname'];
+?>
 
-<head>
-    <?php require_once('../include/head.php') ?>
-</head>
 
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <div id="wrapper">
+    <head>
+        <?php require_once('../include/head.php') ?>
+    </head>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-
-                      <ul class="nav navbar-top-links navbar-right">
-               
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                      
-                        <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                          <li>
-                            <a href="#">Admin Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">   
-                           <li>
-                                    <a href="#">Student<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                    <a href="addstudent.php">Add Records</a>
-                                </li>
-                                <li>
-                                    <a href="editstudent.php">Edit Records</a>
-                                </li>
-								</ul>
-								
-								
-								 <!-- /.nav-third-level -->
-								
-								<li>
-                                    <a href="#">Assessment<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-									 <li>
-                                    <a href="addassessment.php">Add Records</a>
-                                </li>
-								  <li>
-                                    <a href="editassessment2.php">Edit Records</a>
-                                </li>
-														
-								</ul>
-								</li>
-														
-								<!-- /.nav-third-level -->
-								</li>
-									 </ul>
-								 <!-- /.nav-second-level -->
-						<li>
-                            <a href="#">Student Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                               <li>
-                                    <a href="home.php">All Students</a>
-                                </li>
-								
-                            </ul>
-							   </li>
-                            <!-- /.nav-second-level -->
-                        <li>
-                            <a href="#">Financial Transactions<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-									<li>
-                                    <a href="formpayment.php">Student Payment</a>
-                                </li>
-								<li>
-                                    <a href="Assessment.php">Assessment</a>
-									</li>
-								
-                            </ul>
-							</li>
-                            <!-- /.nav-second-level -->
-
-                        
-                        </li>
-                    </ul>
+                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+                <!-- /.navbar-header -->
+                <?php require_once('../include/account-section.php'); ?>
+                <!-- /.navbar-top-links -->
+                <?php require_once('../include/side-bar-options.php'); ?>
+                <!-- /.navbar-static-side -->
+            </nav>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Student Ledger</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Student Ledger</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+                <!-- /.row -->
 
 <?php
 	$ID = isset($_GET['id']) ? $_GET['id'] : '-1';
@@ -143,29 +67,31 @@
 	{
 ?>
 
- <div class="row"></div>
-	<div>
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-				<?php
-					while($row = mysqli_fetch_row($result))
-					{
-				?>
-                <h4 style="margin-left: 15px;"><?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?></h4>
-					<?php } ?>
-                <!-- /.panel-heading -->
-                <div class="panel-body" style="width: 80%; margin-left: 80px;">
-                    <table width="100%" class="table table-striped table-bordered table-hover" >
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-								<th>OR Number</th>
-								<th>Fee Name</th>
-                                <th>Amount Paid</th>
-                            </tr>
-                        </thead>
-						<tbody>
-							<?php
+                    <div class="row"></div>
+                    <div>
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+<?php
+        while($row = mysqli_fetch_row($result))
+        {
+?>
+                                    <h4 style="margin-left: 15px;">
+                            <?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?>
+                                    </h4>
+                            <?php } ?>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body" style="width: 80%; margin-left: 80px;">
+                                        <table width="100%" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>OR Number</th>
+                                                    <th>Fee Name</th>
+                                                    <th>Amount Paid</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                            <?php
 								$baltot = 0;
 								$amtot = 0;
 								$payque = 'SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '.$ID;
@@ -175,12 +101,20 @@
 								{
 									$pr4 = number_format($payrow[4], 2, '.', ',&nbsp;');
 							?>
-							<tr>
-								<td><?php echo $payrow[3]; ?></td>
-								<td><?php echo $payrow[5]; ?></td>
-								<td><?php echo $payrow[7]; ?></td>
-								<td><?php echo $pr4; ?></td>
-								<?php
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $payrow[3]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $payrow[5]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $payrow[7]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $pr4; ?>
+                                                        </td>
+                                                        <?php
 									$check = "SELECT * FROM student WHERE StudentID = ".$ID;
 									$checkres = mysqli_query($con, $check) or die("Error: ".mysqli_error($con));
 
@@ -210,158 +144,149 @@
 									$amtot = $baltot - $amtot;
 									$baltot = number_format($baltot, 2, '.', ',&nbsp;');
 								?>
-							</tr>
-							<?php
+                                                    </tr>
+                                                    <?php
 								}
 								$amtot = number_format($amtot, 2, '.', ',&nbsp;');
 							?>
-							<tr>
-								<td colspan="3" style="text-align:  right;"><strong>Balance:&nbsp;</strong></td>
-								<td><strong><?php echo $amtot; ?></strong></td>
-							</tr>
-						</tbody>
-                    </table>
-			  <div class="btn btn-default pull-left" role="button">
-                <a href="home.php">Back</a>
-             </div>
-			 <div class="btn btn-default pull-left" role="button">
-				<a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
-			</div> 
-					<div style="float: right">
-						<a href="accounts.php?id=<?php echo $ID; ?>" style="font-size: 20px;">View Statement of Account</a>
-					</div>
-					
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.panel-body -->
+                                                        <tr>
+                                                            <td colspan="3" style="text-align:  right;"><strong>Balance:&nbsp;</strong></td>
+                                                            <td><strong><?php echo $amtot; ?></strong></td>
+                                                        </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="btn btn-default pull-left" role="button">
+                                            <a href="home.php">Back</a>
+                                        </div>
+                                        <div class="btn btn-default pull-left" role="button">
+                                            <a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
+                                        </div>
+                                        <div style="float: right">
+                                            <a href="accounts.php?id=<?php echo $ID; ?>" style="font-size: 20px;">View Statement of Account</a>
+                                        </div>
+
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-</div>
- </div>
-    <!-- /#wrapper -->
-<?php
+        <!-- /#wrapper -->
+        <?php
 	}
 	else if($ID == '-1')
 	{
 		echo "<meta http-equiv='refresh' content='0;url=home.php'/>";
 	}
+    $cn->closedB();
 ?>
-	 </div>
-    <!-- /#wrapper -->
-
-</table>
-<tfoot>
- 
-   </tr>
-    <tr>
-      <td valign="bottom" align="right">
-       
-        <button onclick="myFunction()"  class="btn btn-default pull-right">Print this page</button>
-
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
-       
-      </td>
-   </tr>
-   
-</tfoot>
-    </div>
-    <!-- /#wrapper -->
-	</div>
-    <!-- /#wrapper --> 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-        <!-- Footer -->
-        <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
-            <div class="row">
-                <div class="text-center">
-					<hr>
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
             </div>
-        </footer>
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+            <!-- /#wrapper -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+            </table>
+            <tfoot>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+                </tr>
+                <tr>
+                    <td valign="bottom" align="right">
 
-    <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+                        <button onclick="myFunction()" class="btn btn-default pull-right">Print this page</button>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+                        <script>
+                            function myFunction() {
+                                window.print();
+                            }
+                        </script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
+                    </td>
+                </tr>
 
-</body>
+            </tfoot>
+            </div>
+            <!-- /#wrapper -->
+            </div>
+            <!-- /#wrapper -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-</html>
+
+            <!-- Footer -->
+            <?php require_once('../include/footer.php'); ?>
+            <!-- jQuery -->
+            <script src="../vendor/jquery/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+            <!-- DataTables JavaScript -->
+            <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+            <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+            <!-- Custom Theme JavaScript -->
+            <script src="../dist/js/sb-admin-2.js"></script>
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+            <script>
+                $(document).ready(function() {
+                    $('#dataTables-example').DataTable({
+                        responsive: true
+                    });
+                });
+            </script>
+
+    </body>
+
+    </html>
