@@ -1,11 +1,18 @@
 <?php
-    $con = mysqli_connect('localhost', 'root', '');
-    mysqli_select_db($con, 'sjhs');
+    
+    require_once('../include/sessionstart.php'); 
 
-    $ID = isset($_GET['id']) ? $_GET['id'] : '';
+    require_once('connection.php');
+    $cn = new connection();
+    $conn = $cn->connectDB();
+    
+    if(isset($_GET['id']))
+        $ID = mysqli_real_escape_string($conn, $_GET['id']);
+    else
+        $ID = '';
 
     $query = "SELECT `student`.`Lname`,`student`.`Fname`, `student`.`Mname`, `level`.`Year_level`, `level`.`Section` FROM `student`LEFT JOIN `level` ON `student`.`Level_code` =  `level`.`Level_code` WHERE `student`.`StudentID` = '" . $ID . "'";
-    $result = mysqli_query($con, $query) or die("Error: " . mysqli_error($con));
+    $result = mysqli_query($conn, $query) or die("Error: " . mysqli_error($conn));
 	
 	$link = $_SERVER['REQUEST_URI'];
 	$truncate = isset($_GET['truncate']) ? $_GET['truncate'] : 0;
@@ -13,7 +20,7 @@
 	if($truncate == 1)
 	{
 		$trun = "TRUNCATE TABLE `student_pay_fees`"; 
-		mysqli_query($con, $trun) or die("Error: " . mysqli_error($con));
+		mysqli_query($conn, $trun) or die("Error: " . mysqli_error($conn));
 	}
 
     while($gr = mysqli_fetch_row($result))
@@ -24,7 +31,7 @@
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -207,16 +214,16 @@
 										
                                         $BOOK = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code IN ('OF2', 'OF3') AND `student_pay_fees`.StudentID = '".$ID."'";
 
-                                        $tuires = mysqli_query($con, $TUITION) or die("Error: " . mysqli_error($con));
-                                        $compres = mysqli_query($con, $COMP) or die("Error: " . mysqli_error($con));
-                                        $netres = mysqli_query($con, $NET) or die("Error: " . mysqli_error($con));
-                                        $miscres0 = mysqli_query($con, $MISC0) or die("Error: " . mysqli_error($con));
-                                        $miscres1 = mysqli_query($con, $MISC1) or die("Error: " . mysqli_error($con));
-                                        $ptares = mysqli_query($con, $PTA) or die("Error: " . mysqli_error($con));
-                                        $cutres = mysqli_query($con, $CUT) or die("Error: " . mysqli_error($con));
-                                        $peres = mysqli_query($con, $PE) or die("Error: " . mysqli_error($con));
-                                        $srares = mysqli_query($con, $SRA) or die("Error: " . mysqli_error($con));
-                                        $bookres = mysqli_query($con, $BOOK) or die("Error: " . mysqli_error($con));
+                                        $tuires = mysqli_query($conn, $TUITION) or die("Error: " . mysqli_error($conn));
+                                        $compres = mysqli_query($conn, $COMP) or die("Error: " . mysqli_error($conn));
+                                        $netres = mysqli_query($conn, $NET) or die("Error: " . mysqli_error($conn));
+                                        $miscres0 = mysqli_query($conn, $MISC0) or die("Error: " . mysqli_error($conn));
+                                        $miscres1 = mysqli_query($conn, $MISC1) or die("Error: " . mysqli_error($conn));
+                                        $ptares = mysqli_query($conn, $PTA) or die("Error: " . mysqli_error($conn));
+                                        $cutres = mysqli_query($conn, $CUT) or die("Error: " . mysqli_error($conn));
+                                        $peres = mysqli_query($conn, $PE) or die("Error: " . mysqli_error($conn));
+                                        $srares = mysqli_query($conn, $SRA) or die("Error: " . mysqli_error($conn));
+                                        $bookres = mysqli_query($conn, $BOOK) or die("Error: " . mysqli_error($conn));
                                     ?>
                                     <tr>
                                         <th></th>
@@ -358,10 +365,9 @@ function myFunction() {
         });
     });
     </script>
-
 </body>
-
 </html>
 <?php
     }
+    $cn->closeDB();
 ?>

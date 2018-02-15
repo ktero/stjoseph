@@ -1,6 +1,10 @@
 <?php
     session_start();
-    $name = $_SESSION['fname'];
+    // Session validation
+    if(!isset($_SESSION['fname']))
+        header('Location: adminlogin.php');
+    else
+        $name = $_SESSION['fname'];
 ?>
 
     <!DOCTYPE html>
@@ -117,14 +121,7 @@
             <!-- Footer -->
             <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <hr>
-                        <p>St. Joseph High School</p>
-                        <p>Santiago St., Talakag, Bukidnon</p>
-                        <p>Project Team</p>
-                        <p>(Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-                        <p>Copyright &copy; 2017</p>
-                    </div>
+                    <?php require_once('../include/footer.php'); ?>
                 </div>
             </footer>
             <!-- jQuery -->

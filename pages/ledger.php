@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    $name = $_SESSION['fname'];
+   require_once('../include/sessionstart.php'); 
 ?>
 
 
@@ -8,7 +7,7 @@
     <html lang="en">
 
     <head>
-        <?php require_once('../include/head.php') ?>
+        <?php require_once('../include/head.php'); ?>
     </head>
 
     <body>
@@ -42,7 +41,7 @@
                 </div>
                 <!-- /.row -->
 
-<?php
+                <?php
 	$ID = isset($_GET['id']) ? $_GET['id'] : '-1';
 	
     // Edited: 2/9/18        
@@ -71,14 +70,14 @@
                     <div>
                         <div class="col-lg-12">
                             <div class="panel panel-default">
-<?php
+                                <?php
         while($row = mysqli_fetch_row($result))
         {
 ?>
                                     <h4 style="margin-left: 15px;">
-                            <?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?>
+                                        <?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?>
                                     </h4>
-                            <?php } ?>
+                                    <?php } ?>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body" style="width: 80%; margin-left: 80px;">
                                         <table width="100%" class="table table-striped table-bordered table-hover">
@@ -91,7 +90,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                            <?php
+                                                <?php
 								$baltot = 0;
 								$amtot = 0;
 								$payque = 'SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '.$ID;
@@ -116,7 +115,7 @@
                                                         </td>
                                                         <?php
 									$check = "SELECT * FROM student WHERE StudentID = ".$ID;
-									$checkres = mysqli_query($con, $check) or die("Error: ".mysqli_error($con));
+									$checkres = mysqli_query($conn, $check) or die("Error: ".mysqli_error($conn));
 
 									while($res = mysqli_fetch_row($checkres))
 									{
@@ -131,14 +130,14 @@
 										
 										
 										
-										$balres = mysqli_query($con, $code) or die("Error: ".mysqli_error($con));
+										$balres = mysqli_query($conn, $code) or die("Error: ".mysqli_error($conn));
 									}
 
 									while($bal = mysqli_fetch_row($balres))
 									{
 										$baltot = $bal[0];
 									}
-									$result = mysqli_query($con, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = ".$ID);
+									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = ".$ID);
 									$row = mysqli_fetch_assoc($result);
 									$amtot = $row['totsum'];
 									$amtot = $baltot - $amtot;
@@ -258,9 +257,12 @@
             <br>
             <br>
 
-
             <!-- Footer -->
-            <?php require_once('../include/footer.php'); ?>
+            <footer class="text-center" style="position: absolute; padding-right: 400px; margin-bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
+                <div class="row">
+                    <?php require_once('../include/footer.php'); ?>
+                </div>
+            </footer>
             <!-- jQuery -->
             <script src="../vendor/jquery/jquery.min.js"></script>
 

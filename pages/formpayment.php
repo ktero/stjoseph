@@ -1,75 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+   require_once('../include/sessionstart.php'); 
+?>
 
-<head>
-    <?php require_once('../include/head.php') ?>
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<body>
+    <head>
+        <?php require_once('../include/head.php'); ?>
+    </head>
 
-    <div id="wrapper">
+    <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-             <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        
-                     
-                        <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-           <?php require_once('../include/side-bar-options.php'); ?>
-            <!-- /.navbar-static-side -->
-        </nav>
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Fee</h1>
+                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Student Payment
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6" style="padding-bottom: 40px">
-								<?php
+                <!-- /.navbar-header -->
+                <?php require_once('../include/account-section.php'); ?>
+                <!-- /.navbar-top-links -->
+                <?php require_once('../include/side-bar-options.php'); ?>
+                <!-- /.navbar-static-side -->
+            </nav>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Fee</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Student Payment
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-6" style="padding-bottom: 40px">
+                                        <?php
                                     require_once('connection.php');
                                     $cn = new connection();
                                     $conn = $cn->connectDB();
 									
-									$sid = isset($_POST['StudentID']) ? $_POST['StudentID'] : '';
-									$orn = isset($_POST['ORNo']) ? $_POST['ORNo'] : '';
-									$code = isset($_POST['code']) ? $_POST['code'] : '';
-									$desc = isset($_POST['description']) ? $_POST['description'] : '';
-									$amount = isset($_POST['amount']) ? $_POST['amount'] : '';
+									$sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
+                                        
+									$orn = isset($_POST['ORNo']) ? mysqli_real_escape_string($conn, $_POST['ORNo']) : '';
+                                        
+									$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+                                        
+									$desc = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
+                                        
+									$amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 									
 									if(isset($_POST['submit']))
 									{
@@ -84,15 +75,15 @@
 										}
 									}
 								?>
-								<div style="float: left;">
-                                    <form method="post" action="formpayment.php">
-										<div><b>Student ID: <input type="text" name="StudentID"></div><br></b>
-										<div><b>OR Number: <input type="text" name="ORNo"></div></b>
-										<br>
-                                        <!-- Dropdown with db -->
-										<div class="form-group">
-										<label>Fees</label>
-                                            <select name="code">
+                                            <div style="float: left;">
+                                                <form method="post" action="formpayment.php">
+                                                    <div><b>Student ID: <input type="text" name="StudentID"></div><br></b>
+                                                        <div><b>OR Number: <input type="text" name="ORNo"></div></b>
+                                                            <br>
+                                                            <!-- Dropdown with db -->
+                                                            <div class="form-group">
+                                                                <label>Fees</label>
+                                                                <select name="code">
 											<option disabled="disabled" selected="selected">Choose Code</option>
 												<?php
 													$query= "SELECT * from fees";
@@ -106,36 +97,36 @@
 													}
 												?>
 											</select>
-                                        </div>
-										<!-- End here -->
-										<div class="form-group">
-                                            <label>Amount</label>
-                                            <input class="form-group" name="amount">
-                                            <p class="help-block"></p>
-                                        </div>
-										
-										<input type="submit" name="submit" style ="background-color:lightblue" class="btn btn-default" value="Add"><br>
-								</div>
-				<br>
-				<div class="row">
-                <div class="col-lg-14" style="left: 115%; top: 0; position: absolute;">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" >
-                            All Records Fees
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table style="position: relative; width: 90%" class="table table-striped table-bordered table-hover" >
-                                <thead>
-                                    <tr>
-										<th>Student&nbsp;ID</th>
-										<th>OR&nbsp;Number</th>
-                                        <th>Fee&nbsp;Code</th>
-										<th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-										<?php
+                                                            </div>
+                                                            <!-- End here -->
+                                                            <div class="form-group">
+                                                                <label>Amount</label>
+                                                                <input class="form-group" name="amount">
+                                                                <p class="help-block"></p>
+                                                            </div>
+
+                                                            <input type="submit" name="submit" style="background-color:lightblue" class="btn btn-default" value="Add"><br>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-lg-14" style="left: 115%; top: 0; position: absolute;">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        All Records Fees
+                                                                    </div>
+                                                                    <!-- /.panel-heading -->
+                                                                    <div class="panel-body">
+                                                                        <table style="position: relative; width: 90%" class="table table-striped table-bordered table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Student&nbsp;ID</th>
+                                                                                    <th>OR&nbsp;Number</th>
+                                                                                    <th>Fee&nbsp;Code</th>
+                                                                                    <th>Amount</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php
 											$am = 0;
 											$totam = 0;
 											$query = "SELECT * FROM receipt";
@@ -147,30 +138,38 @@
 												$am = number_format($am, 2, '.', ',&nbsp;');
 												if(isset($_POST['enter']))
 												{
-													$tra = "INSERT INTO student_pay_fees SET StudentID='".$row[1]."', Fee_code='".$row[2]."', Payment='".$row[4]."', ORNo='".$row[0]."'";
+													$tra = "INSERT INTO student_pay_fees 
+                                                    SET StudentID='".$row[1]."', Fee_code='".$row[2]."', Payment='".$row[4]."', ORNo='".$row[0]."'";
+                                                    
 													$del = "DELETE FROM receipt WHERE ReceiptNo=".$row[0];
 													mysqli_query($conn, $tra) or die("Error: ".mysqli_error($conn));
 													mysqli_query($conn, $del) or die("Error: ".mysqli_error($conn));
 													echo "<meta http-equiv='refresh' content='0' />";
 												}
 										?>
-									<tr>
-										<td><?php echo $row[1]; ?></td>
-										<td><?php echo $row[0]; ?></td>
-										<td><?php echo $row[2]; ?></td>
-										<td><strong>&#x20B1;&nbsp;<?php echo $am; ?></strong></td>
-									</tr>
-										<?php
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <?php echo $row[1]; ?>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <?php echo $row[0]; ?>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <?php echo $row[2]; ?>
+                                                                                        </td>
+                                                                                        <td><strong>&#x20B1;&nbsp;<?php echo $am; ?></strong></td>
+                                                                                    </tr>
+                                                                                    <?php
 												$totam = $totam + $row[4];
 											}
 											$totam = number_format($totam, 2, '.', ',&nbsp;');
                                     
                                             $cn->closeDB();
 										?>
-								</tbody>
-                            </table>
-                           
-                            <div><b>Total: <u>&nbsp;&#x20B1; <?php echo $totam; ?>&nbsp;</u></div><br>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                        <div><b>Total: <u>&nbsp;&#x20B1; <?php echo $totam; ?>&nbsp;</u></div><br>
 							<div>
 								<td valign="bottom" align="">
 									<form method="post" action="formpayment.php">
@@ -191,6 +190,7 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
+<!--
 <br>
 <br>
 <br>
@@ -244,14 +244,69 @@
 <br>
 <br>
 <br>
+-->!--
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+-->
 
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
-																 <div class="btn btn-default" style="float:left;" role="button">
-                <a href="home.php">View Student Records</a>
-             </div>
+            <div class="btn btn-default" style="float:left;" role="button">
+                <a href="adminrecords.php">View Student Records</a>
+            </div>
 					
                     <!-- /.panel -->
                 </div>
@@ -268,14 +323,7 @@
         <!-- Footer -->
         <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
             <div class="row">
-                <div class="col-lg-12 text-center">
-				<hr>
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team</p>
-					<p>(Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
       

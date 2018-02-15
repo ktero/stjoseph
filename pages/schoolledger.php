@@ -1,8 +1,12 @@
+<?php
+   require_once('../include/sessionstart.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -21,102 +25,9 @@
                  <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
             </div>
             <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-               
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                      
-                      
-                        <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
+            <?php require_once('../include/account-section.php'); ?>
             <!-- /.navbar-top-links -->
-
-          <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                          <li>
-                            <a href="#">Admin Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">   
-                           <li>
-                                    <a href="#">Student<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                    <a href="addstudent.php">Add Records</a>
-                                </li>
-                                <li>
-                                    <a href="editstudent.php">Edit Records</a>
-                                </li>
-								 <!-- /.nav-third-level -->
-									 </ul>
-								</li>
-								<li>
-                                    <a href="#">Assessment<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-									 <li>
-                                    <a href="addassessment.php">Add Records</a>
-                               
-                                </li>
-								  <!-- /.nav-third-level --> 
-								<li>
-                                    <a href="#">Edit Assessment Records<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-fourth-level">
-									  <li>
-                                    <a href="EditAssessment.php">Edit Records</a>
-                                </li>
-														
-								</ul>
-								</li>
-								<!-- /.nav-fourth-level --> 
-								
-								</ul>								
-								</li>
-<!-- /.nav-third-level -->   								
-									 
-                                
-								 </ul>
-								</li>
-								 <!-- /.nav-second-level -->
-						<li>
-                            <a href="#">Student Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                               <li>
-                                    <a href="home.php">All Students</a>
-                                </li>
-								
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                      
-                       
-                        <li>
-                            <a href="#">Financial Transactions<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-									<li>
-                                    <a href="formpayment.php">Student Payment</a>
-                                </li>
-								<li>
-                                    <a href="Assessment.php">Assessment</a>
-									</li>
-								
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
+            <?php require_once('../include/side-bar-options.php'); ?>
             <!-- /.navbar-static-side -->
         </nav>
 
@@ -132,7 +43,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           
+    
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -148,7 +59,9 @@
 										<th>Balance</th>
                                     </tr>
                                 </thead>
-                                
+                                <tbody>
+                                    
+                                </tbody>
                             </table>
                             <!-- /.table-responsive -->
                            

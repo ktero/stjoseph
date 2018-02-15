@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    $name = $_SESSION['fname'];
+   require_once('../include/sessionstart.php'); 
 ?>
 
 <!DOCTYPE html>

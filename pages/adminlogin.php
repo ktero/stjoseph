@@ -7,6 +7,7 @@
         $_SESSION['email'] = $row['email'];
         $_SESSION['pnumber'] = $row['pnumber'];
         $_SESSION['age'] = $row['age'];
+        $_SESSION['username'] = $row['username'];
         echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
     }
 ?>
@@ -92,8 +93,15 @@
         $conn = $cn->connectDB();
         // error_reporting(E_ALL ^ E_NOTICE);
         
+        
+        $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
+        
+        $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
+        
+        /*
         $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = mysqli_real_escape_string($conn, $_POST['password']);
+        */
         
 		if(empty($user) || empty($pass)) {
             echo "<p>You must fill up these fields</p>";
@@ -105,11 +113,10 @@
             $resultCheck = mysqli_num_rows($result);
             
             if ($resultCheck > 0) {
-                
+            
                 if($row = mysqli_fetch_assoc($result)) {
                     
                     $hashCheck = password_verify($pass, $row['password']);
-                    
                     if($user == $row['username']) {
                         if($pass == $row['password']) {
                             // Login user
@@ -157,7 +164,9 @@
     <!-- removed </div> -->
 
     <!-- Footer -->
-    <?php require_once('../include/footer.php'); ?>
+    <footer class="text-center" style="position: absolute; bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
+        <?php require_once('../include/footer.php'); ?>
+    </footer>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

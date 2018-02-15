@@ -1,13 +1,12 @@
 <?php
-    session_start();
-    $name = $_SESSION['fname'];
+   require_once('../include/sessionstart.php'); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -38,15 +37,24 @@
     $cn = new connection();
     $conn = $cn->connectDB();
     
-	$StudentID = isset($_POST['StudentID']) ? $_POST['StudentID'] : '';
-	$Lname = isset($_POST['Lname']) ? $_POST['Lname'] : '';
-	$Fname = isset($_POST['Fname']) ? $_POST['Fname'] : '';
-	$Mname = isset($_POST['Mname']) ? $_POST['Mname'] : '';
-	$Gender = isset($_POST['gender']) ? $_POST['gender'] : '';
-	$Address = isset($_POST['Address']) ? $_POST['Address'] : '';
-	$code = isset($_POST['code']) ? $_POST['code'] : '';
-	$Date = isset($_POST['enrolled']) ? $_POST['enrolled'] : '';
-	$SY = isset($_POST['SY']) ? $_POST['SY'] : '';
+
+	$StudentID = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
+        
+	$Lname = isset($_POST['Lname']) ? mysqli_real_escape_string($conn, $_POST['Lname']) : '';
+        
+	$Fname = isset($_POST['Fname']) ? mysqli_real_escape_string($conn, $_POST['Fname']) : '';
+        
+	$Mname = isset($_POST['Mname']) ? mysqli_real_escape_string($conn, $_POST['Mname']) : '';
+        
+	$Gender = isset($_POST['gender']) ? mysqli_real_escape_string($conn, $_POST['gender']) : '';
+        
+	$Address = isset($_POST['Address']) ? mysqli_real_escape_string($conn, $_POST['Address']) : '';
+        
+	$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+        
+	$Date = isset($_POST['enrolled']) ? mysqli_real_escape_string($conn, $_POST['enrolled']) : '';
+        
+	$SY = isset($_POST['SY']) ? mysqli_real_escape_string($conn, $_POST['SY']) : '';
 
 	if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '' || $SY == '')
 		echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
@@ -70,13 +78,7 @@
 	 <!-- Footer -->
         <footer class="text-center" style="position: fixed; bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
             <div class="row">
-                <div class="text-center">
-					<hr>
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
 	<!-- jQuery -->

@@ -1,8 +1,23 @@
+<?php
+    session_start();
+
+    function setSessionVariables($row) {
+        $_SESSION['id'] = $row['user_id'];
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['lname'] = $row['lname'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['pnumber'] = $row['pnumber'];
+        $_SESSION['age'] = $row['age'];
+        $_SESSION['username'] = $row['username'];
+        header('Location: index.php?login=success');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -15,23 +30,90 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form method="post" name="aform" target="_top" role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Username" name="Username" type="Username" autofocus>
+                                    <label>Username:</label>
+                                    <input class="form-control" placeholder="Username" name="username" type="Username" autofocus>
                                 </div>
                                 <div class="form-group">
+                                    <label>Password:</label>
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
+                                <!--
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
+                                -->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input type="submit" name="submit" value="Enter" class="btn btn-lg btn-success btn-block">
                             </fieldset>
                         </form>
+<?php
+    // Perform input validation process.
+    if(isset($_POST['submit']))
+	{
+        // Set up database connection/
+        require_once('connection.php');
+        $cn = new connection();
+        $conn = $cn->connectDB();
+        // error_reporting(E_ALL ^ E_NOTICE);
+        
+        
+        $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
+        
+        $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
+        
+        /*
+        $user = mysqli_real_escape_string($conn, $_POST['username']);
+        $pass = mysqli_real_escape_string($conn, $_POST['password']);
+        */
+        
+		if(empty($user) || empty($pass)) {
+            echo "<p>You must fill up these fields</p>";
+        } 
+        else if (!empty($user) && !empty($pass)) {
+            
+            $query = "SELECT * FROM account WHERE username = '$user'";
+            $result = mysqli_query($conn, $query);
+            $resultCheck = mysqli_num_rows($result);
+            
+            if ($resultCheck > 0) {
+            
+                if($row = mysqli_fetch_assoc($result)) {
+                    
+                    $hashCheck = password_verify($pass, $row['password']);
+                    if($user == $row['username']) {
+                        if($pass == $row['password']) {
+                            // Login user
+                            setSessionVariables($row);
+                        } 
+                        else if($hashCheck == true) {
+                            // Login user
+                            setSessionVariables($row);
+                        }
+                    }   
+                }
+            }
+             /*
+            $query = mysqli_query($conn,'select * from account');
+            while($row = mysqli_fetch_row($query))
+            {
+                if((!empty($user)) && (!empty($pass)))
+                {
+                    if($user==$row[6] && $pass==$row[7])
+                    {
+                        echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
+                    }
+                }
+            }
+            */
+        }
+        $cn->closeDB();
+	}
+?>
                     </div>
                 </div>
             </div>

@@ -103,6 +103,21 @@
         $cn = new connection();
         $conn = $cn->connectDB();
         
+        $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
+        
+        $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
+        
+        $fname = isset($_POST['firstname']) ? mysqli_real_escape_string($conn, $_POST['firstname']) : '';
+        
+        $lname = isset($_POST['lastname']) ? mysqli_real_escape_string($conn, $_POST['lastname']) : '';
+        
+        $email= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
+        
+        $pnumber = isset($_POST['pnumber']) ? mysqli_real_escape_string($conn, $_POST['pnumber']) : '';
+        
+        $age = isset($_POST['age']) ? mysqli_real_escape_string($conn, $_POST['age']) : '';
+        
+        /*
         $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = mysqli_real_escape_string($conn, $_POST['password']);
         $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
@@ -110,6 +125,7 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $pnumber = mysqli_real_escape_string($conn, $_POST['phonenumber']);
         $age = mysqli_real_escape_string($conn, $_POST['age']);
+        */
         
 		if(empty($user) || empty($pass)|| empty($fname)|| empty ($lname)|| empty ($email)|| empty ($pnumber)|| empty ($age))
 		{

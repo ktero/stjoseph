@@ -1,13 +1,12 @@
-<?php 
-    session_start();
-    $name = $_SESSION['fname'];
+<?php
+   require_once('../include/sessionstart.php'); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php require_once('../include/head.php') ?>
+    <?php require_once('../include/head.php'); ?>
 </head>
 
 <body>
@@ -56,7 +55,8 @@
     $conn = $cn->connectDB();
                                    
     error_reporting(E_ALL ^ E_NOTICE);
-    $edit_key = isset($_GET['studentedit_key']) ? $_GET['studentedit_key'] : '';
+                                    
+    $edit_key = isset($_GET['studentedit_key']) ? mysqli_real_escape_string($conn, $_GET['studentedit_key']) : '';
     
     $query= "SELECT * FROM student WHERE StudentID='".$edit_key."'";
     $result= mysqli_query($conn, $query) or die ('Error in query: $query.'.mysqli_error($conn));
@@ -179,13 +179,7 @@
     <!-- Footer -->
     <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
         <div class="row">
-            <div class="text-center">
-                <hr>
-                <p>St. Joseph High School</p>
-                <p>Santiago St., Talakag, Bukidnon</p>
-                <p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-                <p>Copyright &copy; 2017</p>
-            </div>
+            <?php require_once('../include/footer.php'); ?>
         </div>
     </footer>
     <!-- jQuery -->
