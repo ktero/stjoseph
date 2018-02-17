@@ -5,8 +5,8 @@
 
             <?php
                 // Display session variable fname
-                if (isset($_SESSION['id'])) 
-                    echo $name;
+                if (isset($_SESSION['id']))
+                    echo $user;
              ?>
 
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>

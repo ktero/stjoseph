@@ -5,6 +5,7 @@
                 <a href="#">Admin Records<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
+                      <li>
                         <a href="#">Student<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
@@ -14,7 +15,19 @@
                                 <a href="resultedit_student.php">Edit Records</a>
                             </li>
                         </ul>
+                      </li>
 
+                      <li>
+                        <a href="#">Class<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="addclass.php">Add Records</a>
+                            </li>
+                            <li>
+                                <a href="editrecords_class.php">Edit Records</a>
+                            </li>
+                        </ul>
+                      </li>
 
                         <!-- /.nav-third-level -->
 
@@ -39,11 +52,11 @@
                     <a href="#">Student Records<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="adminrecords.php">View Students</a>
+                            <a href="adminrecords.php">View Class &amp; Students</a>
 
                             <!-- Tero edit: 2/9/18 -->
 
-                            <!-- TODO: School year 
+                            <!-- TODO: School year
                                     <a href="#">2017-2018</a>
                                     <ul>
                                         <li><a href="#">Grade 7</a></li>
@@ -63,7 +76,7 @@
                                     <a href="#">Grade 10</a>
                                     <a href="#">Grade 11</a>
                                     <a href="#">Grade 12</a>
-                                    
+
                                     -->
 
                             <!-- End of tero edit -->
@@ -77,12 +90,14 @@
                         <a href="#">Financial Transactions<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="formpayment.php">Student Payment</a>
+                                <a href="studentpayment.php">Student Payment</a>
+                            </li>
+                            <li>
+                                <a href="paymentrecords.php">Receipt Records</a>
                             </li>
                             <li>
                                 <a href="Assessment.php">Assessment</a>
                             </li>
-
                         </ul>
                     </li>
                     <!-- /.nav-second-level -->

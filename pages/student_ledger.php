@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
     <!DOCTYPE html>
@@ -39,27 +39,26 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <?php
-	$ID = isset($_GET['id']) ? $_GET['id'] : '-1';
-	
-    // Edited: 2/9/18        
-    
+<?php
+
 	require_once('connection.php');
     $cn   = new connection();
     $conn = $cn->connectDB();
-	
+
+  $ID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '-1';
+
 	$query = 'SELECT * FROM student WHERE StudentID = '.$ID;
 	$result = mysqli_query($conn, $query) or die("Error query: ".mysqli_error($conn));
-	
+
 	$link = $_SERVER['REQUEST_URI'];
 	$truncate = isset($_GET['truncate']) ? $_GET['truncate'] : 0;
-	
+
 	if($truncate == 1)
 	{
-		$trun = "TRUNCATE TABLE `student_pay_fees`"; 
+		$trun = "TRUNCATE TABLE `student_pay_fees`";
 		mysqli_query($conn, $trun) or die("Error: " . mysqli_error($conn));
 	}
-	
+
 	if($ID != '-1')
 	{
 ?>
@@ -71,7 +70,7 @@
                             while($row = mysqli_fetch_row($result))
                             {
                         ?>
-                                        <h4 style="margin-left: 15px;">Owner:
+                                        <h4 style="margin-left: 15px;">Student:
                                             <?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?>
                                         </h4>
                                         <?php } ?>
@@ -97,9 +96,10 @@
                                             <?php
 								$baltot = 0;
 								$amtot = 0;
+
 								$payque = 'SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '.$ID;
 								$payres = mysqli_query($conn, $payque) or die("Error query: ".mysqli_error($conn));
-							
+
 								while($payrow = mysqli_fetch_row($payres))
 								{
 									$pr4 = number_format($payrow[4], 2, '.', ',&nbsp;');
@@ -131,9 +131,9 @@
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10','MF27')";
 										else if($res[6] == 'G10a' || $res[6] == 'G10b')
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF27')";
-										
-										
-										
+
+
+
 										$balres = mysqli_query($conn, $code) or die("Error: ".mysqli_error($conn));
 									}
 
@@ -193,14 +193,7 @@
                 <!-- Footer -->
                 <footer>
                     <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>St. Joseph High School</p>
-                            <p>Santiago St., Talakag, Bukidnon</p>
-                            <p>Project Team</p>
-                            <p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-                            <p>Copyright &copy; 2017</p>
-                        </div>
-                    </div>
+                        <?php require_once('../include/footer.php'); ?>
                 </footer>
 
                 <!-- jQuery -->

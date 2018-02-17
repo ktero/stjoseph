@@ -37,7 +37,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Class &amp; Student Records</h1>
+                    <h1 class="page-header">Edit Records: Student</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -46,9 +46,17 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Student Records
+                            All Records
                         </div>
                         <!-- /.panel-heading -->
+
+                        <style type="text/css">
+                            th {
+
+                              font-size: 13px;
+                            }
+                        </style>
+
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -56,7 +64,12 @@
                                         <th>Id Number</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Gender</th>
+                                        <th>Address</th>
                                         <th>Year &amp; Section</th>
+                                        <th>Date enrolled</th>
+                                        <th>School Year</th>
                                         <!--
                                         <th>Section</th>
                                         <th>Year Level</th>
@@ -79,9 +92,7 @@
 									?>
                                         <tr>
                                             <td>
-                                                <a href="student_ledger.php?id=<?php echo $row[0]; ?>">
-                                                    <?php echo $row[0]; ?>
-                                                </a>
+                                                <?php echo $row[0]; ?>
                                             </td>
                                             <td>
                                                 <?php echo $row[2]; ?>
@@ -90,13 +101,24 @@
                                                 <?php echo $row[1]; ?>
                                             </td>
                                             <td>
-                                                <?php
-                                                      $ys = "SELECT * FROM level WHERE Level_code = '$row[6]'";
-                                                      $getYS = mysqli_query($conn, $ys) or die('Error:' .mysqli_error($conn));
-                                                      while ($r = mysqli_fetch_row($getYS))
-                                                         echo $r[1] . " - " . $r[2];
-                                                ?>
+                                                <?php echo $row[3]; ?>
                                             </td>
+                                            <td>
+                                                <?php echo $row[4]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[5]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[6]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[7]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[8]; ?>
+                                            </td>
+                                            
                                         </tr>
                                         <?php
 										}
@@ -113,78 +135,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- delete -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Class Records
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Level_code</th>
-                                        <th>Year level</th>
-                                        <th>Section</th>
-                                        <th>Number of Students enrolled</th>
-                                        <!--
-                                        <th>Section</th>
-                                        <th>Year Level</th>
-                                        <th>Balance</th>
-                                        -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                  <?php
-                    require_once('connection.php');
-                    $con   = new connection();
-                    $conn = $con->connectDB();
 
-                    $query = 'SELECT * FROM level';
-										$result = mysqli_query($conn, $query);
-
-										while($row = mysqli_fetch_row($result))
-										{
-									?>
-                                        <tr>
-                                            <td>
-                                                <a href="classrecord.php?id=<?php echo $row[0]; ?>">
-                                                    <?php echo $row[0]; ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[1] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[2] ?>
-                                            </td>
-                                            <td>
-                                              <?php
-                                                  $count = "SELECT COUNT(student.Level_code) FROM student WHERE student.Level_code = '$row[0]'";
-                                                  $cres = mysqli_query($conn, $count) or die('Error: ' .mysqli_error($conn));
-                                                  while ($re = mysqli_fetch_row($cres))
-                                                     echo $re[0];
-                                               ?>
-                                            </td>
-                                        </tr>
-                                        <?php
-										}
-                                        $con->closeDB();
-									?>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- until here -->
         </div>
         <!-- /#wrapper -->
         <hr>
@@ -192,7 +143,13 @@
         <!-- Footer -->
         <footer>
             <div class="row">
-                <?php require_once('../include/footer.php'); ?>
+                <div class="col-lg-12 text-center">
+                    <p>St. Joseph High School</p>
+                    <p>Santiago St., Talakag, Bukidnon</p>
+                    <p>Project Team</p>
+                    <p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
+                    <p>Copyright &copy; 2017</p>
+                </div>
             </div>
         </footer>
         <!-- jQuery -->

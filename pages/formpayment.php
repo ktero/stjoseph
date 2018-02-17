@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
     <!DOCTYPE html>
@@ -47,21 +47,21 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-6" style="padding-bottom: 40px">
-                                        <?php
-                                    require_once('connection.php');
-                                    $cn = new connection();
-                                    $conn = $cn->connectDB();
-									
+<?php
+                  require_once('connection.php');
+                  $cn = new connection();
+                  $conn = $cn->connectDB();
+
 									$sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
-                                        
+
 									$orn = isset($_POST['ORNo']) ? mysqli_real_escape_string($conn, $_POST['ORNo']) : '';
-                                        
+
 									$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-                                        
+
 									$desc = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
-                                        
+
 									$amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
-									
+
 									if(isset($_POST['submit']))
 									{
 										if( $sid == '' || $orn == '' || $code == '' || $amount == '' )
@@ -74,7 +74,7 @@
 											$result = mysqli_query($conn, $add) or die("Error: ".mysqli_error($conn));
 										}
 									}
-								?>
+?>
                                             <div style="float: left;">
                                                 <form method="post" action="formpayment.php">
                                                     <div><b>Student ID: <input type="text" name="StudentID"></div><br></b>
@@ -88,7 +88,7 @@
 												<?php
 													$query= "SELECT * from fees";
 													$result= mysqli_query($conn, $query) or die ("Not Found: ". mysqli_error($conn));
-													
+
 													while ($row= mysqli_fetch_row($result)) {
                                                         $desc = $row[1];
     													$code = $row[0];
@@ -131,16 +131,16 @@
 											$totam = 0;
 											$query = "SELECT * FROM receipt";
 											$result = mysqli_query($conn, $query) or die("Error: ".mysqli_error($conn));
-											
+
 											while($row = mysqli_fetch_row($result))
 											{
 												$am = $row[4];
 												$am = number_format($am, 2, '.', ',&nbsp;');
 												if(isset($_POST['enter']))
 												{
-													$tra = "INSERT INTO student_pay_fees 
+													$tra = "INSERT INTO student_pay_fees
                                                     SET StudentID='".$row[1]."', Fee_code='".$row[2]."', Payment='".$row[4]."', ORNo='".$row[0]."'";
-                                                    
+
 													$del = "DELETE FROM receipt WHERE ReceiptNo=".$row[0];
 													mysqli_query($conn, $tra) or die("Error: ".mysqli_error($conn));
 													mysqli_query($conn, $del) or die("Error: ".mysqli_error($conn));
@@ -163,7 +163,7 @@
 												$totam = $totam + $row[4];
 											}
 											$totam = number_format($totam, 2, '.', ',&nbsp;');
-                                    
+
                                             $cn->closeDB();
 										?>
                                                                             </tbody>
@@ -184,9 +184,9 @@
                 </div>
                 <!-- /.col-lg-12 -->
 			</div>
-			
-           
-                                    </form>	
+
+
+                                    </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -244,7 +244,7 @@
 <br>
 <br>
 <br>
--->!--
+-->
 <br>
 <br>
 <br>
@@ -307,26 +307,26 @@
             <div class="btn btn-default" style="float:left;" role="button">
                 <a href="adminrecords.php">View Student Records</a>
             </div>
-					
+
                     <!-- /.panel -->
                 </div>
-				
+
                 <!-- /.col-lg-12 -->
             </div>
-			
+
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-							
+
         <!-- Footer -->
         <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
             <div class="row">
                 <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
-      
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

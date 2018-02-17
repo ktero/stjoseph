@@ -102,21 +102,21 @@
         require_once('connection.php');
         $cn = new connection();
         $conn = $cn->connectDB();
-        
+
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
-        
+
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
-        
+
         $fname = isset($_POST['firstname']) ? mysqli_real_escape_string($conn, $_POST['firstname']) : '';
-        
+
         $lname = isset($_POST['lastname']) ? mysqli_real_escape_string($conn, $_POST['lastname']) : '';
-        
+
         $email= isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
-        
+
         $pnumber = isset($_POST['pnumber']) ? mysqli_real_escape_string($conn, $_POST['pnumber']) : '';
-        
+
         $age = isset($_POST['age']) ? mysqli_real_escape_string($conn, $_POST['age']) : '';
-        
+
         /*
         $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = mysqli_real_escape_string($conn, $_POST['password']);
@@ -126,7 +126,7 @@
         $pnumber = mysqli_real_escape_string($conn, $_POST['phonenumber']);
         $age = mysqli_real_escape_string($conn, $_POST['age']);
         */
-        
+
 		if(empty($user) || empty($pass)|| empty($fname)|| empty ($lname)|| empty ($email)|| empty ($pnumber)|| empty ($age))
 		{
 			echo "<p>You must fill up these fields</p>";
@@ -139,16 +139,16 @@
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     header('location:adminlogin1.php?adminlogin1=email');
                 } else {
-                    
+
                     // Encrypt password
                     $hashPw = password_hash($pass, PASSWORD_DEFAULT);
-                    
+
                     // Insert user information into database
                     $query = 'insert into account set fname="'.$fname.'", lname="'.$lname.'", email="'.$email.'", pnumber="'.$pnumber.'", age="'.$age.'", username="'.$user.'", password="'.$hashPw.'"';
 			        mysqli_query($conn, $query);
-			        echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/adminlogin.php' />";
+			        echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/login.php' />";
                 }
-            }  
+            }
             /*
 			$query = 'insert into account set fname="'.$fname.'", lname="'.$lname.'", email="'.$email.'", pnumber="'.$pnumber.'", age="'.$age.'", username="'.$user.'", password="'.password_hash($pass, PASSWORD_DEFAULT).'"';
 			mysqli_query($conn, $query);

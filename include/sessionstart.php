@@ -1,8 +1,8 @@
 <?php
     session_start();
     // Session validation
-    if(!isset($_SESSION['fname']))
+    if(!isset($_SESSION['username']))
         header('Location: login.php');
     else
-        $name = $_SESSION['fname'];
+        $user = $_SESSION['username'];
 ?>
