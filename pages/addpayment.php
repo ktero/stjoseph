@@ -30,8 +30,6 @@
         </nav>
 	<!-- PHP -->
   <?php
-
-
                     require_once('connection.php');
                     $cn = new connection();
                     $conn = $cn->connectDB();
@@ -49,15 +47,22 @@
                       }
                       else if( $sid != '' || $orn != '' || $code != '' || $amount != '' )
                       {
-                        
+
                         $getDesc = "SELECT * FROM fees WHERE Fee_code = '$code'";
                         $res = mysqli_query($conn, $getDesc) or die('Error:' .mysqli_error($conn));
                         while ($row = mysqli_fetch_row($res)) {
                            $desc = $row[1];
                         }
 
+                        // Insert into receipt
                         $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount'";
-                        $result = mysqli_query($conn, $add) or die("Error: ".mysqli_error($conn));
+                        mysqli_query($conn, $add) or die("Error: ".mysqli_error($conn));
+
+                        // Insert into student_pay_fees
+                        if(mysqli_query($conn, $add) == true) {
+                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment = '$amount', ORNo = '$orn'";
+                          mysqli_query($conn, $addStudentFee) or die('Error: ' .mysqli_error($conn));
+                        }
                       }
                     }
                     $cn->closeDB();
