@@ -56,12 +56,12 @@
 
                         // Insert into receipt
                         $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount'";
-                        mysqli_query($conn, $add) or die("Error: ".mysqli_error($conn));
-
-                        // Insert into student_pay_fees
                         if(mysqli_query($conn, $add) == true) {
+                          // Insert into student_pay_fees
                           $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment = '$amount', ORNo = '$orn'";
                           mysqli_query($conn, $addStudentFee) or die('Error: ' .mysqli_error($conn));
+                        } else {
+                          die('Error: ' . mysqli_error($conn));
                         }
                       }
                     }
