@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<link rel="icon" href="sjhs.png">
+	<link rel="icon" href="../pages/graphics/logo_sjhs.png">
 
     <title>St. Joseph High School </title>
 
