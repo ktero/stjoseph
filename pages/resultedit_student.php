@@ -63,7 +63,7 @@
             <?php
                 require_once('connection.php');
                 $cn   = new connection();
-                $conn = $cn->connectDB();
+                $conn = $cn->connectDB($_SESSION['database']);
                                                            
                 $search_value = '';
                 if(isset($_POST['StudentID']))

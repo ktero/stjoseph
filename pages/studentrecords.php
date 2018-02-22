@@ -145,7 +145,7 @@
                                 <tbody>
 									<?php
 										$connection = mysqli_connect('localhost', 'root', '');
-										mysqli_select_db($connection, 'sjhs');
+										mysqli_select_db($connection, $_SESSION['database']);
 										
 										$query = 'SELECT * FROM student';
 										$result = mysqli_query($connection, $query);

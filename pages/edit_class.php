@@ -55,7 +55,7 @@
 
                                     require_once('connection.php');
                                     $cn = new connection();
-                                    $conn = $cn->connectDB();
+                                    $conn = $cn->connectDB($_SESSION['database']);
                                     error_reporting(E_ALL ^ E_NOTICE);
 
                                     $edit_key = isset($_GET['levelcode']) ? mysqli_real_escape_string($conn, $_GET['levelcode']) : '';

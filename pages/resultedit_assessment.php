@@ -51,7 +51,7 @@
 			
 			$search_value = isset($_POST['Fee_code']) ?$_POST['Fee_code'] : '';
 			$connection = mysqli_connect ('localhost','root','');
-			mysqli_select_db ($connection, 'sjhs');
+			mysqli_select_db ($connection, $_SESSION['database']);
 			
 			$query = "SELECT * FROM fees WHERE Fee_code LIKE '%$search_value%' ";
 			$result = mysqli_query($connection, $query);

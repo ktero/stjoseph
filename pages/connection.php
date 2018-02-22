@@ -3,23 +3,20 @@
 
         protected $db_host, $db_user, $db_pass, $db_name;
 
-        public function connection() {
+        public function connectDB($dname) {
             $this->db_host = 'localhost';
             $this->db_user = 'root';
             $this->db_pass = '';
-            $this->db_name = 'sjhs';
-        }
-
-        public function connectDB() {
-            return mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+            $this->db_name = $dname;
+            return mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $dname);
         }
 
         public function closeDB() {
-            mysqli_close(self::connectDB());
+            mysqli_close(self::connectDB($_SESSION['database']));
         }
 
         public function getDBName() {
-          return $this->db_name;
+          return $_SESSION['database'];
         }
     }
 ?>

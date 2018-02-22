@@ -19,7 +19,7 @@
 <?php
             require_once('connection.php');
             $cn = new connection();
-            $conn = $cn->connectDB();
+            $conn = $cn->connectDB($_SESSION['database']);
 
             $orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
             $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';

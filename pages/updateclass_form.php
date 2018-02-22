@@ -34,7 +34,7 @@
 <?php
             require_once('connection.php');
             $cn = new connection();
-            $conn = $cn->connectDB();
+            $conn = $cn->connectDB($_SESSION['database']);
 
             $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
             $year = isset($_POST['year']) ? mysqli_real_escape_string($conn, $_POST['year']) : '';

@@ -4,7 +4,7 @@
 
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB();
+    $conn = $cn->connectDB($_SESSION['database']);
 
     if(isset($_GET['id']))
         $ID = mysqli_real_escape_string($conn, $_GET['id']);

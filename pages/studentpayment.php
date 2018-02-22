@@ -64,7 +64,7 @@
                                               <?php
                                                 require_once('connection.php');
                                                 $cn = new connection();
-                                                $conn = $cn->connectDB();
+                                                $conn = $cn->connectDB($_SESSION['database']);
 
                                                 $query= "SELECT * from fees";
                                                 $result= mysqli_query($conn, $query) or die ("Not Found: ". mysqli_error($conn));

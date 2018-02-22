@@ -48,7 +48,7 @@
     
 	require_once('connection.php');
     $cn   = new connection();
-    $conn = $cn->connectDB();
+    $conn = $cn->connectDB($_SESSION['database']);
 	
 	$query = 'SELECT * FROM student WHERE StudentID = '.$ID;
 	$result = mysqli_query($conn, $query) or die("Error query: ".mysqli_error($conn));

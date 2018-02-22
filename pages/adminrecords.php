@@ -68,7 +68,7 @@
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
-                                        $conn = $cn->connectDB();
+                                        $conn = $cn->connectDB($_SESSION['database']);
 
 
 										$query = 'SELECT * FROM student';
@@ -140,7 +140,7 @@
                   <?php
                     require_once('connection.php');
                     $con   = new connection();
-                    $conn = $con->connectDB();
+                    $conn = $cn->connectDB($_SESSION['database']);
 
                     $query = 'SELECT * FROM level';
 										$result = mysqli_query($conn, $query);
