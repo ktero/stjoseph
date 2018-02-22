@@ -1,77 +1,86 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <?php require_once('../include/head.php'); ?>
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<body>
+    <head>
+        <?php require_once('../include/head.php'); ?>
+    </head>
 
-    <div id="wrapper">
+    <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-            <?php require_once('../include/account-section.php'); ?>
-            <!-- /.navbar-top-links -->
-            <?php require_once('../include/side-bar-options.php'); ?>
-            <!-- /.navbar-static-side -->
-        </nav>
-	<!-- PHP -->
+        <div id="wrapper">
 
-<!-- Confirmation Message -->
-	<div id="page-wrapper" align="Center" style="padding:100px">
-	<?php
+            <!-- Navigation -->
+            <?php require_once('../include/navdiv-title.php'); ?>
+<?php
+            require_once('connection.php');
+            $cn = new connection();
+            $conn = $cn->connectDB();
 
-			$connection= mysqli_connect('localhost','root','');
-			mysqli_select_db($connection,'sjhs');
+            $orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
+            $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+            $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
+            $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
-				
-				$Fee_code = isset($_POST['code']) ? $_POST['code'] : '';
-				$Description = isset($_POST['desc']) ? $_POST['desc'] : '';
-				$Amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-					
+            if($description == '' || $amount == '') {
+              echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
+            }
+            else if(isset($description, $amount))
+            {
+              $query= "UPDATE fees SET Fee_code = '$code', Description = '$description', Amount = '$amount' WHERE Fee_code = '$orig_sid'";
+              $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
+              $cn->closeDB();
+            }
+  ?>
+        </div>
 
-				$query= "UPDATE fees SET Fee_code='".$Fee_code."', Description='".$Description."', Amount='".$Amount."' where Fee_code='".$Fee_code."'";
-	
-			 $result= mysqli_query($connection, $query) or die("Error: " . mysqli_error($connection));
-			mysqli_close($connection);
-			
-?>
-	<h1> Successfully Updated </h1>
-	<a href='editassessment2.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update New Assessment</a>
-	</div>
-	 <!-- Footer -->
-        <footer class="text-center" style="position: fixed; bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
+
+
+        <div id="page-wrapper" align="Center" style="padding-top: 100px">
+        <h1> Successfully Updated </h1>
+        <a href='addassessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
+        <a href='editrecords_assessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Edit Assessment</a>
+        </div>
+
+        <!-- /#wrapper -->
+        <hr>
+
+        <!-- Footer -->
+        <footer>
             <div class="row">
                 <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
-	<!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-</body>
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
 
-</html>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+
+    </body>
+
+    </html>
