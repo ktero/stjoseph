@@ -1,10 +1,8 @@
 <?php
     session_start();
     // Session validation
-    if(!isset($_SESSION['database']))
-    {
-        header('Location: switcher.php');
-    }
+    if (!isset($_SESSION['username']))
+        header('Location: login.php');
     else
-    	$user = $_SESSION['username'];
+    	 $user = $_SESSION['username'];
 ?>

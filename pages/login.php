@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['fname'] = $row['fname'];
@@ -15,7 +14,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php require_once('../include/head.php'); ?>
 </head>
@@ -60,30 +58,21 @@
         $cn = new connection();
         $conn = $cn->connectDB();
         // error_reporting(E_ALL ^ E_NOTICE);
-
-
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
-
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
-
         /*
         $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = mysqli_real_escape_string($conn, $_POST['password']);
         */
-
 		if(empty($user) || empty($pass)) {
             echo "<p>You must fill up these fields</p>";
         }
         else if (!empty($user) && !empty($pass)) {
-
             $query = "SELECT * FROM account WHERE username = '$user'";
             $result = mysqli_query($conn, $query);
             $resultCheck = mysqli_num_rows($result);
-
             if ($resultCheck > 0) {
-
                 if($row = mysqli_fetch_assoc($result)) {
-
                     $hashCheck = password_verify($pass, $row['password']);
                     if($user == $row['username']) {
                         if($pass == $row['password']) {

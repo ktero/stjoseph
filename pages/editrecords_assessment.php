@@ -72,7 +72,7 @@
                                                 <a href='edit_assessment.php?feecode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
                                             </td>
                                             <td>
-                                                <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #EA6565;'> Delete </a>
+                                                <a href='delete_assessment.php?feecode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #EA6565;'> Delete </a>
                                             </td>
                                         </tr>
                                         <?php
