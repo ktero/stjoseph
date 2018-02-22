@@ -1,11 +1,12 @@
-<?php
 
-    require_once('../include/sessionstart.php');
+<?php
+    
+    require_once('../include/sessionstart.php'); 
 
     require_once('connection.php');
     $cn = new connection();
     $conn = $cn->connectDB();
-
+    
     if(isset($_GET['id']))
         $ID = mysqli_real_escape_string($conn, $_GET['id']);
     else
@@ -13,13 +14,13 @@
 
     $query = "SELECT `student`.`Lname`,`student`.`Fname`, `student`.`Mname`, `level`.`Year_level`, `level`.`Section` FROM `student`LEFT JOIN `level` ON `student`.`Level_code` =  `level`.`Level_code` WHERE `student`.`StudentID` = '" . $ID . "'";
     $result = mysqli_query($conn, $query) or die("Error: " . mysqli_error($conn));
-
+	
 	$link = $_SERVER['REQUEST_URI'];
 	$truncate = isset($_GET['truncate']) ? $_GET['truncate'] : 0;
-
+	
 	if($truncate == 1)
 	{
-		$trun = "TRUNCATE TABLE `student_pay_fees`";
+		$trun = "TRUNCATE TABLE `student_pay_fees`"; 
 		mysqli_query($conn, $trun) or die("Error: " . mysqli_error($conn));
 	}
 
@@ -51,7 +52,7 @@
             </div>
             <!-- /.navbar-header -->
 
-
+           
             <ul class="nav navbar-top-links navbar-right">
 
                 <li class="dropdown">
@@ -59,8 +60,8 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-
-
+                       
+                      
                         <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -74,7 +75,7 @@
                     <ul class="nav" id="side-menu">
                           <li>
                             <a href="#">Admin Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level">   
                            <li>
                                     <a href="#">Student<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -85,10 +86,10 @@
                                     <a href="editstudent.php">Edit Records</a>
                                 </li>
 								</ul>
-
-
+								
+								
 								 <!-- /.nav-third-level -->
-
+								
 								<li>
                                     <a href="#">Assessment<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -98,10 +99,10 @@
 								  <li>
                                     <a href="editassessment2.php">Edit Records</a>
                                 </li>
-
+														
 								</ul>
 								</li>
-
+														
 								<!-- /.nav-third-level -->
 								</li>
 									 </ul>
@@ -113,12 +114,12 @@
                                     <a href="home.php">All Students</a>
                                 </li>
 								<li>
-
+                                    
 									</li>
 									<li>
-
+                                    
 									</li>
-
+								
                             </ul>
 							   </li>
                             <!-- /.nav-second-level -->
@@ -131,12 +132,12 @@
 								<li>
                                     <a href="Assessment.php">Assessment</a>
 									</li>
-
+								
                             </ul>
 							</li>
                             <!-- /.nav-second-level -->
 
-
+                        
                         </li>
                     </ul>
                 </div>
@@ -160,7 +161,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-
+                       
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover">
@@ -188,7 +189,7 @@
                                             case "Grade 10":
                                                 $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr10' AND `student_pay_fees`.StudentID = '".$ID."'";
 												$MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF27')";
-												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF27') AND StudentID = '".$ID."'";
+												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF27') AND StudentID = '".$ID."'"; 
                                                 break;
 
                                             default:
@@ -201,17 +202,17 @@
                                         $miscrow = 0;
 
                                         $COMP = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF1' AND `student_pay_fees`.`StudentID` = '".$ID."'";
-
+										
                                         $NET = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF2' AND `student_pay_fees`.`StudentID` = '".$ID."'";
-
+										
                                         $PTA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF23' AND `student_pay_fees`.StudentID = '".$ID."'";
-
+										
                                         $CUT = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF25' AND `student_pay_fees`.StudentID = '".$ID."'";
-
+										
                                         $PE = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF24' AND `student_pay_fees`.StudentID = '".$ID."'";
-
+										
                                         $SRA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'OF1' AND `student_pay_fees`.StudentID = '".$ID."'";
-
+										
                                         $BOOK = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code IN ('OF2', 'OF3') AND `student_pay_fees`.StudentID = '".$ID."'";
 
                                         $tuires = mysqli_query($conn, $TUITION) or die("Error: " . mysqli_error($conn));
@@ -301,7 +302,7 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-
+                         
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -310,15 +311,15 @@
                 <!-- /.col-lg-12 -->
             </div>
 			<div class="btn btn-default pull-left" role="button">
-				<a href="adminrecords.php">Back</a>
+				<a href="home.php">Back</a>
             </div>
 			<div class="btn btn-default pull-left" role="button">
 				<a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
 			</div>
            <td valign="bottom" align="right">
-
+       
         <button onclick="myFunction()"  class="btn btn-default pull-right" >Print this page</button>
-
+		
 <script>
 function myFunction() {
     window.print();

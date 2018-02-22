@@ -1,16 +1,5 @@
 <?php
-    session_start();
-
-    function setSessionVariables($row) {
-        $_SESSION['id'] = $row['user_id'];
-        $_SESSION['fname'] = $row['fname'];
-        $_SESSION['lname'] = $row['lname'];
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['pnumber'] = $row['pnumber'];
-        $_SESSION['age'] = $row['age'];
-        $_SESSION['username'] = $row['username'];
-        header('Location: index.php?login=success');
-    }
+    require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +22,24 @@
                         <form method="post" name="aform" target="_top" role="form">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Username:</label>
-                                    <input class="form-control" placeholder="Username" name="username" type="Username" autofocus>
+                                    <label>Select School Year:</label>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password:</label>
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <?php
+                                        require_once('connection.php');
+                                        $cn   = new connection();
+                                        $conn = $cn->connectDB();
+                                        $set = mysqli_query($conn, "SHOW DATABASES");
+                                        $dbs = array();
+                                        while($db = mysqli_fetch_row($set)){
+                                            $dbs[] = $db[0];
+                                        }
+                                    ?>
+                                    <select name="input">
+                                        <?php foreach ($dbs as $value): ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                                 <!--
                                 <div class="checkbox">
@@ -48,7 +49,10 @@
                                 </div>
                                 -->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" name="submit" value="Enter" class="btn btn-lg btn-success btn-block">
+                                <style type="text/css" >button:hover{text-decoration: none;}</style>
+                                <input type="submit" name="submit" value="Use Database" class="btn btn-lg btn-success btn-block">
+                                <button type="button" name="submit" class="btn btn-lg btn-success btn-block"><a href="creator.php" style="color:white"> Create School New Year </a></button>
+
                             </fieldset>
                         </form>
 <?php
