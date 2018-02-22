@@ -38,7 +38,7 @@
                                     <a href="addassessment.php">Add Records</a>
                                 </li>
                                 <li>
-                                    <a href="editassessment2.php">Edit Records</a>
+                                    <a href="editrecords_assessment.php">Edit Records</a>
                                 </li>
                             </ul>
                         </li>
