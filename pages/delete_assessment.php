@@ -1,5 +1,5 @@
 <?php
-    
+    require_once('../include/sessionstart.php');
     require_once('connection.php');
     $cn = new connection();
     $conn = $cn->connectDB($_SESSION['database']);

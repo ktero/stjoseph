@@ -1,5 +1,5 @@
 <?php
-    require_once('../include/sessionstart2.php')
+   require_once('../include/sessionstart2.php');
 ?>
 
 <!DOCTYPE html>
