@@ -15,22 +15,7 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-                </div>
-                <!-- /.navbar-header -->
-                <?php require_once('../include/account-section.php'); ?>
-                <!-- /.navbar-top-links -->
-                <?php require_once('../include/side-bar-options.php'); ?>
-                <!-- /.navbar-static-side -->
-            </nav>
+            <?php require_once('../include/navdiv-title.php'); ?>
         </div>
         <!-- /#wrapper -->
         <div id="page-wrapper">
@@ -53,12 +38,12 @@
                               <div class="col-lg-6">
                                   <form name= "input" action= "addclass_2.php" method= "post">
                                       <div class="form-group">
-                                          <label>Class code</label>
+                                          <label>Level code</label>
                                           <input class="form-control" placeholder="e.g G10a" name="code" required data-validation-required-message>
                                           <p class="help-block"></p>
                                       </div>
                                       <div class="form-group">
-                                          <label>Class name</label>
+                                          <label>Level name</label>
                                           <input class="form-control" name="year" required data-validation-required-message>
                                           <p class="help-block"></p>
                                       </div>

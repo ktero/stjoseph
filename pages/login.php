@@ -1,5 +1,9 @@
 <?php
     session_start();
+    // If session is already set
+    if(isset($_SESSION['id']))
+      header('Location: index.php?login=alreadyIN');
+
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['fname'] = $row['fname'];
