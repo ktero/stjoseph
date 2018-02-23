@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
     <!DOCTYPE html>
@@ -63,23 +63,23 @@
             <?php
                 require_once('connection.php');
                 $cn   = new connection();
-                $conn = $cn->connectDB();
-                                                           
+                $conn = $cn->connectDB($_SESSION['database']);
+
                 $search_value = '';
                 if(isset($_POST['StudentID']))
                     $search_value = mysqli_real_escape_string($conn, $_POST['StudentID']);
-                
+
                 // Query varies if search_value is empty or not
                 if($search_value == '') {
                     $query = 'SELECT * FROM student';
                 } else if($search_value != '') {
                     $query = 'SELECT * FROM student WHERE StudentID LIKE "%'.$search_value.'%"';
                 }
-                    
+
                 $result = mysqli_query($conn, $query);
                 if (mysqli_num_rows($result)>0)
 				{
-                    
+
                     echo "
                         <thead>
                             <tr>
@@ -96,10 +96,10 @@
                                 <th>  </th>
                             </tr>
                         </thead>
-                        <tbody>   
+                        <tbody>
                     ";
-                    
-                    
+
+
                     while($row = mysqli_fetch_row($result))
                     {
                         echo"
@@ -123,7 +123,7 @@
                                                     " .$row[5]. "
                                                 </td>
                                                 <td>
-                                                    " .$row[6]. " 
+                                                    " .$row[6]. "
                                                 </td>
                                                 <td>
                                                     " .$row[7]. "

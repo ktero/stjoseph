@@ -101,7 +101,7 @@
         // Set up database connection
         require_once('connection.php');
         $cn = new connection();
-        $conn = $cn->connectDB();
+        $conn = $cn->connectDB($_SESSION['database']);
 
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
 

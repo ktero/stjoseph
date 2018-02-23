@@ -1,8 +1,5 @@
 <?php
     session_start();
-    // If session is already set
-    if(isset($_SESSION['id']))
-      header('Location: index.php?login=alreadyIN');
 
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
@@ -12,12 +9,13 @@
         $_SESSION['pnumber'] = $row['pnumber'];
         $_SESSION['age'] = $row['age'];
         $_SESSION['username'] = $row['username'];
-        header('Location: index.php?login=success');
+        header('Location: switcher.php?login=success');
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php require_once('../include/head.php'); ?>
 </head>
@@ -60,23 +58,32 @@
         // Set up database connection/
         require_once('connection.php');
         $cn = new connection();
-        $conn = $cn->connectDB();
+        $conn = $cn->connectDB('sjhs');
         // error_reporting(E_ALL ^ E_NOTICE);
+
+
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
+
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
+
         /*
         $user = mysqli_real_escape_string($conn, $_POST['username']);
         $pass = mysqli_real_escape_string($conn, $_POST['password']);
         */
+
 		if(empty($user) || empty($pass)) {
             echo "<p>You must fill up these fields</p>";
         }
         else if (!empty($user) && !empty($pass)) {
+
             $query = "SELECT * FROM account WHERE username = '$user'";
             $result = mysqli_query($conn, $query);
             $resultCheck = mysqli_num_rows($result);
+
             if ($resultCheck > 0) {
+
                 if($row = mysqli_fetch_assoc($result)) {
+
                     $hashCheck = password_verify($pass, $row['password']);
                     if($user == $row['username']) {
                         if($pass == $row['password']) {

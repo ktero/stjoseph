@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -40,32 +40,32 @@
 
 	require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB();
+    $conn = $cn->connectDB($_SESSION['database']);
 
-        
+
 	$orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
-	
+
     $sid = isset($_POST['sid']) ? mysqli_real_escape_string($conn, $_POST['sid']) : '';
-	
+
     $lname = isset($_POST['lname']) ? mysqli_real_escape_string($conn, $_POST['lname']) : '';
-        
+
 	$fname = isset($_POST['fname']) ? mysqli_real_escape_string($conn, $_POST['fname']) : '';
-        
+
 	$mname = isset($_POST['mname']) ? mysqli_real_escape_string($conn, $_POST['mname']) : '';
-        
+
 	$gender = isset($_POST['gender']) ? mysqli_real_escape_string($conn, $_POST['gender']) : '';
-        
+
 	$addr = isset($_POST['addr']) ? mysqli_real_escape_string($conn, $_POST['addr']) : '';
-        
+
 	$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-        
+
 	$denrolled = isset($_POST['denrolled']) ? mysqli_real_escape_string($conn, $_POST['denrolled']) : '';
-        
+
 	$sy = isset($_POST['sy']) ? mysqli_real_escape_string($conn, $_POST['sy']) : '';
 
 
 	$query = "UPDATE student SET StudentID='$sid', Lname='$lname', Fname='$fname', Mname='$mname', Gender='$gender', Address='$addr', Level_code='$code', Date_enrolled='$denrolled', School_Year='$sy' WHERE StudentID=$orig_sid";
-	
+
 	mysqli_query($conn, $query) or die ("Error query: " . mysqli_error($conn));
 	$cn->closeDB();
 ?>

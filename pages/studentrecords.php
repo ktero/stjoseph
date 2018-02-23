@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,14 +27,14 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-               
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                      
-                      
+
+
                         <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -48,7 +48,7 @@
                     <ul class="nav" id="side-menu">
                           <li>
                             <a href="#">Admin Records<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">   
+                            <ul class="nav nav-second-level">
                            <li>
                                     <a href="#">Student<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -59,10 +59,10 @@
                                     <a href="editstudent.php">Edit Records</a>
                                 </li>
 								</ul>
-								
-								
+
+
 								 <!-- /.nav-third-level -->
-								
+
 								<li>
                                     <a href="#">Assessment<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -72,10 +72,10 @@
 								  <li>
                                     <a href="editassessment2.php">Edit Records</a>
                                 </li>
-														
+
 								</ul>
 								</li>
-														
+
 								<!-- /.nav-third-level -->
 								</li>
 									 </ul>
@@ -86,7 +86,7 @@
                                <li>
                                     <a href="home.php">All Students</a>
                                 </li>
-								
+
                             </ul>
 							   </li>
                             <!-- /.nav-second-level -->
@@ -99,12 +99,12 @@
 								<li>
                                     <a href="Assessment.php">Assessment</a>
 									</li>
-								
+
                             </ul>
 							</li>
                             <!-- /.nav-second-level -->
 
-                        
+
                         </li>
                     </ul>
                 </div>
@@ -145,11 +145,11 @@
                                 <tbody>
 									<?php
 										$connection = mysqli_connect('localhost', 'root', '');
-										mysqli_select_db($connection, 'sjhs');
-										
+										mysqli_select_db($connection, $_SESSION['database']);
+
 										$query = 'SELECT * FROM student';
 										$result = mysqli_query($connection, $query);
-										
+
 										while($row = mysqli_fetch_row($result))
 										{
 									?>
@@ -165,7 +165,7 @@
 								</tbody>
                             </table>
                             <!-- /.table-responsive -->
-                           
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -173,7 +173,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-           
+
     </div>
     <!-- /#wrapper -->
 

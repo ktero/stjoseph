@@ -1,8 +1,8 @@
 <?php
-
+    require_once('../include/sessionstart.php');
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB();
+    $conn = $cn->connectDB($_SESSION['database']);
 
     $edit_key = isset($_GET['feecode']) ? $_GET['feecode'] : '';
     $query= "DELETE FROM fees WHERE Fee_code='".$edit_key."'";

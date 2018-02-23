@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@
                                             <input class="form-control" placeholder="eg. 0000000000" name="Amount" required data-validation-required-message>
                                             <p class="help-block"></p>
                                         </div>
-										
+
 										<!-- Submit Button -->
 										<button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Submit</button>
                                     </form>

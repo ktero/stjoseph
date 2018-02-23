@@ -67,7 +67,7 @@
                 <?php
                     require_once('connection.php');
                     $cn   = new connection();
-                    $conn = $cn->connectDB();
+                    $conn = $cn->connectDB($_SESSION['database']);
 
 										$query = 'SELECT * FROM receipt';
 										$result = mysqli_query($conn, $query);

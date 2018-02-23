@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +49,15 @@
                                 <div class="col-lg-6">
                                     <!-- PHP FORM -->
 <?php
-                                    
+
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB();
-                                   
+    $conn = $cn->connectDB($_SESSION['database']);
+
     error_reporting(E_ALL ^ E_NOTICE);
-                                    
+
     $edit_key = isset($_GET['studentedit_key']) ? mysqli_real_escape_string($conn, $_GET['studentedit_key']) : '';
-    
+
     $query= "SELECT * FROM student WHERE StudentID='".$edit_key."'";
     $result= mysqli_query($conn, $query) or die ('Error in query: $query.'.mysqli_error($conn));
 

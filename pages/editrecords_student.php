@@ -81,7 +81,7 @@
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
-                                        $conn = $cn->connectDB();
+                                        $conn = $cn->connectDB($_SESSION['database']);
 
 
 										$query = 'SELECT * FROM student';
@@ -118,7 +118,7 @@
                                             <td>
                                                 <?php echo $row[8]; ?>
                                             </td>
-                                            
+
                                         </tr>
                                         <?php
 										}

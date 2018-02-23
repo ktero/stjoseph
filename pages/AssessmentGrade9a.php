@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,7 @@
                       <li><a href="AssessmentGrade8a.php">Grade 8</a></li>
                       <li><a href="AssessmentGrade9a.php">Grade 9</a></li>
 					   <li><a href="AssessmentGrade10a.php">Grade 10</a></li>
-                     
+
                     </ul>
                   </div>
                 </td>
@@ -71,21 +71,21 @@
                                         <th>Fee Code</th>
                                         <th>Description</th>
 										<th>Amount (In Philippine Peso)</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
 									<?php
 										$tot = 0;
 										$tro = 0;
-										
+
                                         require_once('connection.php');
                                         $cn = new connection();
-                                        $conn = $cn->connectDB();
-                                    
+                                        $conn = $cn->connectDB($_SESSION['database']);
+
 										$query = 'SELECT * FROM fees WHERE Fee_code NOT IN ("Gr7", "Gr8", "Gr10","MF27")';
 										$result = mysqli_query($conn, $query);
-										
+
 										while($row = mysqli_fetch_row($result))
 										{
 											$tro = $row[2];
@@ -114,11 +114,11 @@
   </td>
    </tr>
      <tfoot>
-  
+
    </tr>
     <tr>
       <td valign="bottom" align="right">
-       
+
         <button onclick="myFunction()"  class="btn btn-default pull-right" >Print this page</button>
 
 <script>
@@ -126,12 +126,12 @@ function myFunction() {
     window.print();
 }
 </script>
-       
+
       </td>
    </tr>
-   
+
 </tfoot>
-   
+
 
     </div>
     <!-- /#wrapper -->
@@ -144,7 +144,7 @@ function myFunction() {
                 <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
-      
+
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

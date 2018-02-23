@@ -50,7 +50,7 @@
 <?php
                   require_once('connection.php');
                   $cn = new connection();
-                  $conn = $cn->connectDB();
+                  $conn = $cn->connectDB($_SESSION['database']);
 
 									$sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
 
