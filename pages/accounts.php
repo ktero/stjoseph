@@ -60,8 +60,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
 
-
-                        <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="switcher.php"><i class="fa fa-sigh-out fa-fw"></i> Switch S.Y.</a></li>
+                        <li><a href="adminlogin.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>    
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
