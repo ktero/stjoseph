@@ -1,5 +1,6 @@
 <?php
    require_once('../include/sessionstart2.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +32,13 @@
                                         $conn = $cn->connectDB('');
                                         $set = mysqli_query($conn, "SHOW DATABASES");
                                         $dbs = array();
+                                        $i = 0;
                                         while($db = mysqli_fetch_row($set)){
-                                            $dbs[] = $db[0];
+                                            $i++;
+                                            if($i > 4)
+                                            {
+                                                $dbs[] = $db[0];
+                                            }
                                         }
                                     ?>
                                     <select name="input">
