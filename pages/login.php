@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['fname'] = $row['fname'];
@@ -111,7 +110,6 @@
             }
             */
         }
-        $cn->closeDB();
 	}
 ?>
                     </div>
