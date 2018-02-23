@@ -1,6 +1,7 @@
 <?php
     session_start();
-
+    if(isset($_SESSION['id']))
+      header('Location: index.php?login=alreadyIN');
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['fname'] = $row['fname'];
@@ -20,16 +21,16 @@
     <?php require_once('../include/head.php'); ?>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
-                    </div>
                     <div class="panel-body">
+                        <center style="padding: 0px; margin: 0px;">
+                          <img src="graphics/logo_sjhs.png" alt="sjhs-logo" height="250px" />
+                        </center>
                         <form method="post" name="aform" target="_top" role="form">
                 <fieldset>
                                 <div class="form-group">
@@ -97,19 +98,6 @@
                     }
                 }
             }
-             /*
-            $query = mysqli_query($conn,'select * from account');
-            while($row = mysqli_fetch_row($query))
-            {
-                if((!empty($user)) && (!empty($pass)))
-                {
-                    if($user==$row[6] && $pass==$row[7])
-                    {
-                        echo "<meta http-equiv='refresh' content='0;url=/stjoseph/pages/index.php' />";
-                    }
-                }
-            }
-            */
         }
         $cn->closeDB();
 	}
@@ -120,20 +108,13 @@
         </div>
     </div>
    <hr>
-
-        <!-- Footer -->
+        <!-- Footer
         <footer>
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team</p>
-					<p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
+                <?php // require_once('../include/footer.php'); ?>
             </div>
         </footer>
-
+      -->
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

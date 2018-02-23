@@ -12,7 +12,7 @@
                                 <a href="addstudent.php">Add Records</a>
                             </li>
                             <li>
-                                <a href="resultedit_student.php">Edit Records</a>
+                                <a href="editrecords_student.php">Edit Records</a>
                             </li>
                         </ul>
                       </li>

@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -35,26 +34,19 @@
                                             $dbs[] = $db[0];
                                         }
                                     ?>
-                                    <select name="input">
-                                        <?php foreach ($dbs as $value): ?>
+                                    <select name="input" style="padding: 5px; cursor: pointer;">
+                                        <?php foreach ($dbs as $value):  ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <!--
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                -->
                                 <!-- Change this to a button or input when using this as a form -->
                                 <style type="text/css" >button:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use School Year</button>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block"><a href="creator.php" style="color:white"> Create School New Year </a></button>
 
                             </fieldset>
-                        </form> 
+                        </form>
                     </div>
                 </div>
             </div>

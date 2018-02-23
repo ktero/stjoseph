@@ -51,7 +51,7 @@
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
-                                        $conn = $cn->connectDB();
+                                        $conn = $cn->connectDB($_SESSION['database']);
 
 
 										$query = 'SELECT * FROM student';
@@ -101,14 +101,14 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Class Records
+                            Year Level Records
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Level_code</th>
+                                        <th>Level code</th>
                                         <th>Year level</th>
                                         <th>Section</th>
                                         <th>Number of Students enrolled</th>
@@ -123,7 +123,7 @@
                   <?php
                     require_once('connection.php');
                     $con   = new connection();
-                    $conn = $con->connectDB();
+                    $conn = $con->connectDB($_SESSION['database']);
 
                     $query = 'SELECT * FROM level';
 										$result = mysqli_query($conn, $query);

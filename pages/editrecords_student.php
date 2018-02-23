@@ -15,29 +15,14 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-                </div>
-                <!-- /.navbar-header -->
-                <?php require_once('../include/account-section.php'); ?>
-                <!-- /.navbar-top-links -->
-                <?php require_once('../include/side-bar-options.php'); ?>
-                <!-- /.navbar-static-side -->
-            </nav>
+            <?php require_once('../include/navdiv-title.php'); ?>
         </div>
         <!-- /#wrapper -->
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Edit Records: Student</h1>
+                    <h1 class="page-header">Edit records</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -46,46 +31,33 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            All Records
+                            Edit student profile
                         </div>
                         <!-- /.panel-heading -->
-
-                        <style type="text/css">
-                            th {
-
-                              font-size: 13px;
-                            }
-                        </style>
-
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Id Number</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Middle Name</th>
+                                        <th>ID</th>
+                                        <th>Full Name</th>
                                         <th>Gender</th>
                                         <th>Address</th>
-                                        <th>Year &amp; Section</th>
-                                        <th>Date enrolled</th>
-                                        <th>School Year</th>
-                                        <!--
-                                        <th>Section</th>
                                         <th>Year Level</th>
-                                        <th>Balance</th>
-                                        -->
+                                        <th>Date Enrolled</th>
+                                        <th>School Year</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        require_once('connection.php');
-                                        $cn   = new connection();
-                                        $conn = $cn->connectDB($_SESSION['database']);
+                  <?php
+                    require_once('connection.php');
+                    $cn   = new connection();
+                    $conn = $cn->connectDB($_SESSION['database']);
 
 
 										$query = 'SELECT * FROM student';
-										$result = mysqli_query($conn, $query);
+										$result = mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
 
 										while($row = mysqli_fetch_row($result))
 										{
@@ -95,13 +67,7 @@
                                                 <?php echo $row[0]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[2]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[1]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[3]; ?>
+                                                <?php echo $row[2] . ' ' . $row[3] . ' ' . $row[1]; ?>
                                             </td>
                                             <td>
                                                 <?php echo $row[4]; ?>
@@ -118,7 +84,12 @@
                                             <td>
                                                 <?php echo $row[8]; ?>
                                             </td>
-
+                                            <td>
+                                                <a href='edit_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
+                                            </td>
+                                            <td>
+                                                <a href='delete_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?');"> Delete </a>
+                                            </td>
                                         </tr>
                                         <?php
 										}
@@ -135,7 +106,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
+            <!-- until here -->
         </div>
         <!-- /#wrapper -->
         <hr>
@@ -143,13 +114,7 @@
         <!-- Footer -->
         <footer>
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>St. Joseph High School</p>
-                    <p>Santiago St., Talakag, Bukidnon</p>
-                    <p>Project Team</p>
-                    <p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-                    <p>Copyright &copy; 2017</p>
-                </div>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
         <!-- jQuery -->

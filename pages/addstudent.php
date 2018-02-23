@@ -75,7 +75,7 @@
                                 <?php
                                   require_once('connection.php');
                                   $cn = new connection();
-                                  $conn = $cn->connectDB();
+                                  $conn = $cn->connectDB($_SESSION['database']);
 
                                   $query = "SELECT * from level";
                                   $result = mysqli_query($conn, $query) or die('
@@ -85,7 +85,7 @@
                                     $code = $row[0];
                                     $level = $row[1];
                                     $section = $row[2];
-                                    echo "<option values='$code'>$level - $section</option>";
+                                    echo "<option value='$code'>$level - $section</option>";
                                   }
                                   $cn->closeDB();
                                 ?>

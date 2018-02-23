@@ -15,22 +15,7 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-                </div>
-                <!-- /.navbar-header -->
-                <?php require_once('../include/account-section.php'); ?>
-                <!-- /.navbar-top-links -->
-                <?php require_once('../include/side-bar-options.php'); ?>
-                <!-- /.navbar-static-side -->
-            </nav>
+            <?php require_once('../include/navdiv-title.php'); ?>
         </div>
         <!-- /#wrapper -->
 
@@ -46,7 +31,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit class record
+                            Edit level record
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -87,7 +72,7 @@
                                                 <a href='edit_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
                                             </td>
                                             <td>
-                                                <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #EA6565;'> Delete </a>
+                                                <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?')"> Delete </a>
                                             </td>
                                         </tr>
                                         <?php

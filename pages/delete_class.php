@@ -1,7 +1,8 @@
 <?php
+    require_once('../include/sessionstart.php');
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB();
+    $conn = $cn->connectDB($_SESSION['database']);
 
     $edit_key = isset($_GET['levelcode']) ? mysqli_real_escape_string($conn, $_GET['levelcode']) : '';
 

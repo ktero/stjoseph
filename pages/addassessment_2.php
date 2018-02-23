@@ -27,7 +27,7 @@
             $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
             if($description == '' || $amount == '') {
-              echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
+              echo '<meta http-equiv="refresh" content="0;url=addassessment.php" />';
             }
             else if(isset($description, $amount))
             {
