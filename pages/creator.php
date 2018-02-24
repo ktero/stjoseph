@@ -1,6 +1,5 @@
 <?php
    require_once('../include/sessionstart2.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -11,20 +10,19 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">School Year</h3>
+                        <h3 class="panel-title">Create New School Year</h3>
                     </div>
                     <div class="panel-body">
-                        <form method="POST" name="input" action="../include/dbchecker.php">
+                        <form method="POST" name="aform" action="creator1.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select School Year:</label>
-                                </div>
-                                <div class="form-group">
+                                    <label>Select the Previous School Year:</label>
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
@@ -40,20 +38,22 @@
                                             }
                                         }
                                     ?>
-                                    <select name="input" style="padding: 5px; cursor: pointer;">
-                                        <?php foreach ($dbs as $value):  ?>
+                                    <select name="input">
+                                        <?php foreach ($dbs as $value): ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <style type="text/css" >button:hover{text-decoration: none;}</style>
-                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use School Year</button>
+                                <div class="form-group">
+                                    <label>Name of the new School Year</label>
+                                    <input type="text" placeholder="Name i.e sjhs(s.y.17-18)" name="dname">
+                                </div>
+                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create School New Year</button>
                                 <br>
-                                <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block"> Create School New Year</button></a>
+                                <a href="switcher.php" style="color:white"><button type="button" name="back" class="btn btn-lg btn-success btn-block"> Back</button></a>
 
                             </fieldset>
-                        </form>
+                        </form> 
                     </div>
                 </div>
             </div>
