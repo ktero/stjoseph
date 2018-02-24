@@ -38,7 +38,9 @@
                      <li><a href="AssessmentGrade7a.php">Grade 7</a></li>
                       <li><a href="AssessmentGrade8a.php">Grade 8</a></li>
                       <li><a href="AssessmentGrade9a.php">Grade 9</a></li>
-					  <li><a href="AssessmentGrade10a.php">Grade 10</a></li>
+          					  <li><a href="AssessmentGrade10a.php">Grade 10</a></li>
+                      <li><a href="AssessmentGrade11a.php">Grade 11</a></li>
+                      <li><a href="AssessmentGrade12a.php">Grade 12</a></li>
                     </div>
 					</td>
               </tr>

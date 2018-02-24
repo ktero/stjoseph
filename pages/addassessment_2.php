@@ -42,7 +42,7 @@
 
         <div id="page-wrapper" align="Center" style="padding-top: 100px">
         <h1> Successfully Added </h1>
-        <a href='addasessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
+        <a href='addassessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
         <a href='assessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View Assessments</a>
         </div>
 

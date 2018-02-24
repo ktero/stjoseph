@@ -52,7 +52,7 @@
                     <a href="#">Student Records<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="adminrecords.php">View Class &amp; Students</a>
+                            <a href="adminrecords.php">View Level &amp; Students</a>
 
                             <!-- Tero edit: 2/9/18 -->
 

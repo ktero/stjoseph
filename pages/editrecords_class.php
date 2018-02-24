@@ -63,16 +63,16 @@
                                                 <?php echo $row[0]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[2]; ?>
+                                                <?php echo $row[1]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[1]; ?>
+                                                <?php echo $row[2]; ?>
                                             </td>
                                             <td>
                                                 <a href='edit_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
                                             </td>
                                             <td>
-                                                <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?')"> Delete </a>
+                                                <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?');"> Delete </a>
                                             </td>
                                         </tr>
                                         <?php

@@ -14,22 +14,7 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-                </div>
-                <!-- /.navbar-header -->
-                <?php require_once('../include/account-section.php'); ?>
-                <!-- /.navbar-top-links -->
-                <?php require_once('../include/side-bar-options.php'); ?>
-                <!-- /.navbar-static-side -->
-            </nav>
+            <?php require_once('../include/navdiv-title.php'); ?>
 
             <div id="page-wrapper">
                 <div class="row">
@@ -55,7 +40,7 @@
 
 	if($truncate == 1)
 	{
-		$trun = "TRUNCATE TABLE `student_pay_fees`";
+		$trun = "DELETE FROM student_pay_fees WHERE StudentID = '$ID'";
 		mysqli_query($conn, $trun) or die("Error: " . mysqli_error($conn));
 	}
 
@@ -73,6 +58,13 @@
                                         <h4 style="margin-left: 15px;">Student:
                                             <?php echo $row[1] . ", " . $row[2] . " " . $row[3]; ?>
                                         </h4>
+                                        <h5 style="margin-left: 15px;">Year Level:
+                                            <?php
+                                              $r = mysqli_query($conn, "SELECT * FROM level WHERE Level_code = '$row[6]'") or die('Error: ' . mysqli_error($conn));
+                                              while ($y = mysqli_fetch_row($r))
+                                                echo $y[1] . " - " . $y[2];
+                                            ?>
+                                        </h5>
                                         <?php } ?>
                                 </div>
                                 <!-- /.panel-heading -->
@@ -162,7 +154,7 @@
                                         <a href="adminrecords.php">Back</a>
                                     </div>
                                     <div class="btn btn-default pull-left" role="button">
-                                        <a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
+                                        <a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete this record?');">RESET RECORDS</a>
                                     </div>
                                     <div style="float: right">
                                         <a href="accounts.php?id=<?php echo $ID; ?>" style="font-size: 20px;">View Statement of Account</a>

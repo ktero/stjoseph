@@ -14,22 +14,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-            <?php require_once('../include/account-section.php'); ?>
-            <!-- /.navbar-top-links -->
-            <?php require_once('../include/side-bar-options.php'); ?>
-            <!-- /.navbar-static-side -->
-        </nav>
+        <?php require_once('../include/navdiv-title.php'); ?>
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -42,19 +27,23 @@
               <tr>
                 <td>
                   <!-- Split button -->
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default"><i class=""></i> Year Level</button>
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                      <span class="caret"></span>
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="AssessmentGrade7a.php">Grade 7</a></li>
-                      <li><a href="AssessmentGrade8a.php">Grade 8</a></li>
-                      <li><a href="AssessmentGrade9a.php">Grade 9</a></li>
-					   <li><a href="AssessmentGrade10a.php">Grade 10</a></li>
+                  <div class="no-print">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default"><i class=""></i> Year Level</button>
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="AssessmentGrade7a.php">Grade 7</a></li>
+                        <li><a href="AssessmentGrade8a.php">Grade 8</a></li>
+                        <li><a href="AssessmentGrade9a.php">Grade 9</a></li>
+          					   <li><a href="AssessmentGrade10a.php">Grade 10</a></li>
+                       <li><a href="AssessmentGrade11a.php">Grade 11</a></li>
+                       <li><a href="AssessmentGrade12a.php">Grade 12</a></li>
 
-                    </ul>
+                      </ul>
+                    </div>
                   </div>
                 </td>
 				<div class="row">
@@ -83,7 +72,7 @@
                                         $cn = new connection();
                                         $conn = $cn->connectDB($_SESSION['database']);
 
-										$query = 'SELECT * FROM fees WHERE Fee_code NOT IN ("Gr9", "Gr8", "Gr10")';
+										$query = 'SELECT * FROM fees WHERE Fee_code NOT IN ("Gr9", "Gr8", "Gr10", "MF26", "MF27", "MF28", "MF29", "MF30", "MF31", "MF32")';
 										$result = mysqli_query($conn, $query);
 
 										while($row = mysqli_fetch_row($result))
@@ -117,17 +106,17 @@
 
    </tr>
     <tr>
-      <td valign="bottom" align="right">
-
+      <div class="no-print">
+        <td valign="bottom" align="right">
         <button onclick="myFunction()"  class="btn btn-default pull-right" >Print this page</button>
-
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
-
-      </td>
+      </div>
+          <script>
+            function myFunction() {
+                window.print();
+            }
+          </script>
+        </td>
+      </div>
    </tr>
 
 </tfoot>
