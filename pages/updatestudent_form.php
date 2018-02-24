@@ -11,22 +11,7 @@
 
 <header style="padding: 0; margin: 0;">
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-            <?php require_once('../include/account-section.php'); ?>
-            <!-- /.navbar-top-links -->
-            <?php require_once('../include/side-bar-options.php'); ?>
-            <!-- /.navbar-static-side -->
-        </nav>
+        <?php require_once('../include/navdiv-title.php'); ?>
     </div>
 </header>
 
@@ -76,13 +61,11 @@
             </div>
             <!-- Footer -->
             <hr>
-            <div data-role="footer" data-position="fixed" align="center">
-                <p>St. Joseph High School</p>
-                <p>Santiago St., Talakag, Bukidnon</p>
-                <p>Project Team</p>
-                <p>(Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabogga)</p>
-                <p>Copyright &copy; 2017</p>
-            </div>
+            <footer>
+                <div class="row">
+                    <?php require_once('../include/footer.php'); ?>
+                </div>
+            </footer>
             <!-- jQuery -->
             <script src="../vendor/jquery/jquery.min.js"></script>
 

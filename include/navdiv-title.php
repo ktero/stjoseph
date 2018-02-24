@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-        <a style="text-decoration:none;"> <img src="graphics/logo_sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">Saint Joseph High School of Talakag</a>
+        <a style="text-decoration:none;"> <img src="graphics/logo_sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php" style="text-decoration: none;">Saint Joseph High School of Talakag</a>
     </div>
     <!-- /.navbar-header -->
     <?php require_once('../include/account-section.php'); ?>

@@ -10,8 +10,8 @@
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a href="switcher.php"><i class="fa fa-sign-out fa-fw"></i> Switch S.Y.</a></li>
-            <li><a href="#"><i class="fa fa-setting fa-fw"></i>Settings</a></li>
+            <li><a href="switcher.php"><i class="fa fa-sign-out fa-fw"></i>Switch S.Y.</a></li>
+            <li><a href="admin_account.php"><i class="fa fa-sign-out fa-fw"></i>Admin account</a></li>
             <li><a href="logout_key.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
             </li>
         </ul>

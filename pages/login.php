@@ -10,6 +10,7 @@
         $_SESSION['pnumber'] = $row['pnumber'];
         $_SESSION['age'] = $row['age'];
         $_SESSION['username'] = $row['username'];
+        $_SESSION['password'] = $row['password'];
         header('Location: switcher.php?login=success');
     }
 ?>
@@ -54,8 +55,7 @@
                         </form>
 <?php
     // Perform input validation process.
-    if(isset($_POST['submit']))
-	{
+    if(isset($_POST['submit'])) {
         // Set up database connection/
         require_once('connection.php');
         $cn = new connection();
@@ -66,11 +66,6 @@
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
 
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
-
-        /*
-        $user = mysqli_real_escape_string($conn, $_POST['username']);
-        $pass = mysqli_real_escape_string($conn, $_POST['password']);
-        */
 
 		if(empty($user) || empty($pass)) {
             echo "<p>You must fill up these fields</p>";
@@ -99,7 +94,7 @@
                 }
             }
         }
-	}
+	   }
 ?>
                     </div>
                 </div>

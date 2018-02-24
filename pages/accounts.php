@@ -205,16 +205,20 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+      <div class="no-print">
+        <div class="btn btn-default pull-left" role="button">
+  				<a href="adminrecords.php">Back</a>
+        </div>
+      </div>
+      <!--
 			<div class="btn btn-default pull-left" role="button">
-				<a href="adminrecords.php">Back</a>
-            </div>
-			<div class="btn btn-default pull-left" role="button">
-				<a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
+				<a href="<?php // echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete ALL records?');">RESET RECORDS</a>
 			</div>
-           <td valign="bottom" align="right">
-
+      -->
+      <div class="no-print">
+        <td valign="bottom" align="right">
         <button onclick="myFunction()"  class="btn btn-default pull-right" >Print this page</button>
-
+      </div>
 <script>
 function myFunction() {
     window.print();

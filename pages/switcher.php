@@ -61,7 +61,7 @@
     </div>
    <hr>
 
-        <!-- Footer -->
+        <!-- Footer
         <footer>
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </footer>
-
+      -->
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
