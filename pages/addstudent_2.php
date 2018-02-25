@@ -56,11 +56,12 @@
 
 	$SY = isset($_POST['SY']) ? mysqli_real_escape_string($conn, $_POST['SY']) : '';
 
+  // Validate data
 	if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '' || $SY == '')
 		echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
-
 	else if(isset($StudentID, $Lname, $Fname, $Mname, $Gender, $Address, $code, $Date, $SY))
 	{
+    // Upload data into database
 		$query= "INSERT into student values('$StudentID','$Lname','$Fname','$Mname','$Gender','$Address','$code','$Date','$SY')";
 		$result= mysqli_query($conn, $query);
 

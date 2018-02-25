@@ -22,22 +22,19 @@
                         <form method="POST" name="input" action="../include/dbchecker.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select School Year:</label>
+
                                 </div>
                                 <div class="form-group">
+                                    <label>Select School Year:</label>
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
                                         $conn = $cn->connectDB('');
                                         $set = mysqli_query($conn, "SHOW DATABASES");
                                         $dbs = array();
-                                        $i = 0;
                                         while($db = mysqli_fetch_row($set)){
-                                            $i++;
-                                            if($i > 4)
-                                            {
+                                            if(substr_compare($db[0], 'sjhs', 0, 3) == 0)
                                                 $dbs[] = $db[0];
-                                            }
                                         }
                                     ?>
                                     <select name="input" style="padding: 5px; cursor: pointer;">
@@ -47,7 +44,7 @@
                                     </select>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <style type="text/css" >button:hover{text-decoration: none;}</style>
+                                <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use School Year</button>
                                 <br>
                                 <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block"> Create School New Year</button></a>
@@ -61,19 +58,13 @@
     </div>
    <hr>
 
-        <!-- Footer
+        \
         <footer>
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team</p>
-					<p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
-      -->
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

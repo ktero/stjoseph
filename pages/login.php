@@ -1,7 +1,9 @@
 <?php
     session_start();
+    // Redirect back to index page if user has logged in
     if(isset($_SESSION['id']))
       header('Location: index.php?login=alreadyIN');
+    // Initialize session variables
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['fname'] = $row['fname'];
@@ -59,7 +61,7 @@
         // Set up database connection/
         require_once('connection.php');
         $cn = new connection();
-        $conn = $cn->connectDB('sjhs');
+        $conn = $cn->connectDB('sjhs1819');
         // error_reporting(E_ALL ^ E_NOTICE);
 
 
@@ -67,11 +69,11 @@
 
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
 
-		if(empty($user) || empty($pass)) {
+		    if(empty($user) || empty($pass)) {
             echo "<p>You must fill up these fields</p>";
         }
         else if (!empty($user) && !empty($pass)) {
-
+            // Perform verification procedures
             $query = "SELECT * FROM account WHERE username = '$user'";
             $result = mysqli_query($conn, $query);
             $resultCheck = mysqli_num_rows($result);
@@ -79,7 +81,7 @@
             if ($resultCheck > 0) {
 
                 if($row = mysqli_fetch_assoc($result)) {
-
+                    // De-hash password
                     $hashCheck = password_verify($pass, $row['password']);
                     if($user == $row['username']) {
                         if($pass == $row['password']) {
@@ -102,13 +104,13 @@
         </div>
     </div>
    <hr>
-        <!-- Footer
+        <!-- Footer -->
         <footer>
             <div class="row">
-                <?php // require_once('../include/footer.php'); ?>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
-      -->
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

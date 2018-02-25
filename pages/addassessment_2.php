@@ -16,26 +16,26 @@
 
             <!-- Navigation -->
             <?php require_once('../include/navdiv-title.php'); ?>
-<?php
+            
+            <?php
+              require_once('connection.php');
+              $cn = new connection();
+              $conn = $cn->connectDB($_SESSION['database']);
 
-            require_once('connection.php');
-            $cn = new connection();
-            $conn = $cn->connectDB($_SESSION['database']);
+              $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+              $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
+              $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
-            $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-            $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
-            $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
-
-            if($description == '' || $amount == '') {
-              echo '<meta http-equiv="refresh" content="0;url=addassessment.php" />';
-            }
-            else if(isset($description, $amount))
-            {
-              $query= "INSERT into fees values('$code', '$description', '$amount')";
-              $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
-              $cn->closeDB();
-            }
-  ?>
+              if($description == '' || $amount == '') {
+                echo '<meta http-equiv="refresh" content="0;url=addassessment.php" />';
+              }
+              else if(isset($description, $amount))
+              {
+                $query= "INSERT into fees values('$code', '$description', '$amount')";
+                $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
+                $cn->closeDB();
+              }
+            ?>
         </div>
 
 

@@ -17,12 +17,12 @@
         $query3 = "DELETE FROM student WHERE StudentID='".$edit_key."'";
         mysqli_query($conn, $query3);
       } else {
-        header('location: editrecords_student.php?resultedit_student=invalid');
+        header('location: editrecords_student.php?editrecords_student=invalid');
       }
     } else {
-      header('location: editrecords_student.php?resultedit_student=invalid');
+      header('location: editrecords_student.php?editrecords_student=invalid');
     }
 
     $cn->closeDB();
-    header('Location:resultedit_student.php?resultedit_student=successdelete');
+    header('Location:editrecords_student.php?resultedit_student=successdelete');
 ?>

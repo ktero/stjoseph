@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -22,23 +21,19 @@
                         <form method="POST" name="aform" action="creator1.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select the Previous School Year:</label>
+                                    <label>Select the Previous School Year:</label><br />
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
                                         $conn = $cn->connectDB('');
                                         $set = mysqli_query($conn, "SHOW DATABASES");
                                         $dbs = array();
-                                        $i = 0;
                                         while($db = mysqli_fetch_row($set)){
-                                            $i++;
-                                            if($i > 4)
-                                            {
-                                                $dbs[] = $db[0];
-                                            }
+                                          if(substr_compare($db[0], 'sjhs', 0, 3) == 0)
+                                              $dbs[] = $db[0];
                                         }
                                     ?>
-                                    <select name="input">
+                                    <select name="input" style="padding: 5px; cursor: pointer;">
                                         <?php foreach ($dbs as $value): ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>
@@ -46,14 +41,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Name of the new School Year</label>
-                                    <input type="text" placeholder="Name i.e sjhs(s.y.17-18)" name="dname">
+                                    <input type="text" placeholder="Name i.e sjhs(s.y.17-18)" name="dname" style="padding: 5px; ">
                                 </div>
+                                <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create School New Year</button>
                                 <br>
                                 <a href="switcher.php" style="color:white"><button type="button" name="back" class="btn btn-lg btn-success btn-block"> Back</button></a>
 
                             </fieldset>
-                        </form> 
+                        </form>
                     </div>
                 </div>
             </div>
@@ -64,13 +60,7 @@
         <!-- Footer -->
         <footer>
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>St. Joseph High School</p>
-					<p>Santiago St., Talakag, Bukidnon</p>
-					<p>Project Team</p>
-					<p>Project Team: (Am`is, Bobadilla, Doutan, Jamero, Lapuz, Malaya, Palacios, Papa, Serra, Tabboga)</p>
-					<p>Copyright &copy; 2017</p>
-                </div>
+                <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
 

@@ -56,17 +56,17 @@
                                             while($row = mysqli_fetch_row($result))
                                             {
 
-                                            echo "<input type='hidden' name='orig_sid' value='".$row[0]."'>";
+                                            echo "<input type='hidden' name='orig_code' value='".$row[0]."'>";
                                             echo "<div class='form-group'>
-                                                <label>Student ID</label>
-                                                <input name='code' class='form-control' value='".$row[0]."' data-validation-required-message>
+                                                <label>Level code</label>
+                                                <input name='code' class='form-control' value='".$row[0]."' data-validation-required-message disabled>
                                                 </div>";
                                             echo "<div class='form-group'>
-                                                <label>Last Name</label>
+                                                <label>Level Name</label>
                                                 <input name='year' class='form-control' value='".$row[1]."' data-validation-required-message>
                                                 </div>";
                                                 echo "<div class='form-group'>
-                                                    <label>Last Name</label>
+                                                    <label>Section</label>
                                                     <input name='section' class='form-control' value='".$row[2]."' data-validation-required-message>
                                                     </div>";
                                             }

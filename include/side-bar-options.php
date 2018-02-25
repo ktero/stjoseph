@@ -52,34 +52,7 @@
                     <a href="#">Student Records<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="adminrecords.php">View Level &amp; Students</a>
-
-                            <!-- Tero edit: 2/9/18 -->
-
-                            <!-- TODO: School year
-                                    <a href="#">2017-2018</a>
-                                    <ul>
-                                        <li><a href="#">Grade 7</a></li>
-                                        <li><a href="#">Grade 8</a></li>
-                                        <li><a href="#">Grade 9</a></li>
-                                        <li><a href="#">Grade 10</a></li>
-                                        <li><a href="#">Grade 11</a></li>
-                                        <li><a href="#">Grade 12</a></li>
-                                    </ul>
-                                   -->
-
-                            <!-- TODO: Year levels
-
-                                    <a href="#">Grade 7</a>
-                                    <a href="#">Grade 8</a>
-                                    <a href="#">Grade 9</a>
-                                    <a href="#">Grade 10</a>
-                                    <a href="#">Grade 11</a>
-                                    <a href="#">Grade 12</a>
-
-                                    -->
-
-                            <!-- End of tero edit -->
+                            <a href="adminrecords.php">View Level and Students</a>
                         </li>
                         <li>
 
@@ -101,8 +74,6 @@
                         </ul>
                     </li>
                     <!-- /.nav-second-level -->
-
-
                 </li>
         </ul>
     </div>

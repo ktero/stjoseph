@@ -31,7 +31,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit student profile
+                            <h4>Edit student profile</h4>
+                            <p>Click edit to view more of the student's information</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -41,9 +42,7 @@
                                         <th>ID</th>
                                         <th>Full Name</th>
                                         <th>Gender</th>
-                                        <th>Address</th>
                                         <th>Year Level</th>
-                                        <th>Date Enrolled</th>
                                         <th>School Year</th>
                                         <th></th>
                                         <th></th>
@@ -73,13 +72,12 @@
                                                 <?php echo $row[4]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[5]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[6]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row[7]; ?>
+                                                <?php
+                                                  $q = "SELECT * FROM level WHERE Level_code='$row[6]'";
+                                                  $r = mysqli_query($conn, $q) or die('Error query: ' . mysqli_error($conn));
+                                                  if($rw = mysqli_fetch_row($r))
+                                                    echo $rw[1] . ' - ' . $rw[2];
+                                                ?>
                                             </td>
                                             <td>
                                                 <?php echo $row[8]; ?>

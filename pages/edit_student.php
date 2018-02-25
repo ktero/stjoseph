@@ -58,7 +58,7 @@
                                             {
 
                                             echo "<input type='hidden' name='orig_sid' value='".$row[0]."'>";
-
+                                            echo "<input type='hidden' name='orig_code' value='".$row[6]."'>";
                                             echo "<div class='form-group'>
                                                 <label>Student ID</label>
                                                 <input name='sid' class='form-control' value='".$row[0]."' data-validation-required-message>
@@ -107,20 +107,16 @@
                                                 <label>Level Code</label><br />
                                                 <select name='code' style="padding: 5px; cursor: pointer;">
                                                     <?php
-                                                        $q1 = "SELECT * FROM LEVEL WHERE Level_code = '$row[6]'";
-                                                        $r1 = mysqli_query($conn, $q1) or die('
-                                                        Error: ' . mysqli_error($conn));
-                                                        $x = mysqli_fetch_row($r1);
-                                                        echo "<option value='<?php echo $row[0]; ?>' selected='true'> ".$x[1]. " - ".$x[2]." (Default) </option>";
-
                                                         $q2 = "SELECT * FROM LEVEL";
                                                         $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
                                                         while ($y = mysqli_fetch_row($r2)) {
-                                                          if($y[0] != $row[6]) {
-                                                            $code = $y[0];
-                                                            $level = $y[1];
-                                                            $section = $y[2];
+                                                          $code = $y[0];
+                                                          $level = $y[1];
+                                                          $section = $y[2];
+                                                          if($code != $row[6]) {
                                                             echo "<option value='$code'>$level - $section</option>";
+                                                          } else {
+                                                            echo "<option value='$code' selected='true'>$level - $section </option>";
                                                           }
                                                         }
                                                     ?>

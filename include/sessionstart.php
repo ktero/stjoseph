@@ -3,6 +3,8 @@
     // Session validation
     if(!isset($_SESSION['database']))
         header('Location: switcher.php');
-    else
+    else {
     	$user = $_SESSION['username'];
+      $dbname = $_SESSION['database'];
+    }
 ?>

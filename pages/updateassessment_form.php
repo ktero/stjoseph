@@ -16,26 +16,26 @@
 
             <!-- Navigation -->
             <?php require_once('../include/navdiv-title.php'); ?>
-<?php
-            require_once('connection.php');
-            $cn = new connection();
-            $conn = $cn->connectDB($_SESSION['database']);
+            <?php
+              require_once('connection.php');
+              $cn = new connection();
+              $conn = $cn->connectDB($_SESSION['database']);
 
-            $orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
-            $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-            $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
-            $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
+              $orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
+              $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+              $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
+              $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
-            if($description == '' || $amount == '') {
-              echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
-            }
-            else if(isset($description, $amount))
-            {
-              $query= "UPDATE fees SET Fee_code = '$code', Description = '$description', Amount = '$amount' WHERE Fee_code = '$orig_sid'";
-              $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
-              $cn->closeDB();
-            }
-  ?>
+              if($description == '' || $amount == '') {
+                echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
+              }
+              else if(isset($description, $amount))
+              {
+                $query= "UPDATE fees SET Fee_code = '$code', Description = '$description', Amount = '$amount' WHERE Fee_code = '$orig_sid'";
+                $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
+                $cn->closeDB();
+              }
+            ?>
         </div>
 
 
