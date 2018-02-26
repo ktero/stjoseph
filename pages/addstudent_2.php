@@ -14,22 +14,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-            <?php require_once('../include/account-section.php'); ?>
-            <!-- /.navbar-top-links -->
-            <?php require_once('../include/side-bar-options.php'); ?>
-            <!-- /.navbar-static-side -->
-        </nav>
+        <?php require_once('../include/navdiv-title.php'); ?>
 	<!-- PHP -->
 	<?php
 
@@ -74,6 +59,8 @@
 	<div id="page-wrapper" align="Center" style="padding-top: 100px">
 	<h1> Successfully Added </h1>
 	<a href='addstudent.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
+
+  <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View Level and Student Records  </a>
 	</div>
 
 	 <!-- Footer -->

@@ -31,7 +31,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit level record
+                          <h4>Edit level profile</h4>
+                          <p>Deleting a year level with Students assigned to it will result to the students to be labeled as <span style="font-size:18px; font-weight:700;">"Not enrolled"</span>.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -57,6 +58,7 @@
 
 										while($row = mysqli_fetch_row($result))
 										{
+                      if(strcmp($row[0], 'G0a') != 0) {
 									?>
                                         <tr>
                                             <td>
@@ -76,7 +78,8 @@
                                             </td>
                                         </tr>
                                         <?php
-										}
+										     }
+                      }
                                         $cn->closeDB();
 									?>
                                 </tbody>

@@ -25,7 +25,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Select School Year:</label>
+                                    <label>Select school year database:</label><br />
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
@@ -37,7 +37,7 @@
                                                 $dbs[] = $db[0];
                                         }
                                     ?>
-                                    <select name="input" style="padding: 5px; cursor: pointer;">
+                                    <select name="input"  style="width: 100%; padding: 5px; cursor: pointer;">
                                         <?php foreach ($dbs as $value):  ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>

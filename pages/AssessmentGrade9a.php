@@ -128,11 +128,13 @@
    <br>
 
         <!-- Footer -->
-        <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
-            <div class="row">
-                <?php require_once('../include/footer.php'); ?>
-            </div>
-        </footer>
+        <div class="no-print">
+          <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
+              <div class="row">
+                  <?php require_once('../include/footer.php'); ?>
+              </div>
+          </footer>
+        </div>
 
 
     <!-- jQuery -->

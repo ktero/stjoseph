@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Level Profile
+                          <h4>Level Profile</h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -43,8 +43,16 @@
                                           <p class="help-block"></p>
                                       </div>
                                       <div class="form-group">
-                                          <label>Level name</label>
-                                          <input class="form-control" name="year" required data-validation-required-message>
+                                          <label>Level name</label><br />
+                                          <select name='year' style="padding: 5px; cursor: pointer;" required data-validation-required-message>
+                                            <option selected='true' disabled>Choose Level</option>
+                                            <option value='Grade 7'>Grade 7</option>
+                                            <option value='Grade 8'>Grade 8</option>
+                                            <option value='Grade 9'>Grade 9</option>
+                                            <option value='Grade 10'>Grade 10</option>
+                                            <option value='Grade 11'>Grade 11</option>
+                                            <option value='Grade 12'>Grade 12</option>
+                                          </select>
                                           <p class="help-block"></p>
                                       </div>
                                       <div class="form-group">

@@ -24,7 +24,7 @@
     <?php require_once('../include/head.php'); ?>
 </head>
 
-<body style="overflow: hidden;">
+<body style="overflow-x: hidden;">
 
     <div class="container">
         <div class="row">

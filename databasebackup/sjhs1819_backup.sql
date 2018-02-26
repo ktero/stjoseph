@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.30-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: sjhs1920
+-- Host: localhost    Database: sjhs1819
 -- ------------------------------------------------------
 -- Server version	10.1.30-MariaDB
 
@@ -40,7 +40,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('F2015M010','Sister','Demo','sister@yahoo.com',9355989504,'admin','$2y$10$PRwyxWU8dYh/JyzheMOoCuQILsPAvcL0MPtluRciikNqauRjV9nIm');
+INSERT INTO `account` VALUES ('F2015M011','Sister','Demo','sister@yahoo.com',9355989504,'admin','$2y$10$obNHH008zVLkKMklo3FLzu5Nc9oV5PlfoSsUk8KnvrGp09MfJewEO');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `fees` (
 
 LOCK TABLES `fees` WRITE;
 /*!40000 ALTER TABLE `fees` DISABLE KEYS */;
-INSERT INTO `fees` VALUES ('CF1','Computer',500.00),('CF2','Internet Fee',250.00),('Gr10','Grade 10 Tuition',7500.00),('Gr7','Grade 7 Tuition',8000.00),('Gr8','Grade 8 Tuition',8000.00),('Gr9','Grade 9 Tuition',8000.00),('MF1','Registration',120.00),('MF10','ID',100.00),('MF11','Testing Fee',200.00),('MF12','Student Handbook',50.00),('MF13','Guidance',100.00),('MF14','Publication',50.00),('MF15','Development Fee',120.00),('MF16','SSG Membership',60.00),('MF17','Clubs Membership',50.00),('MF18','Security Fee',200.00),('MF19','Utility Fee',200.00),('MF2','Library',100.00),('MF20','Report Card',100.00),('MF21','Happy Home',10.00),('MF22','Seminary',10.00),('MF23','PTA',0.00),('MF24','MAPEH Uniform',500.00),('MF25','Haircut',250.00),('MF26','Youth Encounter',1550.00),('MF27','Moving Up',650.00),('MF28','Seniors Project',200.00),('MF29','Graduation Fee',85.00),('MF3','Laboratory',85.00),('MF30','Souvenier',1200.00),('MF31','Retreat',1550.00),('MF32','TOGA Rental',200.00),('MF4','Medical/Dental',75.00),('MF5','Athletic Fee',75.00),('MF6','BUACS',20.00),('MF7','CEAP',11.00),('MF8','SWF',50.00),('MF9','Religious Fee',150.00),('OF1','SRA',300.00),('OF2','Books: Rental',0.00),('OF3','Books: Purchased',NULL);
+INSERT INTO `fees` VALUES ('CF1','Computer',500.00),('CF2','Internet Fee',250.00),('Gr10','Grade 10 Tuition',7500.00),('Gr7','Grade 7 Tuition',8000.00),('Gr8','Grade 8 Tuition',8000.00),('Gr9','Grade 9 Tuition',8000.00),('MF1','Registration',120.00),('MF10','ID',100.00),('MF11','Testing Fee',200.00),('MF12','Student Handbook',50.00),('MF13','Guidance',100.00),('MF14','Publication',50.00),('MF15','Development Fee',120.00),('MF16','SSG Membership',60.00),('MF17','Clubs Membership',50.00),('MF18','Security Fee',200.00),('MF19','Utility Fee',200.00),('MF2','Library',100.00),('MF20','Report Card',100.00),('MF21','Happy Home',10.00),('MF22','Seminary',10.00),('MF23','PTA',100.00),('MF24','MAPEH Uniform',500.00),('MF25','Haircut',250.00),('MF26','Youth Encounter',1550.00),('MF27','Moving Up',650.00),('MF28','Seniors Project',200.00),('MF29','Graduation Fee',85.00),('MF3','Laboratory',85.00),('MF30','Souvenier',1200.00),('MF31','Retreat',1550.00),('MF32','TOGA Rental',200.00),('MF4','Medical/Dental',75.00),('MF5','Athletic Fee',75.00),('MF6','BUACS',20.00),('MF7','CEAP',11.00),('MF8','SWF',50.00),('MF9','Religious Fee',150.00),('OF1','SRA',300.00),('OF2','Books: Rental',0.00),('OF3','Books: Purchased',NULL);
 /*!40000 ALTER TABLE `fees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `level` (
 
 LOCK TABLES `level` WRITE;
 /*!40000 ALTER TABLE `level` DISABLE KEYS */;
-INSERT INTO `level` VALUES ('G10a','Grade 10','St. Dominic'),('G7a','Grade 7','St. Anne'),('G7b','Grade 7','St. Agnes'),('G8a','Grade 8','St. Bernadette'),('G8b','Grade 8','St. Benedict'),('G9a','Grade 9','St. Cecilia'),('G9b','Grade 9','St. Catherine');
+INSERT INTO `level` VALUES ('G0a','Not enrolled','None'),('G10a','Grade 10','St. Dominic'),('G7a','Grade 7','St. Anne'),('G7b','Grade 7','St. Agnes'),('G8a','Grade 8','St. Bernadette'),('G8b','Grade 8','St. Benedict'),('G9a','Grade 9','St. Cecilia'),('G9b','Grade 9','St. Catherine');
 /*!40000 ALTER TABLE `level` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,15 +103,16 @@ DROP TABLE IF EXISTS `receipt`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `receipt` (
   `ReceiptNo` int(11) NOT NULL,
-  `StudentID` int(11) NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   `Fee_code` varchar(5) NOT NULL,
   `Description` varchar(500) NOT NULL,
   `Amount` double NOT NULL,
+  `Receipt_Date` date DEFAULT NULL,
   `ReceiptID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ReceiptID`),
   KEY `StudentID` (`StudentID`),
-  CONSTRAINT `receipt_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  CONSTRAINT `student_pay_fees_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +132,7 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
-  `StudentID` int(11) NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   `Lname` varchar(100) DEFAULT NULL,
   `Fname` varchar(100) DEFAULT NULL,
   `Mname` varchar(100) DEFAULT NULL,
@@ -152,7 +153,6 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (2017000,'Mack','Patrick','P','Male','xavier','G10a','2017-01-01','2017-2018'),(2017001,'Malaya','Blayce','P','Female','Iponan, Cagayan de Oro','G10a','2017-06-05','2017-2018'),(20140385,'Macale','Andrea Gail','P','Female','Talakag, Bukidnon','G10a','2017-06-05','2014-2018'),(20150494,'Licup','Haide Rogen','C','Male','Talakag, Bukidnon','G10a','2017-06-05','2015-2018'),(20150508,'Hingking','Francis','R','Female','Talakag, Bukidnon','G10a','2017-06-05','2015-2018'),(20170675,'Balas-og','Brandel','D','Male','Talakag, Bukidnon','G10a','2017-06-05','2017-2018'),(20170730,'Alesin','Emmane Laurence Johne','R','Male','Talakag, Bukidnon','G10a','2017-06-05','2017-2018'),(20170761,'Alvarado','Bethel Ham','L','Female','Talakag, Bukidnon','G10a','2017-06-05','2017-2018'),(201700010,'Tero','Kenneth','B','Male','Xavier University - Ateneo de Cagayan','G7a','2018-02-28','2017-2018');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,19 +164,19 @@ DROP TABLE IF EXISTS `student_pay_fees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student_pay_fees` (
-  `PaymentID` int(11) NOT NULL AUTO_INCREMENT,
-  `StudentID` int(11) NOT NULL,
+  `PaymentID` int(15) NOT NULL AUTO_INCREMENT,
+  `StudentID` varchar(30) NOT NULL,
   `Fee_code` varchar(5) NOT NULL,
-  `Payment_Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Payment_Date` date NOT NULL,
   `Payment` varchar(50) NOT NULL,
   `ORNo` varchar(50) NOT NULL,
   `Balance` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`PaymentID`),
   KEY `StudentID` (`StudentID`),
   KEY `Fee_code` (`Fee_code`),
-  CONSTRAINT `student_pay_fees_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`),
-  CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=latin1;
+  CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`),
+  CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-25 16:48:18
+-- Dump completed on 2018-02-26 22:59:56

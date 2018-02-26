@@ -29,14 +29,15 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Student Records
+                          <h4>Student Records</h4>
+                          <p>Click on the student's ID number to see their financial transactions and current balance.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Id Number</th>
+                                        <th>ID Number</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Year &amp; Section</th>
@@ -88,7 +89,6 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -101,7 +101,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Year Level Records
+                          <h4>Year Level Records</h4>
+                          <p>Click on the year Level's code to see the students enrolled in that level.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -159,7 +160,6 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-
                         </div>
                         <!-- /.panel-body -->
                     </div>

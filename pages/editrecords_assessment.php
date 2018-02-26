@@ -31,7 +31,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit assessment record
+                          <h4>Edit assessment details</h4>
+                          <p>Modifying a fee's amount will also reflect on the student's current balance in their ledger or statement of accounts.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

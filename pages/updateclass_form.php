@@ -32,7 +32,7 @@
                       $section = isset($_POST['section']) ? mysqli_real_escape_string($conn, $_POST['section']) : '';
 
                       if($year == '' || $section == '') {
-                        echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
+                        echo '<meta http-equiv="refresh" content="0;url=editrecords_class.php" />';
                       }
                       else if(isset($year, $section))
                       {
@@ -45,7 +45,7 @@
               <div id="page-wrapper" align="Center" style="padding-top: 100px">
               <h1> Successfully Updated </h1>
               <a href='addclass.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
-              <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View Class &amp; Student Records  </a>
+              <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View Level and Student Records  </a>
               </div>
               <!-- Footer -->
               <hr>

@@ -141,66 +141,104 @@
                                         <th>Tuition</th>
                                         <td><?php while($rows = mysqli_fetch_row($tuires)) { $firo = $rows[2]; $firp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row3 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row3; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>Computer</th>
                                         <td><?php while($rows = mysqli_fetch_row($compres)) { $seco = $rows[2]; $secp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row3 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row3; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>Internet</th>
                                         <td><?php while($rows = mysqli_fetch_row($netres)) { $thiro = $rows[2]; $thirp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row7 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>Miscellaneous</th>
                                         <?php while($rows = mysqli_fetch_row($miscres0)) { $row = $rows[0]; $row0 = number_format($rows[0], 2, '.', ',&nbsp;'); } while($rowss = mysqli_fetch_row($miscres1)) { $roww = $rowss[0]; $row1 = number_format($rowss[0], 2, '.', ',&nbsp;'); } ?>
                                         <td> <?php echo $row0; ?> </td>
                                         <td> <?php echo $row1; ?></td>
-                                        <td><?php $balrow = $row - $roww; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; ?></td>
+                                        <td><?php $balrow = $row - $roww; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; ?></td>
                                     </tr>
                                     <tr>
                                         <th>PTA</th>
                                         <td><?php while($rows = mysqli_fetch_row($ptares)) { $fouro = $rows[2]; $fourp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row7 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>Books</th>
                                         <td><?php while($rows = mysqli_fetch_row($bookres)) { $fivo = $rows[2]; $fivp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); $row7 = number_format($rows[3], 2, '.', ',*nbsp;'); } echo $row2; ?></td>
                                         <td><?php echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; ?></td>
                                     </tr>
                                     <tr>
                                         <th>Haircut</th>
                                         <td><?php while($rows = mysqli_fetch_row($cutres)) { $sixo = $rows[2]; $sixp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row7 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>MAPEH Uniform</th>
                                         <td><?php while($rows = mysqli_fetch_row($peres)) { $sevo = $rows[2]; $sevp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row7 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
                                         <th>SRA</th>
                                         <td><?php while($rows = mysqli_fetch_row($srares)) { $eigo = $rows[2]; $eigp = $rows[3]; $row2 = number_format($rows[2], 2, '.', ',&nbsp;'); echo $row2; ?></td>
                                         <td><?php $row7 = number_format($rows[3], 2, '.', ',&nbsp;'); echo $row7; ?></td>
-                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;'); echo $balrow; } ?></td>
+                                        <td><?php $balrow = $rows[2] - $rows[3]; $balrow = number_format($balrow, 2, '.', ',&nbsp;');
+
+                                        if($balrow < 0)
+                                          $balrow = 0.00;
+                                        echo $balrow; } ?></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="3" style="text-align: right;">Total: </th>
+                                        <th colspan="3" style="text-align: right;"><h4>Total: </h4></th>
                                         <td>
                                             <?php
                                                 $equao = $firo + $seco + $thiro + $fouro + $fivo + $sixo + $sevo + $eigo + $row;
                                                 $equap = $firp + $secp + $thirp + $fourp + $fivp + $sixp + $sevp + $eigp + $roww;
                                                 $equa = $equao - $equap;
                                                 $equa = number_format($equa, 2, '.', ',&nbsp;');
-                                                echo $equa;
+                                                if($equa < 0)
+                                                  $equa = 0.00;
+                                                echo "<h4>".$equa."</h4>";
                                             ?>
                                         </td>
                                     </tr>
@@ -233,11 +271,13 @@ function myFunction() {
 <br>
 
         <!-- Footer -->
+      <div class="no-print">
         <footer class="text-center" style="bottom: 0; width: 100%; background-color: #fff; font-size: 10px">
             <div class="row">
                 <?php require_once('../include/footer.php'); ?>
             </div>
         </footer>
+      </div>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

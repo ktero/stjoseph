@@ -32,7 +32,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>Edit student profile</h4>
-                            <p>Click edit to view more of the student's information</p>
+                            <p>Click edit to view more of the student's information.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

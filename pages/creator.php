@@ -21,7 +21,7 @@
                         <form method="POST" name="aform" action="creator1.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select the Previous School Year:</label><br />
+                                    <label>Select the previous School Year database:</label><br />
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
@@ -33,15 +33,15 @@
                                               $dbs[] = $db[0];
                                         }
                                     ?>
-                                    <select name="input" style="padding: 5px; cursor: pointer;">
+                                    <select name="input" style="padding: 5px; cursor: pointer; width:100%;">
                                         <?php foreach ($dbs as $value): ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Name of the new School Year</label>
-                                    <input type="text" placeholder="Name i.e sjhs(s.y.17-18)" name="dname" style="padding: 5px; ">
+                                    <label>Name of the new School Year database</label>
+                                    <input type="text" placeholder="i.e sjhs1718" name="dname" style="width: 100%; padding: 5px; ">
                                 </div>
                                 <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create School New Year</button>

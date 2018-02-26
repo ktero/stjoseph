@@ -40,13 +40,13 @@
                         }
 
                         // Insert into receipt
-                        $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount'";
+                        $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE()";
                         if(mysqli_query($conn, $add) == true) {
                           // Insert into student_pay_fees
-                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment = '$amount', ORNo = '$orn'";
-                          mysqli_query($conn, $addStudentFee) or die('Error: ' .mysqli_error($conn));
+                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";  if(mysqli_query($conn, $addStudentFee) == false)
+                            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
                         } else {
-                          die('Error: ' . mysqli_error($conn));
+                          echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
                         }
                       }
                     }

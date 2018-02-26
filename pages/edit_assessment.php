@@ -21,7 +21,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Edit level</h1>
+                    <h1 class="page-header">Edit assessment</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Level Profile
+                          Assessment Profile
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -58,15 +58,15 @@
 
                                             echo "<input type='hidden' name='orig_sid' value='".$row[0]."'>";
                                             echo "<div class='form-group'>
-                                                <label>Student ID</label>
+                                                <label>Fee code</label>
                                                 <input name='code' class='form-control' value='".$row[0]."' data-validation-required-message>
                                                 </div>";
                                             echo "<div class='form-group'>
-                                                <label>Last Name</label>
+                                                <label>Description</label>
                                                 <input name='description' class='form-control' value='".$row[1]."' data-validation-required-message>
                                                 </div>";
                                                 echo "<div class='form-group'>
-                                                    <label>Last Name</label>
+                                                    <label>Amount</label>
                                                     <input name='amount' class='form-control' value='".$row[2]."' data-validation-required-message>
                                                     </div>";
                                             }

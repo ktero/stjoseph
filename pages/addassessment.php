@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Assessment Profile
+                          <h4>Assessment Profile</h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

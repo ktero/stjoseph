@@ -115,18 +115,19 @@
 
 									while($res = mysqli_fetch_row($checkres))
 									{
-										if($res[6] == 'G7a' || $res[6] == 'G7b')
+										if($res[6] == 'G7a' || $res[6] == 'G7b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										else if($res[6] == 'G8a' || $res[6] == 'G8b')
+										} else if($res[6] == 'G8a' || $res[6] == 'G8b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										else if($res[6] == 'G9a' || $res[6] == 'G9b')
+										} else if($res[6] == 'G9a' || $res[6] == 'G9b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										else if($res[6] == 'G10a' || $res[6] == 'G10b')
+										} else if($res[6] == 'G10a' || $res[6] == 'G10b')
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF29', 'MF30', 'MF31', 'MF32')";
-                    else if($res[6] == 'G11a' || $res[6] == 'G11b')
+                    else if($res[6] == 'G11a' || $res[6] == 'G11b') {
   										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-                    else if($res[6] == 'G12a' || $res[6] == 'G12b')
+                    } else if($res[6] == 'G12a' || $res[6] == 'G12b') {
   										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF27', 'MF26', 'MF28')";
+                    }
 
 
 
@@ -150,7 +151,12 @@
 							     ?>
                                                     <tr>
                                                         <td colspan="3" style="text-align:  right;"><strong>Balance:&nbsp;</strong></td>
-                                                        <td><strong><?php echo $amtot; ?></strong></td>
+                                                        <td><strong>
+                                                          <?php
+                                                            if($amtot < 0)
+                                                              $amtot = 0;
+                                                            echo $amtot;
+                                                          ?></strong></td>
                                                     </tr>
                                         </tbody>
                                     </table>

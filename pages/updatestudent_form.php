@@ -54,6 +54,7 @@
             <div id="page-wrapper" align="Center" style="padding:100px">
                 <h1> Successfully Updated </h1>
                 <a href='editrecords_student.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update New Student</a>
+                <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Level and Student records</a>
             </div>
             <!-- Footer -->
             <hr>
