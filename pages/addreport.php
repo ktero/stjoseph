@@ -102,7 +102,7 @@
             </div>
       <div class="no-print">
         <div class="btn btn-default pull-left" role="button">
-  				<a href="adminrecords.php">Back</a>
+  				<a href="create_report.php">Back</a>
         </div>
       </div>
       <div class="no-print">

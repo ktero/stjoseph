@@ -50,6 +50,28 @@
                       </div>
                             <!-- /.table-responsive -->
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4>Specify specify Month</h4>
+                              <p>Search a specific monthly report.</p>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <form name= "input" action= "addreport.php" method= "post">
+                                        <input type="hidden" class="form-control" name="year" value="<?php echo date('Y'); ?>">
+                                        <label>Enter month (1-12): </label>
+                                        <input class="form-control" name="month" required data-validation-required-message><br />
+                                        <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Generate report</button>
+                                      </form>
+                                  </div>
+                                  <!-- /.col-lg-6 (nested) -->
+                              </div>
+                              <!-- /.row (nested) -->
+                          </div>
+                                <!-- /.table-responsive -->
+                            </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
