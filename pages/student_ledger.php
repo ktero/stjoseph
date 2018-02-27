@@ -32,7 +32,7 @@
 
   $ID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '-1';
 
-	$query = 'SELECT * FROM student WHERE StudentID = '.$ID;
+	$query = "SELECT * FROM student WHERE StudentID = '$ID'";
 	$result = mysqli_query($conn, $query) or die("Error query: ".mysqli_error($conn));
 
 	$link = $_SERVER['REQUEST_URI'];
@@ -89,7 +89,7 @@
 								$baltot = 0;
 								$amtot = 0;
 
-								$payque = 'SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '.$ID;
+								$payque = "SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '$ID'";
 								$payres = mysqli_query($conn, $payque) or die("Error query: ".mysqli_error($conn));
 
 								while($payrow = mysqli_fetch_row($payres))
@@ -110,23 +110,23 @@
                                                         <?php echo $pr4; ?>
                                                     </td>
                                                     <?php
-									$check = "SELECT * FROM student WHERE StudentID = ".$ID;
+									$check = "SELECT * FROM student WHERE StudentID = '$ID'";
 									$checkres = mysqli_query($conn, $check) or die("Error: ".mysqli_error($conn));
 
 									while($res = mysqli_fetch_row($checkres))
 									{
 										if($res[6] == 'G7a' || $res[6] == 'G7b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'G11', 'G12', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G8a' || $res[6] == 'G8b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10', 'Gr11', 'G12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G9a' || $res[6] == 'G9b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10', 'Gr11', 'G12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G10a' || $res[6] == 'G10b')
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr11', 'G12', 'MF29', 'MF30', 'MF31', 'MF32')";
                     else if($res[6] == 'G11a' || $res[6] == 'G11b') {
-  										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+  										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr10', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
                     } else if($res[6] == 'G12a' || $res[6] == 'G12b') {
-  										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9','MF27', 'MF26', 'MF28')";
+  										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9', 'Gr10', 'Gr11', 'MF27', 'MF26', 'MF28')";
                     }
 
 
@@ -138,7 +138,7 @@
 									{
 										$baltot = $bal[0];
 									}
-									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = ".$ID);
+									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = '$ID'");
 									$row = mysqli_fetch_assoc($result);
 									$amtot = $row['totsum'];
 									$amtot = $baltot - $amtot;

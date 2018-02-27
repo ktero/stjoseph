@@ -32,6 +32,7 @@
                                 <thead>
                                   <tr>
                                     <th>OR Number</th>
+                                    <th>Receipt Date</th>
                                     <th>Fee Description</th>
                                     <th>Total Amount</th>
                                   </tr>
@@ -63,6 +64,9 @@
                                       <?php echo $rw1[0]; ?>
                                     </td>
                                     <td>
+                                      <?php echo $rw1[5]; ?>
+                                    </td>
+                                    <td>
                                       <?php echo $rw1[3]; ?>
                                     </td>
                                     <td>
@@ -74,9 +78,9 @@
                                       }
                                   ?>
                                   <tr>
-                                    <td colspan="2" style="text-align:  right;"><strong>Total amount:&nbsp;</strong></td>
+                                    <td colspan="3" style="text-align:  right;"><strong style="font-size: 16px;">Total amount:&nbsp;</strong></td>
                                     <td>
-                                      <strong><?php  echo number_format($tamount, 2, '.', ',&nbsp;'); ?></strong>
+                                      <strong style="font-size: 16px;"><?php  echo number_format($tamount, 2, '.', ',&nbsp;'); ?></strong>
                                     </td>
                                   </tr>
                                   <?php
