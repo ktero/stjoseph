@@ -30,7 +30,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Monthly Report
+                          <h4>Monthly Report</h4>
+                          <p>The monthly report will automatically generate using the current month as reference. This report may not be the same as the original monthly report but it can serve as a guide if ever you decide to stick with the origin format.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

@@ -43,16 +43,15 @@
                             </ul>
                         </li>
                         <!-- /.nav-third-level -->
-                        <!--
                         <li>
                             <a href="#">Monthly Report<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="create_report.php">Add Report</a>
+                                    <a href="create_report.php">Create Monthly Report</a>
                                 </li>
                             </ul>
                         </li>
-                      -->
+
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

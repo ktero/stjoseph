@@ -87,12 +87,12 @@
 												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
                         break;
                                             case "Grade 11":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr10' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr11' AND `student_pay_fees`.StudentID = '".$ID."'";
                         $MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
                         $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
                         break;
                                             case "Grade 12":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr10' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr12' AND `student_pay_fees`.StudentID = '".$ID."'";
                         $MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28')";
                         $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28') AND StudentID = '".$ID."'";
                                                 break;

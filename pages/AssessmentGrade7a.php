@@ -72,7 +72,7 @@
                                         $cn = new connection();
                                         $conn = $cn->connectDB($_SESSION['database']);
 
-										$query = 'SELECT * FROM fees WHERE Fee_code NOT IN ("Gr9", "Gr8", "Gr10", "MF26", "MF27", "MF28", "MF29", "MF30", "MF31", "MF32")';
+										$query = 'SELECT * FROM fees WHERE Fee_code NOT IN ("Gr9", "Gr8", "Gr10", "Gr11", "Gr12", "MF26", "MF27", "MF28", "MF29", "MF30", "MF31", "MF32")';
 										$result = mysqli_query($conn, $query);
 
 										while($row = mysqli_fetch_row($result))

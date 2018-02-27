@@ -1,4 +1,3 @@
-
 <?php
   require_once('../include/sessionstart.php');
 ?>
@@ -44,6 +43,7 @@
                                     $conn = $cn->connectDB($_SESSION['database']);
 
                                     $OR = array();
+                                    $ovamount = 0;
                                     $month = isset($_POST['month']) ? mysqli_real_escape_string($conn, $_POST['month']) : '';
                                     $query = "SELECT * FROM receipt WHERE MONTH(Receipt_Date) = $month";
                                     $result = mysqli_query($conn, $query) or die('Error in query: ' .mysqli_error($conn));
@@ -53,6 +53,8 @@
                                       if(in_array($row[0], $OR) == false) {
                                         $OR[] = $row[0];
                                         $q1 = "SELECT * FROM receipt WHERE ReceiptNo = $row[0]";
+
+                                        $tamount = 0;
                                         $r1 = mysqli_query($conn, $q1) or die('Error: ' . mysqli_error($conn));
                                         while($rw1 = mysqli_fetch_row($r1)) {
                                   ?>
@@ -64,12 +66,20 @@
                                       <?php echo $rw1[3]; ?>
                                     </td>
                                     <td>
-                                      <?php echo $rw1[4]; ?>
+                                      <?php echo number_format($rw1[4], 2, '.', ',&nbsp;'); ?>
                                     </td>
                                   </tr>
-
                                   <?php
+                                      $tamount = $tamount + $rw1[4];
                                       }
+                                  ?>
+                                  <tr>
+                                    <td colspan="2" style="text-align:  right;"><strong>Total amount:&nbsp;</strong></td>
+                                    <td>
+                                      <strong><?php  echo number_format($tamount, 2, '.', ',&nbsp;'); ?></strong>
+                                    </td>
+                                  </tr>
+                                  <?php
                                     }
                                   }
                                   $cn->closeDB();
