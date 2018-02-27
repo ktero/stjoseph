@@ -46,7 +46,8 @@
                                     $OR = array();
                                     $ovamount = 0;
                                     $month = isset($_POST['month']) ? mysqli_real_escape_string($conn, $_POST['month']) : '';
-                                    $query = "SELECT * FROM receipt WHERE MONTH(Receipt_Date) = $month";
+                                    $year = isset($_POST['year']) ? mysqli_real_escape_string($conn, $_POST['year']) : '';
+                                    $query = "SELECT * FROM receipt WHERE MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
                                     $result = mysqli_query($conn, $query) or die('Error in query: ' .mysqli_error($conn));
 
                                     while($row = mysqli_fetch_row($result))

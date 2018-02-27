@@ -39,6 +39,7 @@
                               <div class="col-lg-6">
                                   <form name= "input" action= "addreport.php" method= "post">
                                     <input type="hidden" class="form-control" name="month" value="<?php echo date('n'); ?>">
+                                    <input type="hidden" class="form-control" name="year" value="<?php echo date('Y'); ?>">
                                     <!-- Submit Button -->
                                     <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Generate report</button>
                                   </form>
