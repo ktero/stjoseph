@@ -1,3 +1,0 @@
-Add Record: Okay
-Edit Record: cannot update in the database
-- Error message from line 135 to 141 in update_student.php

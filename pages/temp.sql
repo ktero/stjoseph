@@ -90,7 +90,7 @@ CREATE TABLE `level` (
 
 LOCK TABLES `level` WRITE;
 /*!40000 ALTER TABLE `level` DISABLE KEYS */;
-INSERT INTO `level` VALUES ('G0a','Not enrolled','None'),('G10a','Grade 10','St. Dominic'),('G7a','Grade 7','St. Anne'),('G7b','Grade 7','St. Agnes'),('G8a','Grade 8','St. Bernadette'),('G8b','Grade 8','St. Benedict'),('G9a','Grade 9','St. Cecilia'),('G9b','Grade 9','St. Catherine');
+INSERT INTO `level` VALUES ('G0a','Not enrolled','None'),('G10a','Grade 10','St. Dominic'),('G12a','Grade 12','St. Xavier'),('G7a','Grade 7','St. Anne'),('G7b','Grade 7','St. Agnes'),('G8a','Grade 8','St. Bernadette'),('G8b','Grade 8','St. Benedict'),('G9a','Grade 9','St. Cecilia'),('G9b','Grade 9','St. Catherine');
 /*!40000 ALTER TABLE `level` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +112,7 @@ CREATE TABLE `receipt` (
   PRIMARY KEY (`ReceiptID`),
   KEY `StudentID` (`StudentID`),
   CONSTRAINT `student_pay_fees_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +121,7 @@ CREATE TABLE `receipt` (
 
 LOCK TABLES `receipt` WRITE;
 /*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
+INSERT INTO `receipt` VALUES (20,'M2015','MF25','Haircut',250,'2018-02-27',1),(20,'M2015','CF1','Computer',500,'2018-02-27',2),(20,'M2015','CF2','Internet Fee',250,'2018-02-27',3),(21,'M2015','MF10','ID',100,'2018-02-27',4);
 /*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,6 +154,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES ('M2015','Endiape','Jake','Santos','Male','Cagayan de Oro City ','G10a','2018-02-27','2018-2019');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +178,7 @@ CREATE TABLE `student_pay_fees` (
   KEY `Fee_code` (`Fee_code`),
   CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`),
   CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,6 +187,7 @@ CREATE TABLE `student_pay_fees` (
 
 LOCK TABLES `student_pay_fees` WRITE;
 /*!40000 ALTER TABLE `student_pay_fees` DISABLE KEYS */;
+INSERT INTO `student_pay_fees` VALUES (1,'M2015','MF25','2018-02-27','250.00','20',NULL),(2,'M2015','CF1','2018-02-27','500.00','20',NULL),(3,'M2015','CF2','2018-02-27','250.00','20',NULL),(4,'M2015','MF10','2018-02-27','100.00','21',NULL);
 /*!40000 ALTER TABLE `student_pay_fees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -197,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-27 15:35:08
+-- Dump completed on 2018-02-27 15:27:23
