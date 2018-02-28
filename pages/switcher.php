@@ -16,7 +16,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">School Year</h3>
+                        <h3 class="panel-title">School Year Database</h3>
                     </div>
                     <div class="panel-body">
                         <form method="POST" name="input" action="../include/dbchecker.php">
@@ -47,7 +47,7 @@
                                 <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use School Year</button>
                                 <br>
-                                <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block"> Create School New Year</button></a>
+                                <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block">Create new School Year Database</button></a>
 
                             </fieldset>
                         </form>

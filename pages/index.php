@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                      <img src="graphics/logo_sjhs50.png" alt="st.joseph-logo" />
+                      <img src="graphics/logo_sjhs50.png" alt="st.joseph-logo" height="500px"/>
                     </center>
                 </div>
                 <!-- /.col-lg-12 -->

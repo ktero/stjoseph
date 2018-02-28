@@ -21,7 +21,7 @@
                         <form method="POST" name="aform" action="creator1.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select the previous School Year database:</label><br />
+                                    <label>Select a previous School Year database:</label><br />
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
@@ -46,7 +46,7 @@
                                 <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
                                 <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create School New Year</button>
                                 <br>
-                                <a href="switcher.php" style="color:white"><button type="button" name="back" class="btn btn-lg btn-success btn-block"> Back</button></a>
+                                <a href="switcher.php" style="color:white"><button type="button" name="back" class="btn btn-lg btn-success btn-block">Back</button></a>
 
                             </fieldset>
                         </form>

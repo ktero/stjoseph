@@ -116,13 +116,13 @@
 									while($res = mysqli_fetch_row($checkres))
 									{
 										if($res[6] == 'G7a' || $res[6] == 'G7b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'G11', 'G12', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'Gr11', 'Gr12', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G8a' || $res[6] == 'G8b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10', 'Gr11', 'G12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10', 'Gr11', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G9a' || $res[6] == 'G9b') {
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10', 'Gr11', 'G12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10', 'Gr11', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
 										} else if($res[6] == 'G10a' || $res[6] == 'G10b')
-											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr11', 'G12', 'MF29', 'MF30', 'MF31', 'MF32')";
+											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr11', 'Gr12', 'MF29', 'MF30', 'MF31', 'MF32')";
                     else if($res[6] == 'G11a' || $res[6] == 'G11b') {
   										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr10', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
                     } else if($res[6] == 'G12a' || $res[6] == 'G12b') {
@@ -163,9 +163,11 @@
                                     <div class="btn btn-default pull-left" role="button">
                                         <a href="adminrecords.php">Back</a>
                                     </div>
+                                    <!--
                                     <div class="btn btn-default pull-left" role="button">
                                         <a href="<?php echo $link . '&truncate=1'; ?>" onclick="return confirm('Are you sure you want to delete this record?');">RESET RECORDS</a>
                                     </div>
+                                  -->
                                     <div style="float: right">
                                         <a href="accounts.php?id=<?php echo $ID; ?>" style="font-size: 20px;">View Statement of Account</a>
                                     </div>

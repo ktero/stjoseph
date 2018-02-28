@@ -39,22 +39,22 @@
                                 <form name= "input" action= "addstudent_2.php" method= "post">
                                     <div class="form-group">
                                         <label>Student ID</label>
-                                        <input class="form-control" placeholder="eg. 20140072" name="StudentID" required data-validation-required-message>
+                                        <input class="form-control" placeholder="Enter student's ID" name="StudentID" required data-validation-required-message>
                                         <p class="help-block"></p>
                                     </div>
                                 <div class="form-group">
                                         <label>Last Name</label>
-                                        <input class="form-control" placeholder="eg. Dela Cruz" name="Lname" required data-validation-required-message>
+                                        <input class="form-control" placeholder="Enter student's last name" name="Lname" required data-validation-required-message>
                                         <p class="help-block"></p>
                                     </div>
                                 <div class="form-group">
                                         <label>First Name</label>
-                                        <input class="form-control" placeholder="eg. Joseph" name="Fname" required data-validation-required-message>
+                                        <input class="form-control" placeholder="Enter student's first name" name="Fname" required data-validation-required-message>
                                         <p class="help-block"></p>
                                     </div>
                                 <div class="form-group">
                                         <label>Middle Name</label>
-                                        <input class="form-control" placeholder="eg. Santos" name="Mname">
+                                        <input class="form-control" placeholder="Enter student's middle name" name="Mname">
                                         <p class="help-block"></p>
                                     </div>
                                 <div class="form-group">

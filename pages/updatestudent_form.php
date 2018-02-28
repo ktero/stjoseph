@@ -42,7 +42,7 @@
 
   if(!empty($sid)  && !empty($lname) && !empty($fname) && !empty($mname) && !empty($gender) && !empty($addr) && !empty($code) && !empty($denrolled) && !empty($sy)) {
 
-      $query = "UPDATE student SET StudentID='$sid', Lname='$lname', Fname='$fname', Mname='$mname', Gender='$gender', Address='$addr', Level_code = '$code', Date_enrolled='$denrolled', School_Year='$sy' WHERE StudentID=$orig_sid";
+      $query = "UPDATE student SET StudentID='$sid', Lname='$lname', Fname='$fname', Mname='$mname', Gender='$gender', Address='$addr', Level_code = '$code', Date_enrolled='$denrolled', School_Year='$sy' WHERE StudentID='$orig_sid'";
       mysqli_query($conn, $query) or die ("Error query: " . mysqli_error($conn));
 
   } else {
@@ -54,7 +54,7 @@
             <div id="page-wrapper" align="Center" style="padding:100px">
                 <h1> Successfully Updated </h1>
                 <a href='editrecords_student.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update New Student</a>
-                <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Level and Student records</a>
+                <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Student records</a>
             </div>
             <!-- Footer -->
             <hr>

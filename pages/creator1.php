@@ -11,8 +11,8 @@ require_once('connection.php');
             $temp = $_POST['input'];
             if(mysqli_query($conn,"CREATE DATABASE ".$dname) == TRUE)
             {
-                exec("D:/xampp/mysql/bin/mysqldump -u root ".$temp." > temp.sql");
-                exec("D:/xampp/mysql/bin/mysql -u root ".$dname." < temp.sql");
+                exec("D:/xampp/mysql/bin/mysqldump -u root ".$temp." > duplicateDB.sql");
+                exec("D:/xampp/mysql/bin/mysql -u root ".$dname." < duplicateDB.sql");
                 $conn = $cn->connectDB($dname);
                 mysqli_query($conn,"DELETE FROM student_pay_fees");
                 mysqli_query($conn,"DELETE FROM receipt");

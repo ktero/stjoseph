@@ -77,7 +77,7 @@
                                                 <?php echo $row[3]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[4]; ?>
+                                                <?php echo number_format($row[4], 2, '.', ',&nbsp'); ?>
                                             </td>
                                             <td>
                                                 <?php echo $row[5]; ?>

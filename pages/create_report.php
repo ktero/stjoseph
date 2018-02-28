@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h4>Monthly Report</h4>
+                          <h4>Current Monthly Report</h4>
                           <p>The monthly report will automatically generate using the current month as reference. This report may not be the same as the original monthly report but it can serve as a guide if ever you decide to stick with the original format.</p>
                         </div>
                         <!-- /.panel-heading -->
@@ -53,7 +53,6 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                               <h4>Specify Month</h4>
-                              <p>Search a specific monthly report.</p>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -61,8 +60,26 @@
                                   <div class="col-lg-6">
                                       <form name= "input" action= "addreport.php" method= "post">
                                         <input type="hidden" class="form-control" name="year" value="<?php echo date('Y'); ?>">
-                                        <label>Enter month (1-12): </label>
-                                        <input class="form-control" name="month" required data-validation-required-message><br />
+                                        <label>Enter month: </label>
+                                        <div class="form-group">
+                                          <select name="month" style="padding: 5px; cursor: pointer;" required data-validation-required-message>
+                                            <option selected='true' disabled>
+                                              Choose a month
+                                            </option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                          </select>
+                                        </div>
                                         <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Generate report</button>
                                       </form>
                                   </div>
