@@ -15,13 +15,16 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Create New School Year</h3>
+                        <h3 class="panel-title">Create new school year database</h3>
                     </div>
                     <div class="panel-body">
+                      <center style="padding: 0px; margin: 0px;">
+                        <img src="graphics/logo_sjhs.png" alt="sjhs-logo" height="250px" />
+                      </center>
                         <form method="POST" name="aform" action="creator1.php">
                 <fieldset>
                                 <div class="form-group">
-                                    <label>Select a previous School Year database:</label><br />
+                                    <label>Select a previous school year database:</label><br />
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
@@ -44,7 +47,7 @@
                                     <input type="text" placeholder="i.e sjhs1718" name="dname" style="width: 100%; padding: 5px; ">
                                 </div>
                                 <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
-                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create School New Year</button>
+                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Create database</button>
                                 <br>
                                 <a href="switcher.php" style="color:white"><button type="button" name="back" class="btn btn-lg btn-success btn-block">Back</button></a>
 

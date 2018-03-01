@@ -42,8 +42,16 @@
                         // Insert into receipt
                         $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE()";
                         if(mysqli_query($conn, $add) == true) {
+                          /* Calculate remaining balance of that fee ; STATUS: On-hold
+                          $getFeeAmount = "SELECT Amount FROM fees WHERE Fee_code = '$code'";
+                          $res1 = mysqli_query($conn, $getDesc) or die('Error: ' .mysqli_error($conn));
+                          while($row1 = mysqli_fetch_row($res1))
+                            $feeAmount = $row1[0];
+                          */
+
                           // Insert into student_pay_fees
-                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";  if(mysqli_query($conn, $addStudentFee) == false)
+                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
+                          if(mysqli_query($conn, $addStudentFee) == false)
                             echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
                         } else {
                           echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
@@ -57,7 +65,8 @@
 	<!-- Confirmation Message -->
 	<div id="page-wrapper" align="Center" style="padding-top: 100px">
 	<h1> Successfully Added Payment </h1>
-	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment</a>
+	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment from scratch</a><br />
+  <a href='studentpayment.php?id=<?php echo $sid ?>' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment to same student</a><br />
   <a href='paymentrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Payments</a>
 	</div>
 

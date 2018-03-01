@@ -43,7 +43,7 @@
                                         <th>Full Name</th>
                                         <th>Gender</th>
                                         <th>Year Level</th>
-                                        <th>School Year</th>
+                                        <th>Date enrolled</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -80,7 +80,7 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <?php echo $row[8]; ?>
+                                                <?php echo $row[7]; ?>
                                             </td>
                                             <td>
                                                 <a href='edit_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>

@@ -24,11 +24,25 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <!-- Sign up for new account -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4>Sign up for new Administrator account</h4>
+                  </div>
+                  <div class="panel-body">
+                      <a href="pre_sign_up.php" style="background-color:lightblue;" class="btn btn-default">Sign up</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Administrator profile preview -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Admin Profile of <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?>
+                          <h4>Profile of <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?></h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -48,7 +62,7 @@
                                     while($row = mysqli_fetch_row($result)) {
                                 ?>
                                 <div class="form-group">
-                                  <label>Admin ID</label>
+                                  <label>Administrator ID</label>
                                   <input class="form-control" value="<?php echo $row[0]; ?>"  name="id" disabled />
                                   <p class="help-block"></p>
                                 </div>
@@ -77,7 +91,7 @@
                                   <input class="form-control" value="<?php echo '0' . $row[4]; ?>" name="contact" disabled />
                                   <p class="help-block"></p>
                                 </div>
-                                <a href="edit_admin.php?id=<?php echo $row[0]; ?>" style="background-color:lightblue;" class="btn btn-default">Edit</a>
+                                <a href="edit_admin.php?id=<?php echo $row[0]; ?>" style="background-color:lightblue;" class="btn btn-default">Edit this profile</a>
                                 <?php
                                   }
                                   $cn->closeDB();

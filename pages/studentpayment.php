@@ -35,11 +35,17 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                           <div class="row">
+                              <?php
+                                require_once('connection.php');
+                                $cn = new connection();
+                                $conn = $cn->connectDB($_SESSION['database']);
+                                $getID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
+                              ?>
                               <div class="col-lg-6">
                                 <form action= "addpayment.php" method= "post">
                                     <div class="form-group">
                                         <label>Student ID</label>
-                                        <input class="form-control" name="StudentID" required data-validation-required-message>
+                                        <input class="form-control" name="StudentID" value='<?php if($getID != '') { echo $getID; } ?>'  required data-validation-required-message>
                                         <p class="help-block"></p>
                                     </div>
                 <div class="form-group">
@@ -52,10 +58,6 @@
                                         <select name="code" style="padding: 5px; cursor: pointer;">
                                         <option disabled="disabled" selected="selected">Choose Code</option>
                                           <?php
-                                            require_once('connection.php');
-                                            $cn = new connection();
-                                            $conn = $cn->connectDB($_SESSION['database']);
-
                                             $query= "SELECT * from fees";
                                             $result= mysqli_query($conn, $query) or die ("Not Found: ". mysqli_error($conn));
 

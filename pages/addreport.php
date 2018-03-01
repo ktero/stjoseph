@@ -54,6 +54,7 @@
                                     $OR = array(); $checkCode = array(); $feeDesc = array(); $feeTotal = array();
                                     $indexC = 0;
                                     $ovamount = 0;
+                                    $monTotalAmount = 0;
 
                                     $query = "SELECT * FROM receipt WHERE MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
                                     $result = mysqli_query($conn, $query) or die('Error in query: ' .mysqli_error($conn));
@@ -83,14 +84,14 @@
                                     </td>
                                   </tr>
                                   <?php
-                                        $tamount = $tamount + $rw1[4];
+                                        $tamount += $rw1[4];
 
                                         // Obtaining summary report data starts here
                                         if(in_array($rw1[2], $checkCode) == false) {
-                                          $checkCode[] = $row[2];
+                                          $checkCode[] = $rw1[2];
                                           $feeDesc[$indexC] = $rw1[3];
 
-                                          $getamountQuary = "SELECT SUM(Amount) FROM receipt WHERE Fee_code = '$rw1[2]'";
+                                          $getamountQuary = "SELECT SUM(Amount) FROM receipt WHERE Fee_code = '$rw1[2]' AND MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
                                           $r2 = mysqli_query($conn, $getamountQuary) or die('Error quary: ' . mysqli_error($conn));
                                           if($rw2 = mysqli_fetch_row($r2))
                                             $feeTotal[$indexC] = $rw2[0];
@@ -105,9 +106,18 @@
                                     </td>
                                   </tr>
                                   <?php
+                                    $monTotalAmount += $tamount;
                                     }
                                   }
                                   ?>
+                                  <!-- Total sum of the monthly report
+                                  <tr>
+                                    <td colspan="3" style="text-align:  right;"><strong>Total amount:&nbsp;</strong></td>
+                                    <td>
+                                      <strong><?php  // echo number_format($monTotalAmount, 2, '.', ',&nbsp;'); ?></strong>
+                                    </td>
+                                  </tr>
+                                -->
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -136,6 +146,7 @@
                       </thead>
                       <tbody>
                         <?php
+                          $feeTotalAmount = 0;
                           for ($index = 0; $index < count($feeDesc) && $index < count($feeTotal); $index++) {
                         ?>
                         <tr>
@@ -146,6 +157,7 @@
                           </td>
                           <td>
                             <?php
+                                $feeTotalAmount += $feeTotal[$index];
                                 echo number_format($feeTotal[$index], 2, '.', ',&nbsp;');
                             ?>
                           </td>
@@ -154,6 +166,12 @@
                           }
                           $cn->closeDB();
                         ?>
+                        <tr>
+                          <td style="text-align:  right;"><strong>Total amount:&nbsp;</strong></td>
+                          <td>
+                            <strong><?php  echo number_format($feeTotalAmount, 2, '.', ',&nbsp;'); ?></strong>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>

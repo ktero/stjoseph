@@ -84,11 +84,13 @@
                     // De-hash password
                     $hashCheck = password_verify($pass, $row['password']);
                     if($user == $row['username']) {
-                        if($pass == $row['password']) {
-                            // Login user
-                            setSessionVariables($row);
-                        }
-                        else if($hashCheck == true) {
+                      /* In case of error:
+                       *  if($pass == $row['password']) {
+                       *    setSessionVariables($row);
+                       *  }
+                       *
+                       */
+                        if($hashCheck == true) {
                             // Login user
                             setSessionVariables($row);
                         }

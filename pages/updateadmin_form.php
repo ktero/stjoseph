@@ -58,15 +58,17 @@
               // Note: If errors are present, remove if statements.
               if($hashCheck == true) {
                 $hashPassword = password_hash($newpass, PASSWORD_DEFAULT);
-                $query= "UPDATE account SET user_id = '$id', fname = '$firstname', lname = '$lastname', email = '$email', pnumber = '$contact', username = '$user', password = '$hashPassword'";
+                $query= "UPDATE account SET user_id = '$id', fname = '$firstname', lname = '$lastname', email = '$email', pnumber = '$contact', username = '$user', password = '$hashPassword' WHERE user_id = '$hid'";
 
                 $result = mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
-
                 // Update sessions
-                if($result == true)
+                if($result == true) {
                   updateSessionVariables($id, $firstname, $lastname, $email, $contact, $user, $hashPassword);
+                } else {
+                    echo '<meta http-equiv="refresh" content="0;url=admin_account.php?cmd=error-update" />';
+                }
               } else {
-                echo '<meta http-equiv="refresh" content="0;url=admin_account.php" />';
+                echo '<meta http-equiv="refresh" content="0;url=admin_account.php?cmd=invalid-password" />';
               }
               $cn->closeDB();
             }

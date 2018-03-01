@@ -31,6 +31,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>Payment Records</h4>
+                            <p>Click on the student's ID number to see their financial transactions and current balance.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

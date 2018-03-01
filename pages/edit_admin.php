@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Admin Profile of <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?>
+                          Profile of <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -65,14 +65,6 @@
                                                 <label>Username</label>
                                                 <input name='username' class='form-control' value='".$row[5]."' data-validation-required-message>
                                                 </div>";
-                                            echo "<div class='form-group'>
-                                                <label>Password (Re-enter)</label>
-                                                <input type='password' name='oldpassword' class='form-control' data-validation-required-message>
-                                                </div>";
-                                            echo "<div class='form-group'>
-                                                <label>Password (New)</label>
-                                                <input type='password' name='newpassword' class='form-control' data-validation-required-message>
-                                                </div>";
                                             /*echo "<div class='form-group'>
                                                 <label>Password (Confirmation)</label>
                                                 <input type='password' name='conpassword' class='form-control' data-validation-required-message>
@@ -93,14 +85,22 @@
                                                 <label>Contact</label>
                                                 <input name='contact' class='form-control' value='0".$row[4]."' data-validation-required-message>
                                                 </div>";
+                                            echo "<div class='form-group'>
+                                                <label>Password (Old password)</label>
+                                                <input type='password' name='oldpassword' class='form-control' data-validation-required-message>
+                                                </div>";
+                                            echo "<div class='form-group'>
+                                                <label>Password (New)</label>
+                                                <input type='password' name='newpassword' class='form-control' data-validation-required-message>
+                                                </div>";
                                             echo "<button type='submit' style='background-color:lightblue' class='btn btn-default'>Submit</button>";
                                             }
                                         }
                                         else
                                         {
                                         echo"
-                                        <h1> Record Not Found </h1>
-                                        <a href='editstudent.php' class='btn btn-default' role='button' style='background-color: lightblue; text-align: right'> Back </a>
+                                        <h1> Account Not Found </h1>
+                                        <a href='admin_account.php' class='btn btn-default' role='button' style='background-color: lightblue; text-align: right'> Back </a>
                                         ";
                                         }
                                     echo "</form>";

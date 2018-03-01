@@ -19,6 +19,9 @@
                         <h3 class="panel-title">School Year Database</h3>
                     </div>
                     <div class="panel-body">
+                      <center style="padding: 0px; margin: 0px;">
+                        <img src="graphics/logo_sjhs.png" alt="sjhs-logo" height="250px" />
+                      </center>
                         <form method="POST" name="input" action="../include/dbchecker.php">
                 <fieldset>
                                 <div class="form-group">
@@ -45,10 +48,10 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <style type="text/css" >button:hover, a:hover{text-decoration: none;}</style>
-                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use School Year</button>
+                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block">Use database</button>
                                 <br>
-                                <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block">Create new School Year Database</button></a>
-
+                                <a href="creator.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block">Create new school year database</button></a><br />
+                                <a href="logout_key.php" style="color:white"><button type="button" name="create" class="btn btn-lg btn-success btn-block">Switch User</button></a>
                             </fieldset>
                         </form>
                     </div>
