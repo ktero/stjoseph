@@ -10,7 +10,7 @@
         $dbs[] = $db[0];
     }
     foreach($dbs as $value):
-    	exec("D:/xampp/mysql/bin/mysqldump -u root D:/xampp/htdocs/stjoseph/databasebackup/".$value." > D:/xampp/htdocs/stjoseph/databasebackup/".$value."_backup.sql");
+    	exec("D:/xampp/mysql/bin/mysqldump -u root ".$value." > D:/xampp/htdocs/stjoseph/databasebackup/".$value."_backup.sql");
     endforeach;
     session_destroy();
     header('Location: login.php');
