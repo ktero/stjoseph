@@ -66,11 +66,10 @@
 
 
         $user = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
-
         $pass = isset($_POST['password']) ? mysqli_real_escape_string($conn, $_POST['password']) : '';
 
 		    if(empty($user) || empty($pass)) {
-            echo "<p>You must fill up these fields</p>";
+            echo "<br /><center><p>You must fill up these fields</p></center>";
         }
         else if (!empty($user) && !empty($pass)) {
             // Perform verification procedures
@@ -79,26 +78,32 @@
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck > 0) {
-
-                if($row = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     // De-hash password
                     $hashCheck = password_verify($pass, $row['password']);
                     if($user == $row['username']) {
-                      /* In case of error:
-                       *  if($pass == $row['password']) {
-                       *    setSessionVariables($row);
-                       *  }
-                       *
-                       */
                         if($hashCheck == true) {
                             // Login user
                             setSessionVariables($row);
+                        } else {
+                          echo "<br /><center><p>Invalid username or password.</p></center>";
                         }
+                    } else {
+                      echo "<br /><center><p>Invalid username or password.</p></center>";
                     }
                 }
+            } else {
+              header('Location: login.php?login=user-not-found');
             }
         }
 	   }
+
+     /* In case of error:
+      *  if($pass == $row['password']) {
+      *    setSessionVariables($row);
+      *  }
+      *
+      */
 ?>
                     </div>
                 </div>

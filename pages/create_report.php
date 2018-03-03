@@ -52,7 +52,7 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4>Specify Month</h4>
+                              <h4>Specify month for a Monthly Report</h4>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">

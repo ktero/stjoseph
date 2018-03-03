@@ -77,7 +77,7 @@
 
           <div id="page-wrapper" align="Center" style="padding-top: 100px">
           <h1> Successfully Updated Account</h1>
-          <a href='admin_account.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View Account </a>
+          <a href='admin_account.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View administrator account </a>
           </div>
         </div>
 

@@ -92,6 +92,61 @@
                     </div>
                     <!-- /.panel -->
                 </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4>Fees</h4>
+                          <p>Refer to this table for the fee payments.</p>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Fee code</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                  <?php
+                    require_once('connection.php');
+                    $cn   = new connection();
+                    $conn = $cn->connectDB($_SESSION['database']);
+
+
+										$query = 'SELECT * FROM fees';
+										$result = mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
+
+										while($row = mysqli_fetch_row($result))
+										{
+									?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $row[0]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[1]; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $row[2]; ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+										}
+                                        $cn->closeDB();
+									?>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                  </div>
+                </div>
                 <!-- /.col-lg-12 -->
             </div>
         </div>

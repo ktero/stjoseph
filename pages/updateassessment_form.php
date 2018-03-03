@@ -42,8 +42,8 @@
 
         <div id="page-wrapper" align="Center" style="padding-top: 100px">
         <h1> Successfully Updated </h1>
-        <a href='addassessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Add New </a>
-        <a href='editrecords_assessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Edit Assessment</a>
+        <a href='editrecords_assessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Update a Assessment</a>
+        <a href='Assessment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View year level Assessment</a>
         </div>
 
         <!-- /#wrapper -->

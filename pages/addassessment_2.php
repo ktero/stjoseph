@@ -16,7 +16,7 @@
 
             <!-- Navigation -->
             <?php require_once('../include/navdiv-title.php'); ?>
-            
+
             <?php
               require_once('connection.php');
               $cn = new connection();
@@ -26,8 +26,8 @@
               $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';
               $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
-              if($description == '' || $amount == '') {
-                echo '<meta http-equiv="refresh" content="0;url=addassessment.php" />';
+              if($code == '' || $description == '' || $amount == '') {
+                echo '<meta http-equiv="refresh" content="0;url=addassessment.php?empty-inputs" />';
               }
               else if(isset($description, $amount))
               {

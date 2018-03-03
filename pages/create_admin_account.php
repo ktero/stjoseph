@@ -100,19 +100,16 @@
     if(strcmp($password, $checkPass) == 0) {
       // Encrypt password
       $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-
       // Insert user details into database
       $query = "INSERT INTO account SET user_id = '$staffID', fname = '$fname', lname = '$lname', email = '$email', pnumber = '$contact', username = '$username', password = '$hashPassword'";
 
       if(mysqli_query($conn, $query) == true) {
         session_destroy();
         echo '<meta http-equiv="refresh" content="0;url=login.php?cmd=account-created"';
-      } else {
+      } else 
         echo '<meta http-equiv="refresh" content="0;url=create_admin_account.php?cmd=error"';
-      }
-    } else {
+    } else
          echo '<meta http-equiv="refresh" content="0;url=create_admin_account.php?cmd=password-not-match"';
-    }
   }
 ?>
 

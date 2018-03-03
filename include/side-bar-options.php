@@ -48,6 +48,9 @@
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="create_report.php">Create Monthly Report</a>
+                                    <!--
+                                    <a href="#">Create Summary Report</a>
+                                    -->
                                 </li>
                             </ul>
                         </li>

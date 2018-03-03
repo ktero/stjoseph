@@ -23,34 +23,26 @@
     $conn = $cn->connectDB($_SESSION['database']);
 
 
-	$StudentID = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
+    $StudentID = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
+    $Lname = isset($_POST['Lname']) ? mysqli_real_escape_string($conn, $_POST['Lname']) : '';
+    $Fname = isset($_POST['Fname']) ? mysqli_real_escape_string($conn, $_POST['Fname']) : '';
+    $Mname = isset($_POST['Mname']) ? mysqli_real_escape_string($conn, $_POST['Mname']) : '';
+    $Gender = isset($_POST['gender']) ? mysqli_real_escape_string($conn, $_POST['gender']) : '';
+    $Address = isset($_POST['Address']) ? mysqli_real_escape_string($conn, $_POST['Address']) : '';
+    $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+    $Date = isset($_POST['enrolled']) ? mysqli_real_escape_string($conn, $_POST['enrolled']) : '';
+    $SY = isset($_POST['SY']) ? mysqli_real_escape_string($conn, $_POST['SY']) : '';
 
-	$Lname = isset($_POST['Lname']) ? mysqli_real_escape_string($conn, $_POST['Lname']) : '';
+    // Validate data
+    if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '' || $SY == '')
+    	echo '<meta http-equiv="refresh" content="0;url=addstudent.php?cmd=empty-inputs" />';
+    else if(isset($StudentID, $Lname, $Fname, $Mname, $Gender, $Address, $code, $Date, $SY))
+    {
+      // Upload data into database
+    	$query= "INSERT into student values('$StudentID','$Lname','$Fname','$Mname','$Gender','$Address','$code','$Date','$SY')";
+    	$result= mysqli_query($conn, $query);
 
-	$Fname = isset($_POST['Fname']) ? mysqli_real_escape_string($conn, $_POST['Fname']) : '';
-
-	$Mname = isset($_POST['Mname']) ? mysqli_real_escape_string($conn, $_POST['Mname']) : '';
-
-	$Gender = isset($_POST['gender']) ? mysqli_real_escape_string($conn, $_POST['gender']) : '';
-
-	$Address = isset($_POST['Address']) ? mysqli_real_escape_string($conn, $_POST['Address']) : '';
-
-	$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-
-	$Date = isset($_POST['enrolled']) ? mysqli_real_escape_string($conn, $_POST['enrolled']) : '';
-
-	$SY = isset($_POST['SY']) ? mysqli_real_escape_string($conn, $_POST['SY']) : '';
-
-  // Validate data
-	if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '' || $SY == '')
-		echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
-	else if(isset($StudentID, $Lname, $Fname, $Mname, $Gender, $Address, $code, $Date, $SY))
-	{
-    // Upload data into database
-		$query= "INSERT into student values('$StudentID','$Lname','$Fname','$Mname','$Gender','$Address','$code','$Date','$SY')";
-		$result= mysqli_query($conn, $query);
-
-		$cn->closeDB();
+    	$cn->closeDB();
 	}
 	?>
 	<!-- End PHP -->

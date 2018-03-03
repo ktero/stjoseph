@@ -39,7 +39,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Level code</th>
+                                        <th>Fee code</th>
                                         <th>Description</th>
                                         <th>Amount</th>
                                         <th></th>

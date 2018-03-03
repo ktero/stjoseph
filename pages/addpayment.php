@@ -65,8 +65,8 @@
 	<!-- Confirmation Message -->
 	<div id="page-wrapper" align="Center" style="padding-top: 100px">
 	<h1> Successfully Added Payment </h1>
-	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment from scratch</a><br />
-  <a href='studentpayment.php?id=<?php echo $sid ?>' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment to same student</a><br />
+	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment from scratch</a><br /><br />
+  <a href='studentpayment.php?id=<?php echo $sid ?>' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment to same student</a><br /><br />
   <a href='paymentrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Payments</a>
 	</div>
 

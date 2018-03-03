@@ -41,6 +41,7 @@
                                         }
                                     ?>
                                     <select name="input"  style="width: 100%; padding: 5px; cursor: pointer;">
+                                        <option selected='true' disabled>Choose database</option>
                                         <?php foreach ($dbs as $value):  ?>
                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                         <?php endforeach; ?>

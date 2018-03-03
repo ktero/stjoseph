@@ -85,7 +85,6 @@
                                   </tr>
                                   <?php
                                         $tamount += $rw1[4];
-
                                         // Obtaining summary report data starts here
                                         if(in_array($rw1[2], $checkCode) == false) {
                                           $checkCode[] = $rw1[2];

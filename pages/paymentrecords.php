@@ -21,7 +21,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Student Payment Records</h1>
+                    <h1 class="page-header">Receipt Records</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>Payment Records</h4>
+                            <h4>Receipt Records</h4>
                             <p>Click on the student's ID number to see their financial transactions and current balance.</p>
                         </div>
                         <!-- /.panel-heading -->

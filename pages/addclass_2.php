@@ -16,8 +16,7 @@
 
             <!-- Navigation -->
             <?php require_once('../include/navdiv-title.php'); ?>
-<?php
-
+        <?php
             require_once('connection.php');
             $cn = new connection();
             $conn = $cn->connectDB($_SESSION['database']);
@@ -27,7 +26,7 @@
             $section = isset($_POST['section']) ? mysqli_real_escape_string($conn, $_POST['section']) : '';
 
             if($year == '' || $section == '') {
-              echo '<meta http-equiv="refresh" content="0;url=addstudent.php" />';
+              echo '<meta http-equiv="refresh" content="0;url=addclass.php?cmd=empty-inputs" />';
             }
             else if(isset($year, $section))
             {
@@ -35,7 +34,7 @@
               $result= mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
               $cn->closeDB();
             }
-  ?>
+        ?>
         </div>
 
 

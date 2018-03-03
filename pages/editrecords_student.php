@@ -39,7 +39,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Student ID</th>
                                         <th>Full Name</th>
                                         <th>Gender</th>
                                         <th>Year Level</th>
