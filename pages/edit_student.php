@@ -107,7 +107,7 @@
                                                 <label>Level Code</label><br />
                                                 <select name='code' style="padding: 5px; cursor: pointer;">
                                                     <?php
-                                                        $q2 = "SELECT * FROM LEVEL";
+                                                        $q2 = "SELECT * FROM level";
                                                         $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
                                                         while ($y = mysqli_fetch_row($r2)) {
                                                           $code = $y[0];
