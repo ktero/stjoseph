@@ -27,11 +27,11 @@
 <?php
 
 	require_once('connection.php');
-    $cn   = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+  $cn   = new connection();
+  $conn = $cn->connectDB();
 
   $ID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '-1';
-
+  $schoolyear = isset($_GET['schoolyear']) ? mysqli_real_escape_string($conn, $_GET['schoolyear']) : '-1';
 	$query = "SELECT * FROM student WHERE StudentID = '$ID'";
 	$result = mysqli_query($conn, $query) or die("Error query: ".mysqli_error($conn));
 
@@ -48,6 +48,39 @@
 	{
 ?>
                     <div class="row">
+                      <div class="col-lg-12">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4>Choose school year</h4>
+                            <h5>Transaction history of the student throughout the school year.</h5>
+                          </div>
+                          <div class="panel-body">
+                            <form action="student_ledger.php" method="get">
+                              <input type="hidden" name="id" value="<?php echo $ID; ?>">
+                              <div class="form-group">
+                                <label>School Year</label><br />
+                                <select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
+                                <option disabled="disabled" selected="selected">Choose School Year</option>
+                                    <?php
+                                        $q2 = "SELECT * FROM school_year";
+                                        $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
+                                        while ($y = mysqli_fetch_row($r2)) {
+                                          if($y[0] != 1) {
+                                            $syID = $y[0];
+                                            $sy = $y[1];
+                                            echo "<option value='$syID'>$sy</option>";
+                                          }
+                                        }
+                                    ?>
+                                "</select>
+                              </div>
+                              <button type="submit" style ="background-color:lightblue" name="submit" class="btn btn-default" value="submit">Search</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -61,8 +94,15 @@
                                         <h5 style="margin-left: 15px;">Year Level:
                                             <?php
                                               $r = mysqli_query($conn, "SELECT * FROM level WHERE Level_code = '$row[6]'") or die('Error: ' . mysqli_error($conn));
-                                              while ($y = mysqli_fetch_row($r))
+                                              if ($y = mysqli_fetch_row($r))
                                                 echo $y[1] . " - " . $y[2];
+                                            ?>
+                                        </h5>
+                                        <h5 style="margin-left: 15px;">School Year:
+                                            <?php
+                                              $getSY = mysqli_query($conn, "SELECT School_Year FROM school_year WHERE ID = '$schoolyear'") or die('Error: ' . mysqli_error($conn));
+                                              if ($syres = mysqli_fetch_row($getSY))
+                                                echo $syres[0];
                                             ?>
                                         </h5>
                                         <?php } ?>
@@ -89,19 +129,19 @@
 								$baltot = 0;
 								$amtot = 0;
 
-								$payque = "SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '$ID'";
+								$payque = "SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '$ID' AND SY_ID = '$schoolyear'";
 								$payres = mysqli_query($conn, $payque) or die("Error query: ".mysqli_error($conn));
 
 								while($payrow = mysqli_fetch_row($payres))
 								{
-									$pr4 = number_format($payrow[4], 2, '.', ',&nbsp;');
+									$pr4 = number_format($payrow[5], 2, '.', ',&nbsp;');
 							?>
                                                 <tr>
                                                     <td>
-                                                        <?php echo $payrow[3]; ?>
+                                                        <?php echo $payrow[4]; ?>
                                                     </td>
                                                     <td>
-                                                        <?php echo $payrow[5]; ?>
+                                                        <?php echo $payrow[6]; ?>
                                                     </td>
                                                     <td>
                                                         <?php echo $payrow[7]; ?>
@@ -138,7 +178,7 @@
 									{
 										$baltot = $bal[0];
 									}
-									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = '$ID'");
+									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = '$ID' AND SY_ID = '$schoolyear'");
 									$row = mysqli_fetch_assoc($result);
 									$amtot = $row['totsum'];
 									$amtot = $baltot - $amtot;
@@ -169,7 +209,7 @@
                                     </div>
                                   -->
                                     <div style="float: right">
-                                        <a href="accounts.php?id=<?php echo $ID; ?>" style="font-size: 20px;">View Statement of Account</a>
+                                        <a href="accounts.php?id=<?php echo $ID; ?>&schoolyear=<?php echo $schoolyear; ?>&sy=<?php echo $syres[0]; ?>" style="font-size: 20px;">View Statement of Account</a>
                                     </div>
                                     <!-- /.table-responsive -->
 

@@ -21,7 +21,7 @@
             <?php
                 require_once('connection.php');
                 $cn   = new connection();
-                $conn = $cn->connectDB($_SESSION['database']);
+                $conn = $cn->connectDB();
 
                 $edit_key = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
              ?>

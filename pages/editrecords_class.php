@@ -50,7 +50,7 @@
                   <?php
                     require_once('connection.php');
                     $cn   = new connection();
-                    $conn = $cn->connectDB($_SESSION['database']);
+                    $conn = $cn->connectDB();
 
 
 										$query = 'SELECT * FROM level';
@@ -75,6 +75,64 @@
                                             </td>
                                             <td>
                                                 <a href='delete_class.php?levelcode=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?');"> Delete </a>
+                                            </td>
+                                        </tr>
+                                        <?php
+										     }
+                      }
+                                        $cn->closeDB();
+									?>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4>Edit school year profile</h4>
+                          <p>Deleting a school year with Students assigned to it will result to the students to be labeled as <span style="font-size:18px; font-weight:700;">"Not assigned"</span>.</p>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>School Year</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                  <?php
+                    require_once('connection.php');
+                    $cn   = new connection();
+                    $conn = $cn->connectDB();
+
+
+										$query = 'SELECT * FROM school_year';
+										$result = mysqli_query($conn, $query) or die('Error: ' .mysqli_error($conn));
+
+										while($row = mysqli_fetch_row($result))
+										{
+                      if($row[0] != 1) {
+									?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $row[1]; ?>
+                                            </td>
+                                            <td>
+                                                <a href='edit_sy.php?schoolyear=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
+                                            </td>
+                                            <td>
+                                                <a href='delete_sy.php?schoolyear=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record? It will also delete all the transaction record in this school year.');"> Delete </a>
                                             </td>
                                         </tr>
                                         <?php

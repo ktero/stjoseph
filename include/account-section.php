@@ -1,4 +1,5 @@
 <ul class="nav navbar-top-links navbar-right">
+  <!--
   <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <?php
@@ -11,8 +12,8 @@
       <ul class="dropdown-menu dropdown-user">
           <li><a href="switcher.php"><i class="fa fa-cog fa-fw"></i>Switch S.Y.</a></li>
       </ul>
-      <!-- /.dropdown-user -->
   </li>
+  -->
   <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <?php

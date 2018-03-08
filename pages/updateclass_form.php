@@ -24,7 +24,7 @@
           <?php
                       require_once('connection.php');
                       $cn = new connection();
-                      $conn = $cn->connectDB($_SESSION['database']);
+                      $conn = $cn->connectDB();
 
                       $orig_code = isset($_POST['orig_code']) ? mysqli_real_escape_string($conn, $_POST['orig_code']) : '';
                       $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
@@ -44,7 +44,7 @@
               <!-- Confirmation Message -->
               <div id="page-wrapper" align="Center" style="padding-top: 100px">
               <h1> Successfully Updated </h1>
-              <a href='addclass.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update a year level</a>
+              <a href='editrecords_class.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> Update a year level</a>
               <a href='adminrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right"> View year level records</a>
               </div>
               <!-- Footer -->

@@ -40,7 +40,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('FN000','first','name','noemail@email.com',0,'admin','$2y$10$ZLjkA3szLjLn4YREhphO/u.Xxhfgz4rX4Zf.K/u.wSU2Qk9/fPJ6K'),('FN2015010','Sister','Principal','thisisanemail@gmail.com',9455590157,'principal','$2y$10$FPlf55e7B8NLNlzub8gLW.VmP2wZPx5KFb5x5KZ8Aref023uRoxDS'),('FN2015011','Sister','Finance','sister@yahoo.com',9355989504,'finance','$2y$10$gNAAB705w42kqpeFlDJKjOli78tLza7cJd4WSPzcv1lsAtTOTAj.m');
+INSERT INTO `account` VALUES ('FN000','first','name','noemail@email.com',0,'admin','$2y$10$qCALh5581uCdwaTifIoFnOTKn7M8c.DMZZggSqPjfGor21hHnyqTa'),('FN2015010','Sister','Principal','thisisanemail@gmail.com',9455590157,'principal','$2y$10$FPlf55e7B8NLNlzub8gLW.VmP2wZPx5KFb5x5KZ8Aref023uRoxDS'),('FN2015011','Sister','Finance','sister@yahoo.com',9355989504,'finance','$2y$10$gNAAB705w42kqpeFlDJKjOli78tLza7cJd4WSPzcv1lsAtTOTAj.m');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +108,16 @@ CREATE TABLE `receipt` (
   `Description` varchar(500) NOT NULL,
   `Amount` double NOT NULL,
   `Receipt_Date` date DEFAULT NULL,
+  `SY_ID` int(11) DEFAULT NULL,
   `ReceiptID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ReceiptID`),
   KEY `StudentID` (`StudentID`),
   KEY `receipt_ibfk_2` (`Fee_code`),
+  KEY `receipt_ibfk_3` (`SY_ID`),
   CONSTRAINT `receipt_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE,
-  CONSTRAINT `receipt_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  CONSTRAINT `receipt_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE,
+  CONSTRAINT `receipt_ibfk_3` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,8 +126,32 @@ CREATE TABLE `receipt` (
 
 LOCK TABLES `receipt` WRITE;
 /*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
-INSERT INTO `receipt` VALUES (10,'FN2017000','MF25','Haircut',250,'2018-02-28',2),(10,'FN2017000','Gr7','Grade 7 Tuition',8000,'2018-02-28',3),(9,'FN2015000','MF10','ID',100,'2018-02-28',4),(9,'FN2015000','MF12','Student Handbook',50,'2018-02-28',5),(9,'FN2015000','MF23','PTA',100,'2018-02-28',6),(9,'FN2015000','MF2','Library',100,'2018-02-28',7),(10,'FN2017000','MF10','ID',100,'2018-02-28',8),(10,'FN2017000','MF23','PTA',100,'2018-02-28',9),(10,'FN2017000','MF12','Student Handbook',50,'2018-02-28',10),(11,'FN2017000','CF1','Computer',250.75,'2018-02-28',11),(11,'FN2017000','CF2','Internet Fee',250,'2018-02-28',12),(11,'FN2017000','CF1','Computer',249.25,'2018-02-28',13),(12,'FN2017001','Gr10','Grade 10 Tuition',7500,'2018-02-28',14),(13,'FN2017001','MF12','Student Handbook',45,'2018-03-01',15),(13,'FN2017001','MF25','Haircut',250,'2018-03-01',16),(13,'FN2017001','CF1','Computer',300,'2018-03-01',17),(14,'FN2017001','MF23','PTA',100,'2018-03-02',20);
+INSERT INTO `receipt` VALUES (10,'FN2017','MF10','ID',100,'2018-03-06',2,1),(10,'FN2017','CF1','Computer',500,'2018-03-06',2,2),(31,'FN2017','MF25','Haircut',250,'2018-03-07',2,4),(50,'FN2015','Gr9','Grade 9 Tuition',4000,'2018-03-08',2,10),(50,'FN2015','MF23','PTA',100,'2018-03-08',2,11),(60,'FN2015','Gr10','Grade 10 Tuition',5000,'2018-03-08',4,12),(60,'FN2015','MF23','PTA',100,'2018-03-08',4,13);
 /*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `school_year`
+--
+
+DROP TABLE IF EXISTS `school_year`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `school_year` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `School_Year` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `school_year`
+--
+
+LOCK TABLES `school_year` WRITE;
+/*!40000 ALTER TABLE `school_year` DISABLE KEYS */;
+INSERT INTO `school_year` VALUES (1,'Not assigned'),(2,'2018-2019'),(4,'2019-2020');
+/*!40000 ALTER TABLE `school_year` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -143,10 +170,12 @@ CREATE TABLE `student` (
   `Address` varchar(100) DEFAULT NULL,
   `Level_code` varchar(5) DEFAULT NULL,
   `Date_enrolled` date DEFAULT NULL,
-  `School_Year` varchar(20) DEFAULT NULL,
+  `School_Year` int(11) DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `Level_code` (`Level_code`),
-  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`Level_code`) REFERENCES `level` (`Level_code`) ON UPDATE CASCADE
+  KEY `student_ibfk_2` (`School_Year`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`Level_code`) REFERENCES `level` (`Level_code`) ON UPDATE CASCADE,
+  CONSTRAINT `student_ibfk_2` FOREIGN KEY (`School_Year`) REFERENCES `school_year` (`ID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -156,7 +185,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('FN2015000','Salvador','Diane','T','Female','Santo Nino Talakag','G8a','2018-02-28','2018-2019'),('FN2017000','Tero','Kenneth','Benabaye','Male','Upper Carmen Cagayan de Oro City','G7a','2018-02-28','2018-2019'),('FN2017001','Fuentes','Philip','Jusbuat','Male','Divisoria Cagayan de Oro City','G10a','2018-02-28','2018-2019');
+INSERT INTO `student` VALUES ('FN2015','Sample','Test','N.','Female','Sample Addresss Talakag','G9a','2018-03-07',2),('FN2017','Tero','Kenneth','B.','Male','Cagayan de Oro City','G8b','2018-03-06',2);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,16 +200,18 @@ CREATE TABLE `student_pay_fees` (
   `PaymentID` int(15) NOT NULL AUTO_INCREMENT,
   `StudentID` varchar(30) NOT NULL,
   `Fee_code` varchar(5) NOT NULL,
+  `SY_ID` int(11) DEFAULT NULL,
   `Payment_Date` date NOT NULL,
   `Payment` varchar(50) NOT NULL,
   `ORNo` varchar(50) NOT NULL,
-  `Balance` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`PaymentID`),
   KEY `StudentID` (`StudentID`),
   KEY `Fee_code` (`Fee_code`),
+  KEY `student_pay_fees_ibfk_4` (`SY_ID`),
   CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE,
-  CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE,
+  CONSTRAINT `student_pay_fees_ibfk_4` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +220,7 @@ CREATE TABLE `student_pay_fees` (
 
 LOCK TABLES `student_pay_fees` WRITE;
 /*!40000 ALTER TABLE `student_pay_fees` DISABLE KEYS */;
-INSERT INTO `student_pay_fees` VALUES (2,'FN2017000','MF25','2018-02-28','250.00','10',NULL),(3,'FN2017000','Gr7','2018-02-28','8000.00','10',NULL),(4,'FN2015000','MF10','2018-02-28','100.00','9',NULL),(5,'FN2015000','MF12','2018-02-28','50.00','9',NULL),(6,'FN2015000','MF23','2018-02-28','100.00','9',NULL),(7,'FN2015000','MF2','2018-02-28','100.00','9',NULL),(8,'FN2017000','MF10','2018-02-28','100.00','10',NULL),(9,'FN2017000','MF23','2018-02-28','100.00','10',NULL),(10,'FN2017000','MF12','2018-02-28','50.00','10',NULL),(11,'FN2017000','CF1','2018-02-28','250.75','11',NULL),(12,'FN2017000','CF2','2018-02-28','250.00','11',NULL),(13,'FN2017000','CF1','2018-02-28','249.25','11',NULL),(14,'FN2017001','Gr10','2018-02-28','7500.00','12',NULL),(15,'FN2017001','MF12','2018-03-01','45.00','13',NULL),(16,'FN2017001','MF25','2018-03-01','250.00','13',NULL),(17,'FN2017001','CF1','2018-03-01','300.00','13',NULL),(20,'FN2017001','MF23','2018-03-02','100.00','14',NULL);
+INSERT INTO `student_pay_fees` VALUES (1,'FN2017','MF10',2,'2018-03-06','100.00','10'),(2,'FN2017','CF1',2,'2018-03-06','500.00','10'),(4,'FN2017','MF25',2,'2018-03-07','250.00','31'),(10,'FN2015','Gr9',2,'2018-03-08','4000.00','50'),(11,'FN2015','MF23',2,'2018-03-08','100.00','50'),(12,'FN2015','Gr10',4,'2018-03-08','5000.00','60'),(13,'FN2015','MF23',4,'2018-03-08','100.00','60');
 /*!40000 ALTER TABLE `student_pay_fees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -202,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05 19:24:21
+-- Dump completed on 2018-03-08 20:07:18

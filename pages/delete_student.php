@@ -2,7 +2,7 @@
     require_once('../include/sessionstart.php');
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
     $edit_key = isset($_GET['studentedit_key']) ? mysqli_real_escape_string($conn, $_GET['studentedit_key']) : '';
 

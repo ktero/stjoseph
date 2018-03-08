@@ -70,7 +70,7 @@
                                 <!-- Dropdown with db -->
                                 <div class='form-group'>
                                 <label>Level Code</label>
-                                <br /><select name='code' style="padding: 5px; cursor: pointer;">
+                                <br /><select name='code' style="padding: 5px; cursor: pointer; width: 50%;">
                                 <option selected='true' disabled> Choose Code </option>
                                 <?php
                                   require_once('connection.php');
@@ -89,27 +89,35 @@
                                   }
                                   $cn->closeDB();
                                 ?>
-                                <!-- Tempo
-                                <option value='G7a'>G7a</option>
-                                <option value='G7b'>G7b</option>
-                                <option value='G8a'>G8a</option>
-                                <option value='G8b'>G8b</option>
-                                <option value='G9a'>G9a</option>
-                                <option value='G9b'>G9b</option>
-                                <option value='G10a'>G10a</option>
-                                -->
                                 </select>
+                                </div>
+                                <div class='form-group'>
+                                  <label>School Year</label>
+                                  <br /><select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
+                                  <option selected='true' disabled> Choose School Year </option>
+                                  <?php
+                                    require_once('connection.php');
+                                    $cn = new connection();
+                                    $conn = $cn->connectDB($_SESSION['database']);
+
+                                    $query = "SELECT * from school_year";
+                                    $result = mysqli_query($conn, $query) or die('
+                                    Error: ' . mysqli_error());
+
+                                    while ($row = mysqli_fetch_row($result)) {
+                                      $syID = $row[0];
+                                      $sy = $row[1];
+                                      echo "<option value='$syID'>$sy</option>";
+                                    }
+                                    $cn->closeDB();
+                                  ?>
+                                  </select>
                                 </div>
                                 <div class="form-group">
                                         <label>Date Enrolled</label>
-                                        <br /><input type= "date" name= "enrolled" value="yyyy-mm-dd" style="padding: 5px; cursor: pointer; font-size: 100%;">
+                                        <br /><input type= "date" name= "enrolled" value="yyyy-mm-dd" style="padding: 5px; cursor: pointer; font-size: 100%; width: 50%;">
                                         <p class="help-block"></p>
-                                    </div>
-                                <div class="form-group">
-                                        <label>School Year</label>
-                                        <input class="form-control" placeholder="eg. 2017-2018" name="SY">
-                                        <p class="help-block"></p>
-                                    </div>
+                                </div>
                                 <!-- Submit Button -->
                                 <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Submit</button>
 

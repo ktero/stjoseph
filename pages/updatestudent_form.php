@@ -25,7 +25,7 @@
 
 	require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
 
 	$orig_sid = isset($_POST['orig_sid']) ? mysqli_real_escape_string($conn, $_POST['orig_sid']) : '';
@@ -38,7 +38,7 @@
 	$addr = isset($_POST['addr']) ? mysqli_real_escape_string($conn, $_POST['addr']) : '';
 	$code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
 	$denrolled = isset($_POST['denrolled']) ? mysqli_real_escape_string($conn, $_POST['denrolled']) : '';
-	$sy = isset($_POST['sy']) ? mysqli_real_escape_string($conn, $_POST['sy']) : '';
+	$sy = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
 
   if(!empty($sid)  && !empty($lname) && !empty($fname) && !empty($mname) && !empty($gender) && !empty($addr) && !empty($code) && !empty($denrolled) && !empty($sy)) {
 

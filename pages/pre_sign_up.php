@@ -58,7 +58,7 @@
 
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
     $id = isset($_POST['id_pass']) ? mysqli_real_escape_string($conn, $_POST['id_pass']) : '';
     $username = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';

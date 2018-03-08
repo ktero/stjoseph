@@ -39,7 +39,9 @@
                                     <tr>
                                         <th>ID Number</th>
                                         <th>First Name</th>
+                                        <th>Middle Name</th>
                                         <th>Last Name</th>
+                                        <th>Gender</th>
                                         <th>Year &amp; Section</th>
                                         <!--
                                         <th>Section</th>
@@ -52,7 +54,7 @@
                                     <?php
                                         require_once('connection.php');
                                         $cn   = new connection();
-                                        $conn = $cn->connectDB($_SESSION['database']);
+                                        $conn = $cn->connectDB();
 
 
 										$query = 'SELECT * FROM student';
@@ -63,7 +65,7 @@
 									?>
                                         <tr>
                                             <td>
-                                                <a href="student_ledger.php?id=<?php echo $row[0]; ?>">
+                                                <a href="student_ledger.php?id=<?php echo $row[0]; ?>&schoolyear=<?php echo $row[8]; ?>">
                                                     <?php echo $row[0]; ?>
                                                 </a>
                                             </td>
@@ -71,7 +73,13 @@
                                                 <?php echo $row[2]; ?>
                                             </td>
                                             <td>
+                                               <?php echo $row[3]; ?>
+                                            </td>
+                                            <td>
                                                 <?php echo $row[1]; ?>
+                                            </td>
+                                            <td>
+                                              <?php echo $row[4]; ?>
                                             </td>
                                             <td>
                                                 <?php
@@ -124,7 +132,7 @@
                   <?php
                     require_once('connection.php');
                     $con   = new connection();
-                    $conn = $con->connectDB($_SESSION['database']);
+                    $conn = $con->connectDB();
 
                     $query = 'SELECT * FROM level';
 										$result = mysqli_query($conn, $query);

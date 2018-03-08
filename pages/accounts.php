@@ -4,14 +4,14 @@
 
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
-    if(isset($_GET['id']))
-        $ID = mysqli_real_escape_string($conn, $_GET['id']);
-    else
-        $ID = '';
+    $ID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '-1';
+    $schoolyear = isset($_GET['schoolyear']) ? mysqli_real_escape_string($conn, $_GET['schoolyear']) : '-1';
+    $sy = isset($_GET['sy']) ? mysqli_real_escape_string($conn, $_GET['sy']) : '-1';
 
     $query = "SELECT `student`.`Lname`,`student`.`Fname`, `student`.`Mname`, `level`.`Year_level`, `level`.`Section` FROM `student`LEFT JOIN `level` ON `student`.`Level_code` =  `level`.`Level_code` WHERE `student`.`StudentID` = '" . $ID . "'";
+
     $result = mysqli_query($conn, $query) or die("Error: " . mysqli_error($conn));
 
 	$link = $_SERVER['REQUEST_URI'];
@@ -48,7 +48,8 @@
                 <div style="margin-bottom: 15px;">
                     Name: <strong> <?php echo $gr[0] . ",&nbsp;" . $gr[1] . "&nbsp;" . $gr[2]; ?> </strong>
                     <br>
-                    Year & Section: <strong> <?php echo $gr[3] . " - " . $gr[4]; ?> </strong>
+                    Year & Section: <strong> <?php echo $gr[3] . " - " . $gr[4]; ?> </strong><br />
+                    School Year: <strong> <?php echo $sy; ?></strong>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -64,37 +65,37 @@
                                     <?php
                                         switch ($gr[3]) {
                                             case "Grade 7":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr7' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr7' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 												$MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
+												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                                                 break;
 
                                             case "Grade 8":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr8' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr8' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 												$MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
+												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                                                 break;
 
                                             case "Grade 9":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr9' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr9' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 												$MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
+												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                                                 break;
 
                                             case "Grade 10":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr10' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr10' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 												$MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF29', 'MF30', 'MF31', 'MF32')";
-												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
+												$MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                         break;
                                             case "Grade 11":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr11' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr11' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                         $MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23','MF24','MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-                        $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '".$ID."'";
+                        $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                         break;
                                             case "Grade 12":
-                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr12' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                                $TUITION = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'Gr12' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                         $MISC0 = "SELECT SUM(Amount) AS Amount FROM fees WHERE `fees`.Fee_code LIKE 'MF%' AND `fees`.Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28')";
-                        $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28') AND StudentID = '".$ID."'";
+                        $MISC1 = "SELECT SUM(Payment) AS Payment FROM `student_pay_fees` WHERE Fee_code LIKE 'MF%' AND Fee_code NOT IN('MF23', 'MF24', 'MF25', 'MF26', 'MF27', 'MF28') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
                                                 break;
 
                                             default:
@@ -106,19 +107,19 @@
                                         $row7 = 0;
                                         $miscrow = 0;
 
-                                        $COMP = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF1' AND `student_pay_fees`.`StudentID` = '".$ID."'";
+                                        $COMP = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF1' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $NET = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF2' AND `student_pay_fees`.`StudentID` = '".$ID."'";
+                                        $NET = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'CF2' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $PTA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF23' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                        $PTA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF23' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $CUT = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF25' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                        $CUT = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF25' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $PE = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF24' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                        $PE = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'MF24' AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $SRA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'OF1' AND `student_pay_fees`.StudentID = '".$ID."'";
+                                        $SRA = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code = 'OF1'AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
-                                        $BOOK = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code IN ('OF2', 'OF3') AND `student_pay_fees`.StudentID = '".$ID."'";
+                                        $BOOK = "SELECT `fees`.*, SUM(`student_pay_fees`.Payment) AS Payment FROM fees LEFT JOIN `student_pay_fees` ON `fees`.`Fee_code` = `student_pay_fees`.`Fee_code` WHERE `fees`.Fee_code IN ('OF2', 'OF3') AND StudentID = '$ID' AND SY_ID = '$schoolyear'";
 
                                         $tuires = mysqli_query($conn, $TUITION) or die("Error: " . mysqli_error($conn));
                                         $compres = mysqli_query($conn, $COMP) or die("Error: " . mysqli_error($conn));

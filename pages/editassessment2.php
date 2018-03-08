@@ -1,5 +1,5 @@
 <?php
-   require_once('../include/sessionstart.php'); 
+   require_once('../include/sessionstart.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,32 +14,17 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-              <a> <img src="sjhs.png" style="width:40px;height:40px;"> </a> <a href="index.php">St. Joseph High School</a>
-            </div>
-            <!-- /.navbar-header -->
-            <?php require_once('../include/account-section.php') ?>
-            <!-- /.navbar-top-links -->
-            <?php require_once('../include/side-bar-options.php') ?>
-            <!-- /.navbar-static-side -->
-        </nav>
+        <?php require_once('../include/navdiv-title.php'); ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-				
+
                     <h1 class="page-header">Edit Records</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-			
+
 			<!-- SEARCH STUDENT -->
 				<div class="container" style="padding:200px 10px 20 px 10px">
 				<form name="input" action="resultedit_assessment.php" method="post" class="form-inline">

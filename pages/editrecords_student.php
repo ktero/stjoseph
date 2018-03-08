@@ -52,7 +52,7 @@
                   <?php
                     require_once('connection.php');
                     $cn   = new connection();
-                    $conn = $cn->connectDB($_SESSION['database']);
+                    $conn = $cn->connectDB();
 
 
 										$query = 'SELECT * FROM student';

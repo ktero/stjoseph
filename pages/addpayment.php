@@ -17,20 +17,21 @@
   <?php
                     require_once('connection.php');
                     $cn = new connection();
-                    $conn = $cn->connectDB($_SESSION['database']);
+                    $conn = $cn->connectDB();
 
                     $sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
                     $orn = isset($_POST['ORNo']) ? mysqli_real_escape_string($conn, $_POST['ORNo']) : '';
                     $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+                    $sy = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
                     $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
                     if(isset($_POST['submit']))
                     {
-                      if( $sid == '' || $orn == '' || $code == '' || $amount == '' )
+                      if( $sid == '' || $orn == '' || $code == '' || $amount == '' || $sy == '')
                       {
                         echo "<h4 style='border: thin solid #f77; border-radius: 8px; padding: 10px;'>Please fill-up everything.</h4>";
                       }
-                      else if( $sid != '' || $orn != '' || $code != '' || $amount != '' )
+                      else if( $sid != '' || $orn != '' || $code != '' || $amount != '' || $sy == '')
                       {
 
                         $getDesc = "SELECT * FROM fees WHERE Fee_code = '$code'";
@@ -40,17 +41,10 @@
                         }
 
                         // Insert into receipt
-                        $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE()";
+                        $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE(), SY_ID = '$sy'";
                         if(mysqli_query($conn, $add) == true) {
-                          /* Calculate remaining balance of that fee ; STATUS: On-hold
-                          $getFeeAmount = "SELECT Amount FROM fees WHERE Fee_code = '$code'";
-                          $res1 = mysqli_query($conn, $getDesc) or die('Error: ' .mysqli_error($conn));
-                          while($row1 = mysqli_fetch_row($res1))
-                            $feeAmount = $row1[0];
-                          */
-
                           // Insert into student_pay_fees
-                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
+                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
                           if(mysqli_query($conn, $addStudentFee) == false)
                             echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
                         } else {

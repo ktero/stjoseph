@@ -2,7 +2,7 @@
     session_start();
     require_once('connection.php');
     $cn   = new connection();
-    $conn = $cn->connectDB('');
+    $conn = $cn->connectDB();
     $set = mysqli_query($conn, "SHOW DATABASES");
     $dbs = array();
     while($db = mysqli_fetch_row($set)){

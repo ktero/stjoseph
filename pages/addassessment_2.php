@@ -20,7 +20,7 @@
             <?php
               require_once('connection.php');
               $cn = new connection();
-              $conn = $cn->connectDB($_SESSION['database']);
+              $conn = $cn->connectDB();
 
               $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
               $description = isset($_POST['description']) ? mysqli_real_escape_string($conn, $_POST['description']) : '';

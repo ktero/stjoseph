@@ -86,7 +86,7 @@
 
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
     $staffID = isset($_POST['StaffID']) ? mysqli_real_escape_string($conn, $_POST['StaffID']) : '';
     $fname = isset($_POST['Fname']) ? mysqli_real_escape_string($conn, $_POST['Fname']) : '';
@@ -106,7 +106,7 @@
       if(mysqli_query($conn, $query) == true) {
         session_destroy();
         echo '<meta http-equiv="refresh" content="0;url=login.php?cmd=account-created"';
-      } else 
+      } else
         echo '<meta http-equiv="refresh" content="0;url=create_admin_account.php?cmd=error"';
     } else
          echo '<meta http-equiv="refresh" content="0;url=create_admin_account.php?cmd=password-not-match"';

@@ -20,10 +20,11 @@
                     <?php
                       require_once('connection.php');
                       $cn = new connection();
-                      $conn = $cn->connectDB($_SESSION['database']);
+                      $conn = $cn->connectDB();
 
                       $month = isset($_POST['month']) ? mysqli_real_escape_string($conn, $_POST['month']) : '';
                       $year = isset($_POST['year']) ? mysqli_real_escape_string($conn, $_POST['year']) : '';
+                      $sy = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
                     ?>
                     <h3 style="line-height: 30px;" class="page-header">Saint Joseph High School of Talakag, Bukidnon<br>Monthly Report and Summary Report<br /><?php echo date('F', mktime(0, 0, 0, $month, 10)) . " " . $year; ?></h3>
                 </div>
@@ -56,7 +57,7 @@
                                     $ovamount = 0;
                                     $monTotalAmount = 0;
 
-                                    $query = "SELECT * FROM receipt WHERE MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
+                                    $query = "SELECT * FROM receipt WHERE SY_ID = $sy AND MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
                                     $result = mysqli_query($conn, $query) or die('Error in query: ' .mysqli_error($conn));
 
                                     while($row = mysqli_fetch_row($result))
@@ -90,7 +91,7 @@
                                           $checkCode[] = $rw1[2];
                                           $feeDesc[$indexC] = $rw1[3];
 
-                                          $getamountQuary = "SELECT SUM(Amount) FROM receipt WHERE Fee_code = '$rw1[2]' AND MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
+                                          $getamountQuary = "SELECT SUM(Amount) FROM receipt WHERE SY_ID = $sy AND Fee_code = '$rw1[2]' AND MONTH(Receipt_Date) = $month AND YEAR(Receipt_Date) = $year";
                                           $r2 = mysqli_query($conn, $getamountQuary) or die('Error quary: ' . mysqli_error($conn));
                                           if($rw2 = mysqli_fetch_row($r2))
                                             $feeTotal[$indexC] = $rw2[0];

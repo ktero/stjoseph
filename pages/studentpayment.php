@@ -38,7 +38,7 @@
                               <?php
                                 require_once('connection.php');
                                 $cn = new connection();
-                                $conn = $cn->connectDB($_SESSION['database']);
+                                $conn = $cn->connectDB();
                                 $getID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '';
                               ?>
                               <div class="col-lg-6">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                                         <label>Fees</label><br />
-                                        <select name="code" style="padding: 5px; cursor: pointer;">
+                                        <select name="code" style="padding: 5px; cursor: pointer; width: 50%;">
                                         <option disabled="disabled" selected="selected">Choose Code</option>
                                           <?php
                                             $query= "SELECT * from fees";
@@ -72,6 +72,22 @@
                                           ?>
                                         </select>
                                         <p class="help-block"></p>
+                </div>
+                <div class='form-group'>
+                    <label>School Year</label><br />
+                    <select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
+                    <option disabled="disabled" selected="selected">Choose School Year</option>
+                        <?php
+                            $q2 = "SELECT * FROM school_year";
+                            $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
+                            while ($y = mysqli_fetch_row($r2)) {
+                              $syID = $y[0];
+                              $sy = $y[1];
+
+                              echo "<option value='$syID'>$sy </option>";
+                            }
+                        ?>
+                    "</select>
                 </div>
                 <div class="form-group">
                                         <label>Amount</label>
@@ -113,7 +129,7 @@
                   <?php
                     require_once('connection.php');
                     $cn   = new connection();
-                    $conn = $cn->connectDB($_SESSION['database']);
+                    $conn = $cn->connectDB();
 
 
 										$query = 'SELECT * FROM fees';

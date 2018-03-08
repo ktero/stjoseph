@@ -13,7 +13,7 @@
         $_SESSION['age'] = $row['age'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['password'] = $row['password'];
-        header('Location: switcher.php?login=success');
+        header('Location: login.php?login=success');
     }
 ?>
 
@@ -61,7 +61,7 @@
         // Set up database connection/
         require_once('connection.php');
         $cn = new connection();
-        $conn = $cn->connectDB('sjhs1819');
+        $conn = $cn->connectDB();
         // error_reporting(E_ALL ^ E_NOTICE);
 
 

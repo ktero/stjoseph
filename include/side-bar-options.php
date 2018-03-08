@@ -18,7 +18,7 @@
                       </li>
 
                       <li>
-                        <a href="#">Year Level<span class="fa arrow"></span></a>
+                        <a href="#">Level and School Year<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
                                 <a href="addclass.php">Add Records</a>
@@ -28,7 +28,6 @@
                             </li>
                         </ul>
                       </li>
-
                         <!-- /.nav-third-level -->
 
                         <li>

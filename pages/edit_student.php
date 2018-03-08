@@ -40,7 +40,7 @@
 
                                     require_once('connection.php');
                                     $cn = new connection();
-                                    $conn = $cn->connectDB($_SESSION['database']);
+                                    $conn = $cn->connectDB();
 
                                     error_reporting(E_ALL ^ E_NOTICE);
 
@@ -122,15 +122,28 @@
                                                     ?>
                                                 "</select>
                                             </div>
+                                            <div class='form-group'>
+                                                <label>School Year</label><br />
+                                                <select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
+                                                    <?php
+                                                        $q2 = "SELECT * FROM school_year";
+                                                        $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
+                                                        while ($y = mysqli_fetch_row($r2)) {
+                                                          $syID = $y[0];
+                                                          $sy = $y[1];
+                                                          if($syID != $row[8]) {
+                                                            echo "<option value='$syID'>$sy</option>";
+                                                          } else {
+                                                            echo "<option value='$syID' selected='true'>$sy </option>";
+                                                          }
+                                                        }
+                                                    ?>
+                                                "</select>
+                                            </div>
                                             <?php
                                             echo "<div class='form-group'>
                                                 <label>Date Enrolled</label><br />
-                                                <input name='denrolled' type='date' value='".$row[7]."' style='padding: 5px; cursor: pointer; text-align: center;'>
-                                                </div>";
-
-                                            echo "<div class='form-group'>
-                                                <label>School Year</label>
-                                                <input name='sy' class='form-control' value='".$row[8]."'>
+                                                <input name='denrolled' type='date' value='".$row[7]."' style='padding: 5px; cursor: pointer; width: 50%;'>
                                                 </div>";
 
                                             }

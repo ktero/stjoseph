@@ -30,6 +30,49 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                          <h4>Choose school year</h4>
+                          <h5>Receipt records in that specific school year.</h5>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                          <form action="paymentrecords.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $ID; ?>">
+                            <div class="form-group">
+                              <label>School Year</label><br />
+                              <select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
+                              <option disabled="disabled" selected="selected">Choose School Year</option>
+                              <option value="">View all</option>
+                                  <?php
+                                      require_once('connection.php');
+                                      $cn = new connection();
+                                      $conn = $cn->connectDB();
+
+                                      $q2 = "SELECT * FROM school_year";
+                                      $r2 = mysqli_query($conn, $q2) or die('Error: ' . mysqli_error($conn));
+                                      while ($y = mysqli_fetch_row($r2)) {
+                                        if($y[0] != 1) {
+                                          $syID = $y[0];
+                                          $sy = $y[1];
+                                          echo "<option value='$syID'>$sy</option>";
+                                        }
+                                      }
+                                      $cn->closeDB();
+                                  ?>
+                              "</select>
+                            </div>
+                            <button type="submit" style ="background-color:lightblue" name="submit" class="btn btn-default" value="submit">Search</button>
+                          </form>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             <h4>Receipt Records</h4>
                             <p>Click on the student's ID number to see their financial transactions and current balance.</p>
                         </div>
@@ -44,6 +87,7 @@
                                         <th>Description</th>
                                         <th>Amount</th>
                                         <th>Receipt Date</th>
+                                        <th>School Year</th>
                                         <!--
                                         <th>Section</th>
                                         <th>Year Level</th>
@@ -54,9 +98,15 @@
                 <?php
                     require_once('connection.php');
                     $cn   = new connection();
-                    $conn = $cn->connectDB($_SESSION['database']);
+                    $conn = $cn->connectDB();
 
-										$query = 'SELECT * FROM receipt';
+                    $sy = isset($_GET['schoolyear']) ? mysqli_real_escape_string($conn, $_GET['schoolyear']) : '';
+
+                    if($sy == '' || empty($sy)) {
+										  $query = "SELECT * FROM receipt";
+                    } else {
+                      $query = "SELECT * FROM receipt WHERE SY_ID = '$sy'";
+                    }
 										$result = mysqli_query($conn, $query);
 
 										while($row = mysqli_fetch_row($result))
@@ -67,9 +117,9 @@
                                                 <?php echo $row[0]; ?>
                                             </td>
                                             <td>
-                                                <a href="student_ledger.php?id=<?php echo $row[1]; ?>">
-                                                    <?php echo $row[1]; ?>
-                                                </a>
+                                              <a href="student_ledger.php?id=<?php echo $row[1]; ?>&schoolyear=<?php echo $row[6]; ?>">
+                                                  <?php echo $row[1]; ?>
+                                              </a>
                                             </td>
                                             <td>
                                                 <?php echo $row[2]; ?>
@@ -82,6 +132,16 @@
                                             </td>
                                             <td>
                                                 <?php echo $row[5]; ?>
+                                            </td>
+                                            <td>
+                                              <?php
+                                                $query = "SELECT * FROM school_year";
+                                                $res = mysqli_query($conn, $query);
+                                                while ($r = mysqli_fetch_row($res)) {
+                                                  if($r[0] == $row[6])
+                                                    echo $r[1];
+                                                }
+                                              ?>
                                             </td>
                                         </tr>
                                         <?php

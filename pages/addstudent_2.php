@@ -20,7 +20,7 @@
 
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
 
     $StudentID = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
@@ -31,10 +31,10 @@
     $Address = isset($_POST['Address']) ? mysqli_real_escape_string($conn, $_POST['Address']) : '';
     $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
     $Date = isset($_POST['enrolled']) ? mysqli_real_escape_string($conn, $_POST['enrolled']) : '';
-    $SY = isset($_POST['SY']) ? mysqli_real_escape_string($conn, $_POST['SY']) : '';
+    $SY = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
 
     // Validate data
-    if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '' || $SY == '')
+    if($StudentID == '' || $Lname == '' || $Fname == '' || $Mname == '' || $Gender == '' || $Address == '' || $code == '' || $Date == '')
     	echo '<meta http-equiv="refresh" content="0;url=addstudent.php?cmd=empty-inputs" />';
     else if(isset($StudentID, $Lname, $Fname, $Mname, $Gender, $Address, $code, $Date, $SY))
     {

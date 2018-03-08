@@ -31,7 +31,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                           <h4>Current Monthly Report</h4>
-                          <p>The monthly report will automatically generate using the current month as reference. This report may not be the same as the original monthly report but it can serve as a guide if ever you decide to stick with the original format.</p>
+                          <p>Choose a school year for the monthly report and it will automatically generate using the current month and year as reference. This report may not be the same as the original monthly report but it can serve as a guide if ever you decide to stick with the original format.</p>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -40,6 +40,26 @@
                                   <form name= "input" action= "addreport.php" method= "post">
                                     <input type="hidden" class="form-control" name="month" value="<?php echo date('n'); ?>">
                                     <input type="hidden" class="form-control" name="year" value="<?php echo date('Y'); ?>">
+                                    <div class="form-group">
+                                      <label>School Year</label><br />
+                                      <select name="schoolyear" style="padding: 5px; cursor: pointer; width: 50%;" required data-validation-required-message>
+                                        <option selected='true' disabled>
+                                          Choose school year
+                                        </option>
+                                        <?php
+                                          require_once('connection.php');
+                                          $cn = new connection();
+                                          $conn = $cn->connectDB($_SESSION['database']);
+
+                                          $SyQuery = "SELECT * FROM school_year";
+                                          $SyResult = mysqli_query($conn, $SyQuery) or die('Error: ' .mysqli_error($conn));
+                                          while($getSY = mysqli_fetch_row($SyResult)) {
+                                            if($getSY[0] != 1)
+                                              echo "<option value='$getSY[0]'>$getSY[1]</option>";
+                                          }
+                                        ?>
+                                      </select>
+                                    </div>
                                     <!-- Submit Button -->
                                     <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Generate report</button>
                                   </form>
@@ -52,17 +72,37 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                              <h4>Specify month for a Monthly Report</h4>
+                              <h4>Search for a Monthly Report</h4>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                               <div class="row">
                                   <div class="col-lg-6">
                                       <form name= "input" action= "addreport.php" method= "post">
-                                        <input type="hidden" class="form-control" name="year" value="<?php echo date('Y'); ?>">
-                                        <label>Enter month: </label>
+                                        <!-- <input type="hidden" class="form-control" name="year" value="<?php // echo date('Y'); ?>"> -->
                                         <div class="form-group">
-                                          <select name="month" style="padding: 5px; cursor: pointer;" required data-validation-required-message>
+                                          <label>School Year</label><br />
+                                          <select name="schoolyear" style="padding: 5px; cursor: pointer; width: 50%;" required data-validation-required-message>
+                                            <option selected='true' disabled>
+                                              Choose school year
+                                            </option>
+                                            <?php
+                                              require_once('connection.php');
+                                              $cn = new connection();
+                                              $conn = $cn->connectDB($_SESSION['database']);
+
+                                              $SyQuery1 = "SELECT * FROM school_year";
+                                              $SyResult1 = mysqli_query($conn, $SyQuery1) or die('Error: ' .mysqli_error($conn));
+                                              while($getSY1 = mysqli_fetch_row($SyResult1)) {
+                                                if($getSY1[0] != 1)
+                                                  echo "<option value='$getSY1[0]'>$getSY1[1]</option>";
+                                              }
+                                            ?>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                          <label>Enter month: </label><br />
+                                          <select name="month" style="padding: 5px; cursor: pointer; width: 50%;" required data-validation-required-message>
                                             <option selected='true' disabled>
                                               Choose a month
                                             </option>
@@ -79,6 +119,11 @@
                                             <option value="11">November</option>
                                             <option value="12">December</option>
                                           </select>
+                                        </div>
+                                        <div class="form-group">
+                                          <label>Enter year</label>
+                                          <input class="form-control" name="year" required data-validation-required-message>
+                                          <p class="help-block"></p>
                                         </div>
                                         <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Generate report</button>
                                       </form>

@@ -32,7 +32,7 @@
 <?php
             require_once('connection.php');
             $cn = new connection();
-            $conn = $cn->connectDB($_SESSION['database']);
+            $conn = $cn->connectDB();
 
             $hid = isset($_POST['orig_id']) ? mysqli_real_escape_string($conn, $_POST['orig_id']) : '';
             $id = isset($_POST['id']) ? mysqli_real_escape_string($conn, $_POST['id']) : '';

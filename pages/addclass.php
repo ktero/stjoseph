@@ -31,6 +31,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                           <h4>Level Profile</h4>
+                          <h5>You may submit this form without submitting the school year form.</h5>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -44,7 +45,7 @@
                                       </div>
                                       <div class="form-group">
                                           <label>Level name</label><br />
-                                          <select name='year' style="padding: 5px; cursor: pointer;" required data-validation-required-message>
+                                          <select name='year' style="padding: 5px; cursor: pointer; width: 50%;" required data-validation-required-message>
                                             <option selected='true' disabled>Choose Level</option>
                                             <option value='Grade 7'>Grade 7</option>
                                             <option value='Grade 8'>Grade 8</option>
@@ -72,6 +73,34 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4>School Year Profile</h4>
+                              <h5>You may submit this form without submitting the level form.</h5>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <form name= "input" action= "addSY.php" method= "post">
+                                          <div class="form-group">
+                                              <label>School Year</label>
+                                              <input class="form-control" placeholder="e.g 2017-2018" name="sy" required data-validation-required-message>
+                                              <p class="help-block"></p>
+                                          </div>
+                                      <!-- Submit Button -->
+                                      <button type="submit" style ="background-color:lightblue" class="btn btn-default" value="submit">Submit</button>
+                                      </form>
+                                  </div>
+                                  <!-- /.col-lg-6 (nested) -->
+                              </div>
+                              <!-- /.row (nested) -->
+                          </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->

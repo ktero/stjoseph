@@ -2,7 +2,7 @@
     require_once('../include/sessionstart.php');
     require_once('connection.php');
     $cn = new connection();
-    $conn = $cn->connectDB($_SESSION['database']);
+    $conn = $cn->connectDB();
 
     // Declare variables for data relocation
     $code = 'G0a';
