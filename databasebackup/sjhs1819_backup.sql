@@ -117,7 +117,7 @@ CREATE TABLE `receipt` (
   CONSTRAINT `receipt_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE,
   CONSTRAINT `receipt_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE,
   CONSTRAINT `receipt_ibfk_3` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,6 @@ CREATE TABLE `receipt` (
 
 LOCK TABLES `receipt` WRITE;
 /*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
-INSERT INTO `receipt` VALUES (10,'FN2017','MF10','ID',100,'2018-03-06',2,1),(10,'FN2017','CF1','Computer',500,'2018-03-06',2,2),(31,'FN2017','MF25','Haircut',250,'2018-03-07',2,4),(50,'FN2015','Gr9','Grade 9 Tuition',4000,'2018-03-08',2,10),(50,'FN2015','MF23','PTA',100,'2018-03-08',2,11),(60,'FN2015','Gr10','Grade 10 Tuition',5000,'2018-03-08',4,12),(60,'FN2015','MF23','PTA',100,'2018-03-08',4,13);
 /*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +140,7 @@ CREATE TABLE `school_year` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `School_Year` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +149,7 @@ CREATE TABLE `school_year` (
 
 LOCK TABLES `school_year` WRITE;
 /*!40000 ALTER TABLE `school_year` DISABLE KEYS */;
-INSERT INTO `school_year` VALUES (1,'Not assigned'),(2,'2018-2019'),(4,'2019-2020');
+INSERT INTO `school_year` VALUES (1,'Not assigned'),(2,'2018-2019');
 /*!40000 ALTER TABLE `school_year` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +184,6 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('FN2015','Sample','Test','N.','Female','Sample Addresss Talakag','G9a','2018-03-07',2),('FN2017','Tero','Kenneth','B.','Male','Cagayan de Oro City','G8b','2018-03-06',2);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,6 +198,7 @@ CREATE TABLE `student_pay_fees` (
   `PaymentID` int(15) NOT NULL AUTO_INCREMENT,
   `StudentID` varchar(30) NOT NULL,
   `Fee_code` varchar(5) NOT NULL,
+  `Level_code` varchar(5) DEFAULT NULL,
   `SY_ID` int(11) DEFAULT NULL,
   `Payment_Date` date NOT NULL,
   `Payment` varchar(50) NOT NULL,
@@ -208,10 +207,12 @@ CREATE TABLE `student_pay_fees` (
   KEY `StudentID` (`StudentID`),
   KEY `Fee_code` (`Fee_code`),
   KEY `student_pay_fees_ibfk_4` (`SY_ID`),
+  KEY `student_pay_fees_ibfk_5` (`Level_code`),
   CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE,
   CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE,
-  CONSTRAINT `student_pay_fees_ibfk_4` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  CONSTRAINT `student_pay_fees_ibfk_4` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `student_pay_fees_ibfk_5` FOREIGN KEY (`Level_code`) REFERENCES `level` (`Level_code`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +221,6 @@ CREATE TABLE `student_pay_fees` (
 
 LOCK TABLES `student_pay_fees` WRITE;
 /*!40000 ALTER TABLE `student_pay_fees` DISABLE KEYS */;
-INSERT INTO `student_pay_fees` VALUES (1,'FN2017','MF10',2,'2018-03-06','100.00','10'),(2,'FN2017','CF1',2,'2018-03-06','500.00','10'),(4,'FN2017','MF25',2,'2018-03-07','250.00','31'),(10,'FN2015','Gr9',2,'2018-03-08','4000.00','50'),(11,'FN2015','MF23',2,'2018-03-08','100.00','50'),(12,'FN2015','Gr10',4,'2018-03-08','5000.00','60'),(13,'FN2015','MF23',4,'2018-03-08','100.00','60');
 /*!40000 ALTER TABLE `student_pay_fees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-08 20:07:18
+-- Dump completed on 2018-03-09 17:47:06
