@@ -32,6 +32,8 @@
 
   $ID = isset($_GET['id']) ? mysqli_real_escape_string($conn, $_GET['id']) : '-1';
   $schoolyear = isset($_GET['schoolyear']) ? mysqli_real_escape_string($conn, $_GET['schoolyear']) : '-1';
+  $level = isset($_GET['level']) ? mysqli_real_escape_string($conn, $_GET['level']) : '-1';
+
 	$query = "SELECT * FROM student WHERE StudentID = '$ID'";
 	$result = mysqli_query($conn, $query) or die("Error query: ".mysqli_error($conn));
 
@@ -51,12 +53,33 @@
                       <div class="col-lg-12">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h4>Choose school year</h4>
-                            <h5>Transaction history of the student throughout the school year.</h5>
+                            <h4>Choose year level and school year</h4>
+                            <h5>Transaction history of the student in that year level throughout the school year .</h5>
                           </div>
                           <div class="panel-body">
                             <form action="student_ledger.php" method="get">
                               <input type="hidden" name="id" value="<?php echo $ID; ?>">
+                              <div class="form-group">
+                                  <label>Level name</label><br />
+                                  <select name='level' style="padding: 5px; cursor: pointer; width: 50%;" required>
+                                    <option selected='true' disabled>Choose Level</option>
+                                    <?php
+                                      $qLevel = "SELECT * from level";
+                                      $rLevel = mysqli_query($conn, $qLevel) or die('
+                                      Error: ' . mysqli_error());
+
+                                      while ($rowLevel = mysqli_fetch_row($rLevel)) {
+                                        if($rowLevel[0] != 'G0a') {
+                                          $code = $rowLevel[0];
+                                          $lvl = $rowLevel[1];
+                                          $section = $rowLevel[2];
+                                          echo "<option value='$code'>$lvl - $section</option>";
+                                        }
+                                      }
+                                    ?>
+                                  </select>
+                                  <p class="help-block"></p>
+                              </div>
                               <div class="form-group">
                                 <label>School Year</label><br />
                                 <select name='schoolyear' style="padding: 5px; cursor: pointer; width: 50%;">
@@ -93,7 +116,7 @@
                                         </h4>
                                         <h5 style="margin-left: 15px;">Year Level:
                                             <?php
-                                              $r = mysqli_query($conn, "SELECT * FROM level WHERE Level_code = '$row[6]'") or die('Error: ' . mysqli_error($conn));
+                                              $r = mysqli_query($conn, "SELECT * FROM level WHERE Level_code = '$level'") or die('Error: ' . mysqli_error($conn));
                                               if ($y = mysqli_fetch_row($r))
                                                 echo $y[1] . " - " . $y[2];
                                             ?>
@@ -129,56 +152,54 @@
 								$baltot = 0;
 								$amtot = 0;
 
-								$payque = "SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '$ID' AND SY_ID = '$schoolyear'";
+								$payque = "SELECT student_pay_fees.*, fees.Description FROM student_pay_fees LEFT JOIN fees ON student_pay_fees.Fee_code = fees.Fee_code WHERE StudentID = '$ID' AND SY_ID = '$schoolyear' AND Level_code = '$level'";
 								$payres = mysqli_query($conn, $payque) or die("Error query: ".mysqli_error($conn));
 
 								while($payrow = mysqli_fetch_row($payres))
 								{
-									$pr4 = number_format($payrow[5], 2, '.', ',&nbsp;');
+									$pr4 = number_format($payrow[6], 2, '.', ',&nbsp;');
 							?>
                                                 <tr>
                                                     <td>
-                                                        <?php echo $payrow[4]; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $payrow[6]; ?>
+                                                        <?php echo $payrow[5]; ?>
                                                     </td>
                                                     <td>
                                                         <?php echo $payrow[7]; ?>
                                                     </td>
                                                     <td>
+                                                        <?php echo $payrow[8]; ?>
+                                                    </td>
+                                                    <td>
                                                         <?php echo $pr4; ?>
                                                     </td>
                                                     <?php
-									$check = "SELECT * FROM student WHERE StudentID = '$ID'";
-									$checkres = mysqli_query($conn, $check) or die("Error: ".mysqli_error($conn));
 
-									while($res = mysqli_fetch_row($checkres))
-									{
-										if($res[6] == 'G7a' || $res[6] == 'G7b') {
+
+
+										if($level == 'G7a' || $level == 'G7b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr8', 'Gr9', 'Gr10', 'Gr11', 'Gr12', 'MF26', 'MF27', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										} else if($res[6] == 'G8a' || $res[6] == 'G8b') {
+										} else if($level == 'G8a' || $level == 'G8b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr9', 'Gr10', 'Gr11', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										} else if($res[6] == 'G9a' || $res[6] == 'G9b') {
+										} else if($level == 'G9a' || $level == 'G9b') {
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr10', 'Gr11', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-										} else if($res[6] == 'G10a' || $res[6] == 'G10b')
+										} else if($level == 'G10a' || $level == 'G10b')
 											$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr11', 'Gr12', 'MF29', 'MF30', 'MF31', 'MF32')";
-                    else if($res[6] == 'G11a' || $res[6] == 'G11b') {
+                    else if($level == 'G11a' || $level == 'G11b') {
   										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9',  'Gr10', 'Gr12', 'MF27', 'MF26', 'MF28', 'MF29', 'MF30', 'MF31', 'MF32')";
-                    } else if($res[6] == 'G12a' || $res[6] == 'G12b') {
+                    } else if($level == 'G12a' || $level == 'G12b') {
   										$code = "SELECT SUM(Amount) AS Amount FROM fees WHERE Fee_code NOT IN ('Gr7', 'Gr8', 'Gr9', 'Gr10', 'Gr11', 'MF27', 'MF26', 'MF28')";
                     }
 
 
 
 										$balres = mysqli_query($conn, $code) or die("Error: ".mysqli_error($conn));
-									}
+
 
 									while($bal = mysqli_fetch_row($balres))
 									{
 										$baltot = $bal[0];
 									}
-									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = '$ID' AND SY_ID = '$schoolyear'");
+									$result = mysqli_query($conn, "SELECT SUM(Payment) AS totsum FROM student_pay_fees WHERE StudentID = '$ID' AND SY_ID = '$schoolyear'  AND Level_code = '$level'");
 									$row = mysqli_fetch_assoc($result);
 									$amtot = $row['totsum'];
 									$amtot = $baltot - $amtot;
@@ -209,7 +230,7 @@
                                     </div>
                                   -->
                                     <div style="float: right">
-                                        <a href="accounts.php?id=<?php echo $ID; ?>&schoolyear=<?php echo $schoolyear; ?>&sy=<?php echo $syres[0]; ?>" style="font-size: 20px;">View Statement of Account</a>
+                                        <a href="accounts.php?id=<?php echo $ID; ?>&schoolyear=<?php echo $schoolyear; ?>&sy=<?php echo $syres[0]; ?>&level=<?php echo $level; ?>" style="font-size: 20px;">View Statement of Account</a>
                                     </div>
                                     <!-- /.table-responsive -->
 

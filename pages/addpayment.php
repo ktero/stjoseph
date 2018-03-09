@@ -43,10 +43,22 @@
                         // Insert into receipt
                         $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE(), SY_ID = '$sy'";
                         if(mysqli_query($conn, $add) == true) {
-                          // Insert into student_pay_fees
-                          $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
-                          if(mysqli_query($conn, $addStudentFee) == false)
-                            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+                          // Get level_code from student
+                          $getLevelCode = "SELECT Level_code FROM student WHERE StudentID ='$sid'";
+                          $resCode = mysqli_query($conn, $getLevelCode) or die('Error query: ' .mysqli_error($conn));
+
+                          if($resCode == true) {
+                            // Take Level_code
+                            if($lc = mysqli_fetch_row($resCode))
+                              $level = $lc[0];
+
+                            // Insert into student_pay_fees
+                            $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Level_code = '$level', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
+                            if(mysqli_query($conn, $addStudentFee) == false)
+                              echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+                          } else {
+                            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=level-not-found" />';
+                          }
                         } else {
                           echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
                         }

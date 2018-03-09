@@ -112,12 +112,30 @@
 										while($row = mysqli_fetch_row($result))
 										{
 									?>
+                          <?php
+                            $query = "SELECT * FROM school_year";
+                            $res = mysqli_query($conn, $query);
+                            while ($r = mysqli_fetch_row($res)) {
+                              if($r[0] == $row[6])
+                                $showSY = $r[0];
+                            }
+                          ?>
+
                                         <tr>
                                             <td>
                                                 <?php echo $row[0]; ?>
                                             </td>
                                             <td>
-                                              <a href="student_ledger.php?id=<?php echo $row[1]; ?>&schoolyear=<?php echo $row[6]; ?>">
+                                              <?php
+                                                $levelQuery = "SELECT student_pay_fees.Level_code FROM student_pay_fees WHERE student_pay_fees.StudentID = '$row[1]' AND student_pay_fees.SY_ID = '$showSY'";
+                                                $resLevel = mysqli_query($conn, $levelQuery) or die('Error: ' .mysqli_error($conn));
+
+                                                if($resLevel == true) {
+                                                  if($rowLevel = mysqli_fetch_row($resLevel))
+                                                    $level = $rowLevel[0];
+                                                }
+                                              ?>
+                                              <a href="student_ledger.php?id=<?php echo $row[1]; ?>&level=<?php echo $level; ?>&schoolyear=<?php echo $row[6]; ?>">
                                                   <?php echo $row[1]; ?>
                                               </a>
                                             </td>
@@ -135,11 +153,11 @@
                                             </td>
                                             <td>
                                               <?php
-                                                $query = "SELECT * FROM school_year";
-                                                $res = mysqli_query($conn, $query);
-                                                while ($r = mysqli_fetch_row($res)) {
-                                                  if($r[0] == $row[6])
-                                                    echo $r[1];
+                                                $query2 = "SELECT * FROM school_year";
+                                                $res2 = mysqli_query($conn, $query2);
+                                                while ($r2 = mysqli_fetch_row($res2)) {
+                                                  if($r2[0] == $row[6])
+                                                    echo $r2[1];
                                                 }
                                               ?>
                                             </td>

@@ -65,7 +65,7 @@
 									?>
                                         <tr>
                                             <td>
-                                                <a href="student_ledger.php?id=<?php echo $row[0]; ?>&schoolyear=<?php echo $row[8]; ?>">
+                                                <a href="student_ledger.php?id=<?php echo $row[0]; ?>&level=<?php echo $row[6]; ?>&schoolyear=<?php echo $row[8]; ?>">
                                                     <?php echo $row[0]; ?>
                                                 </a>
                                             </td>
