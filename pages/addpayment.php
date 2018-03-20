@@ -44,6 +44,9 @@
           // Insert into receipt
           $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE(), SY_ID = '$sy'";
           if(mysqli_query($conn, $add) == true) {
+            // Get recent inserted ID from Receipt
+            $lastID = mysqli_insert_id($conn);
+
             // Get level_code from student
             $getLevelCode = "SELECT Level_code FROM student WHERE StudentID ='$sid'";
             $resCode = mysqli_query($conn, $getLevelCode) or die('Error query: ' .mysqli_error($conn));
@@ -54,14 +57,14 @@
                 $level = $lc[0];
 
               // Insert into student_pay_fees
-              $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Level_code = '$level', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
+              $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Level_code = '$level', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn', ReceiptID = $lastID";
               if(mysqli_query($conn, $addStudentFee) == false)
-                echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+                echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment_2" />';
             } else {
               echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=level-not-found" />';
             }
           } else {
-            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment_1" />';
           }
         }
       }

@@ -89,6 +89,7 @@
                                         <th>Amount</th>
                                         <th>Receipt Date</th>
                                         <th>School Year</th>
+                                        <th>Operation</th>
                                         <!--
                                         <th>Section</th>
                                         <th>Year Level</th>
@@ -161,6 +162,9 @@
                                                     echo $r2[1];
                                                 }
                                               ?>
+                                            </td>
+                                            <td>
+                                                <a href='delete_transaction.php?receiptID=<?php echo $row[7]; ?>' class='btn btn-default'  style='background-color: #EA6565;'> Delete this receipt</a>
                                             </td>
                                         </tr>
                                         <?php

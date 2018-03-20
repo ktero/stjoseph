@@ -87,7 +87,7 @@
                                                 <a href='edit_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default' style='background-color: #69EC6B;'> Edit </a>
                                             </td>
                                             <td>
-                                                <a href='delete_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Are you sure you want to delete this record?');"> Delete </a>
+                                                <a href='delete_student.php?studentedit_key=<?php echo $row[0]; ?>' class='btn btn-default'  style='background-color: #EA6565;' onclick="return confirm('Deleting this student will also delete all of his/her transaction records. Are you sure you want to delete this record?');"> Delete </a>
                                             </td>
                                         </tr>
                                         <?php
