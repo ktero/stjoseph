@@ -140,7 +140,7 @@ CREATE TABLE `school_year` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `School_Year` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,15 +203,18 @@ CREATE TABLE `student_pay_fees` (
   `Payment_Date` date NOT NULL,
   `Payment` varchar(50) NOT NULL,
   `ORNo` varchar(50) NOT NULL,
+  `ReceiptID` int(11) DEFAULT NULL,
   PRIMARY KEY (`PaymentID`),
   KEY `StudentID` (`StudentID`),
   KEY `Fee_code` (`Fee_code`),
   KEY `student_pay_fees_ibfk_4` (`SY_ID`),
   KEY `student_pay_fees_ibfk_5` (`Level_code`),
+  KEY `student_pay_fees_ibfk_6` (`ReceiptID`),
   CONSTRAINT `student_pay_fees_ibfk_2` FOREIGN KEY (`Fee_code`) REFERENCES `fees` (`Fee_code`) ON UPDATE CASCADE,
   CONSTRAINT `student_pay_fees_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON UPDATE CASCADE,
   CONSTRAINT `student_pay_fees_ibfk_4` FOREIGN KEY (`SY_ID`) REFERENCES `school_year` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `student_pay_fees_ibfk_5` FOREIGN KEY (`Level_code`) REFERENCES `level` (`Level_code`) ON UPDATE CASCADE
+  CONSTRAINT `student_pay_fees_ibfk_5` FOREIGN KEY (`Level_code`) REFERENCES `level` (`Level_code`) ON UPDATE CASCADE,
+  CONSTRAINT `student_pay_fees_ibfk_6` FOREIGN KEY (`ReceiptID`) REFERENCES `receipt` (`ReceiptID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -233,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-20 16:26:08
+-- Dump completed on 2018-03-20 23:31:17
