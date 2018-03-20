@@ -1,21 +1,8 @@
-<!--
-CSLP Project: St. Joseph High School of Talakag Profiling and Financial System.
-Brief Description: A small profiling and financial system that track student records and transactions.
-
-Developers:
-- Jamrod Buat
-- Philip Endiape
-- Marvin Fuentes (Project leader)
-- Justine Fumar
-- Kenneth Tero
-
-Copyright © 2017-2018 All rights reserved.
--->
 <?php
     session_start();
     // Redirect back to index page if user has logged in
     if(isset($_SESSION['id']))
-      header('Location: index.php?');
+      header('Location: index.php');
     // Initialize session variables
     function setSessionVariables($row) {
         $_SESSION['id'] = $row['user_id'];

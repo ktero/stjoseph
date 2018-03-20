@@ -1,4 +1,5 @@
 <?php
+  require_once('../include/system-description.php');
    require_once('../include/sessionstart.php');
 ?>
 
@@ -15,65 +16,65 @@
         <?php require_once('../include/navdiv-title.php'); ?>
 	<!-- PHP -->
   <?php
-                    require_once('connection.php');
-                    $cn = new connection();
-                    $conn = $cn->connectDB();
+      require_once('connection.php');
+      $cn = new connection();
+      $conn = $cn->connectDB();
 
-                    $sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
-                    $orn = isset($_POST['ORNo']) ? mysqli_real_escape_string($conn, $_POST['ORNo']) : '';
-                    $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
-                    $sy = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
-                    $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
+      $sid = isset($_POST['StudentID']) ? mysqli_real_escape_string($conn, $_POST['StudentID']) : '';
+      $orn = isset($_POST['ORNo']) ? mysqli_real_escape_string($conn, $_POST['ORNo']) : '';
+      $code = isset($_POST['code']) ? mysqli_real_escape_string($conn, $_POST['code']) : '';
+      $sy = isset($_POST['schoolyear']) ? mysqli_real_escape_string($conn, $_POST['schoolyear']) : '';
+      $amount = isset($_POST['amount']) ? mysqli_real_escape_string($conn, $_POST['amount']) : '';
 
-                    if(isset($_POST['submit']))
-                    {
-                      if( $sid == '' || $orn == '' || $code == '' || $amount == '' || $sy == '')
-                      {
-                        echo "<h4 style='border: thin solid #f77; border-radius: 8px; padding: 10px;'>Please fill-up everything.</h4>";
-                      }
-                      else if( $sid != '' || $orn != '' || $code != '' || $amount != '' || $sy == '')
-                      {
+      if(isset($_POST['submit']))
+      {
+        if( $sid == '' || $orn == '' || $code == '' || $amount == '' || $sy == '')
+        {
+          echo "<h4 style='border: thin solid #f77; border-radius: 8px; padding: 10px;'>Please fill-up everything.</h4>";
+        }
+        else if( $sid != '' || $orn != '' || $code != '' || $amount != '' || $sy == '')
+        {
 
-                        $getDesc = "SELECT * FROM fees WHERE Fee_code = '$code'";
-                        $res = mysqli_query($conn, $getDesc) or die('Error:' .mysqli_error($conn));
-                        while ($row = mysqli_fetch_row($res)) {
-                           $desc = $row[1];
-                        }
+          $getDesc = "SELECT * FROM fees WHERE Fee_code = '$code'";
+          $res = mysqli_query($conn, $getDesc) or die('Error:' .mysqli_error($conn));
+          while ($row = mysqli_fetch_row($res)) {
+             $desc = $row[1];
+          }
 
-                        // Insert into receipt
-                        $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE(), SY_ID = '$sy'";
-                        if(mysqli_query($conn, $add) == true) {
-                          // Get level_code from student
-                          $getLevelCode = "SELECT Level_code FROM student WHERE StudentID ='$sid'";
-                          $resCode = mysqli_query($conn, $getLevelCode) or die('Error query: ' .mysqli_error($conn));
+          // Insert into receipt
+          $add = "INSERT INTO receipt SET ReceiptNo='$orn', StudentID='$sid', Fee_code='$code', Description='$desc', Amount='$amount', Receipt_Date=CURDATE(), SY_ID = '$sy'";
+          if(mysqli_query($conn, $add) == true) {
+            // Get level_code from student
+            $getLevelCode = "SELECT Level_code FROM student WHERE StudentID ='$sid'";
+            $resCode = mysqli_query($conn, $getLevelCode) or die('Error query: ' .mysqli_error($conn));
 
-                          if($resCode == true) {
-                            // Take Level_code
-                            if($lc = mysqli_fetch_row($resCode))
-                              $level = $lc[0];
+            if($resCode == true) {
+              // Take Level_code
+              if($lc = mysqli_fetch_row($resCode))
+                $level = $lc[0];
 
-                            // Insert into student_pay_fees
-                            $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Level_code = '$level', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
-                            if(mysqli_query($conn, $addStudentFee) == false)
-                              echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
-                          } else {
-                            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=level-not-found" />';
-                          }
-                        } else {
-                          echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
-                        }
-                      }
-                    }
-                    $cn->closeDB();
+              // Insert into student_pay_fees
+              $addStudentFee = "INSERT INTO student_pay_fees SET StudentID = '$sid', Fee_code = '$code', Level_code = '$level', SY_ID = '$sy', Payment_Date =CURDATE(),Payment = '$amount', ORNo = '$orn'";
+              if(mysqli_query($conn, $addStudentFee) == false)
+                echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+            } else {
+              echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=level-not-found" />';
+            }
+          } else {
+            echo '<meta http-equiv="refresh" content="0;url=studentpayment.php?result=invalid_payment" />';
+          }
+        }
+      }
+      $cn->closeDB();
 ?>
 	<!-- End PHP -->
 
 	<!-- Confirmation Message -->
 	<div id="page-wrapper" align="Center" style="padding-top: 100px">
 	<h1> Successfully Added Payment </h1>
-	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment from scratch</a><br /><br />
-  <a href='studentpayment.php?id=<?php echo $sid ?>' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add New Payment to same student</a><br /><br />
-  <a href='paymentrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View Payments</a>
+	<a href='studentpayment.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add new payment from another student</a><br /><br />
+  <a href='studentpayment.php?id=<?php echo $sid ?>' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">Add new payment to same student</a><br /><br />
+  <a href='paymentrecords.php' class="btn btn-default" role="button" style="background-color: lightblue; text-align: right">View payments</a>
 	</div>
 
 	 <!-- Footer -->

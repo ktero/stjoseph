@@ -1,4 +1,5 @@
 <?php
+  require_once('../include/system-description.php');
    require_once('../include/sessionstart.php');
 
    function updateSessionVariables($id, $firstname, $lastname, $email, $contact, $username, $password) {
